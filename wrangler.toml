@@ -1,5 +1,4 @@
 name = "cdm-suite"
-main = "dist/index.js"
 compatibility_date = "2025-11-16"
 pages_build_output_dir = ".vercel/output/static"
 
