@@ -1,6 +1,7 @@
 name = "cdm-suite"
 main = "dist/index.js"
 compatibility_date = "2025-11-16"
+pages_build_output_dir = ".vercel/output/static"
 
 # Cloudflare Worker entrypoint for optional APIs/background tasks.
 # Secrets (DATABASE_URL, STRIPE_SECRET_KEY, etc.) should be set with `wrangler secret put`
