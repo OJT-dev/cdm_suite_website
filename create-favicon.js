@@ -1,0 +1,45 @@
+// Create a simple favicon using canvas
+const fs = require('fs');
+
+// Create SVG favicon
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333ea;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="url(#grad)"/>
+  <text x="32" y="44" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">C</text>
+</svg>`;
+
+fs.writeFileSync('app/favicon.svg', svg);
+console.log('✓ Created app/favicon.svg');
+
+// Create a simple HTML file to convert to ICO (we'll use the SVG directly in Next.js)
+const html = `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; }
+    .favicon { 
+      width: 32px; 
+      height: 32px; 
+      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="favicon">C</div>
+</body>
+</html>`;
+
+console.log('Favicon files created successfully!');

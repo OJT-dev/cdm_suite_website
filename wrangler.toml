@@ -1,0 +1,19 @@
+name = "cdm-suite"
+main = "dist/index.js"
+compatibility_date = "2025-11-16"
+
+# Cloudflare Worker entrypoint for optional APIs/background tasks.
+# Secrets (DATABASE_URL, STRIPE_SECRET_KEY, etc.) should be set with `wrangler secret put`
+# and will be available to the Worker via environment variables.
+
+[vars]
+# Public (non-secret) environment variables can be defined here.
+# Do NOT put secrets in [vars]; use `wrangler secret put` instead.
+NEXT_PUBLIC_POSTHOG_KEY = "phc_C8oHNHCaWNvaNmfasMHv7ENYTyv1nfwcB10vBHQOnDQ"
+NEXTAUTH_URL = ""
+
+# Example (commented) compatibility flags for future use:
+# compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
