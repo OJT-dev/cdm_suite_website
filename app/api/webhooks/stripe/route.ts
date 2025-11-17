@@ -1,13 +1,30 @@
 
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { getStripeInstance } from '@/lib/stripe';
 import { prisma } from '@/lib/db';
 import { getWorkflowTemplate } from '@/lib/workflow-templates';
 import Stripe from 'stripe';
 
-const stripe = getStripeInstance();
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+export const runtime = 'nodejs';
+
+let stripeClient: Stripe | null = null;
+
+function getStripeClient(): Stripe | null {
+  const apiKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!apiKey) {
+    console.warn('Stripe secret key not found in environment variables; Stripe webhook processing disabled.');
+    return null;
+  }
+
+  if (!stripeClient) {
+    stripeClient = new Stripe(apiKey, {
+      apiVersion: '2025-10-29.clover',
+    });
+  }
+
+  return stripeClient;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,6 +33,26 @@ export async function POST(req: NextRequest) {
 
     if (!signature) {
       return NextResponse.json({ error: 'No signature' }, { status: 400 });
+    }
+
+    const stripe = getStripeClient();
+
+    if (!stripe) {
+      console.error('Stripe client unavailable; STRIPE_SECRET_KEY is not configured.');
+      return NextResponse.json(
+        { error: 'Stripe webhook not configured' },
+        { status: 500 }
+      );
+    }
+
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+    if (!webhookSecret) {
+      console.error('STRIPE_WEBHOOK_SECRET is not set');
+      return NextResponse.json(
+        { error: 'Webhook secret not configured' },
+        { status: 500 }
+      );
     }
 
     let event: Stripe.Event;

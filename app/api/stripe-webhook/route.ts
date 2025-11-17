@@ -1,11 +1,40 @@
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getStripeInstance } from '@/lib/stripe';
 import { prisma } from '@/lib/db';
 import Stripe from 'stripe';
 
+export const runtime = 'nodejs';
+
+let stripeClient: Stripe | null = null;
+
+function getStripeClient(): Stripe | null {
+  const apiKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!apiKey) {
+    console.warn('Stripe secret key not found in environment variables; Stripe webhook processing disabled.');
+    return null;
+  }
+
+  if (!stripeClient) {
+    stripeClient = new Stripe(apiKey, {
+      apiVersion: '2025-10-29.clover',
+    });
+  }
+
+  return stripeClient;
+}
+
 export async function POST(req: NextRequest) {
-  const stripe = getStripeInstance();
+  const stripe = getStripeClient();
+
+  if (!stripe) {
+    console.error('Stripe client unavailable; STRIPE_SECRET_KEY is not configured.');
+    return NextResponse.json(
+      { error: 'Stripe webhook not configured' },
+      { status: 500 }
+    );
+  }
+
   const signature = req.headers.get('stripe-signature');
   
   if (!signature) {
