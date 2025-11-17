@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getStripeInstance } from '@/lib/stripe';
 import { redirect } from 'next/navigation';
 
+export const runtime = 'nodejs';
+
 // Tripwire offer data - matches getTripwireOffer in send-tool-results/route.ts
 const TRIPWIRE_OFFERS: { [key: string]: any } = {
   'SEO Starter Package': {
@@ -91,6 +93,11 @@ export async function GET(req: NextRequest) {
     const origin = req.headers.get('origin') || req.nextUrl.origin;
     const stripe = getStripeInstance();
 
+    if (!stripe) {
+      console.error('Stripe client unavailable; STRIPE_SECRET_KEY is not configured.');
+      return NextResponse.redirect(new URL('/tools?error=stripe-not-configured', req.url));
+    }
+
     // Create checkout session
     const sessionConfig: any = {
       payment_method_types: ['card'],
@@ -153,6 +160,13 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get('origin') || 'http://localhost:3000';
     const stripe = getStripeInstance();
+
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Payment service not configured' },
+        { status: 500 },
+      );
+    }
 
     // Create checkout session for tripwire offer
     const sessionConfig: any = {

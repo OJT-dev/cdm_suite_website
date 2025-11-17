@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getStripeInstance } from '@/lib/stripe';
 import { prisma } from '@/lib/db';
 
+export const runtime = 'nodejs';
+
 export async function POST(req: NextRequest) {
   try {
     const { serviceId, tierId, tierName, amount } = await req.json();
@@ -21,6 +23,13 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get('origin') || 'http://localhost:3000';
     const stripe = getStripeInstance();
+
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Payment service not configured' },
+        { status: 500 },
+      );
+    }
 
     // Determine if this is a recurring or one-time service
     const isRecurring = service.slug.includes('maintenance') || 

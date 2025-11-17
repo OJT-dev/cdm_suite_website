@@ -4,21 +4,31 @@
 
 import Stripe from 'stripe';
 
-// This function should only be called on the server side
-export const getStripeInstance = () => {
+let stripeClient: Stripe | null = null;
+
+// This function should only be called on the server side.
+// It is safe for Cloudflare builds: it does not throw when STRIPE_SECRET_KEY is missing.
+export const getStripeInstance = (): Stripe | null => {
   if (typeof window !== 'undefined') {
     throw new Error('getStripeInstance should only be called on the server side');
   }
-  
+
   const secretKey = process.env.STRIPE_SECRET_KEY;
-  
+
   if (!secretKey) {
-    throw new Error('Stripe secret key not found in environment variables');
+    console.error(
+      'Stripe secret key not found in environment variables; Stripe functionality is disabled.',
+    );
+    return null;
   }
-  
-  return new Stripe(secretKey, {
-    apiVersion: '2025-10-29.clover',
-  });
+
+  if (!stripeClient) {
+    stripeClient = new Stripe(secretKey, {
+      apiVersion: '2025-10-29.clover',
+    });
+  }
+
+  return stripeClient;
 };
 
 export const PRICING_PACKAGES = [

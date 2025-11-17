@@ -1,5 +1,6 @@
 
-import { Resend } from 'resend';
+import type { Resend } from 'resend';
+import { getResendClient } from '@/lib/resend-client';
 
 /**
  * Email Service Utility
@@ -20,22 +21,6 @@ interface EmailResult {
   success: boolean;
   messageId?: string;
   error?: string;
-}
-
-// Initialize Resend client
-let resendClient: Resend | null = null;
-
-function getResendClient(): Resend | null {
-  if (!process.env.RESEND_API_KEY) {
-    console.warn('⚠️  RESEND_API_KEY not configured. Emails will be logged to console only.');
-    return null;
-  }
-  
-  if (!resendClient) {
-    resendClient = new Resend(process.env.RESEND_API_KEY);
-  }
-  
-  return resendClient;
 }
 
 /**

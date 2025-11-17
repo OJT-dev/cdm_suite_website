@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getStripeInstance } from '@/lib/stripe';
 import { getCurrentUser } from '@/lib/session';
 
+export const runtime = 'nodejs';
+
 // Premium SaaS pricing - professional DIY tools positioned between entry-level and full professional services
 const TIER_PRICING = {
   starter: {
@@ -48,6 +50,13 @@ export async function POST(req: NextRequest) {
     const tierConfig = TIER_PRICING[tierId as keyof typeof TIER_PRICING];
     const origin = req.headers.get('origin') || 'http://localhost:3000';
     const stripe = getStripeInstance();
+
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Payment service not configured' },
+        { status: 500 },
+      );
+    }
 
     // Create checkout session
     const sessionConfig: any = {
