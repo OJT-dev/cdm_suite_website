@@ -5,9 +5,21 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-10-29.clover',
-});
+export const runtime = 'nodejs';
+
+function getStripeClient() {
+  const apiKey = process.env.STRIPE_SECRET_KEY;
+  if (!apiKey) {
+    console.warn(
+      'STRIPE_SECRET_KEY not configured. Stripe payment links cannot be created or updated.'
+    );
+    return null;
+  }
+
+  return new Stripe(apiKey, {
+    apiVersion: '2025-10-29.clover',
+  });
+}
 
 // GET /api/proposals/[id] - Get single proposal
 export async function GET(
@@ -90,68 +102,80 @@ export async function PATCH(
     // If total changed, regenerate Stripe payment link
     if (newTotal !== existingProposal.total) {
       try {
-        // Deactivate old payment link if it exists
-        if (existingProposal.stripePaymentLinkId) {
-          await stripe.paymentLinks.update(existingProposal.stripePaymentLinkId, {
-            active: false,
+        const stripe = getStripeClient();
+
+        if (!stripe) {
+          console.warn(
+            'Stripe client not available; skipping payment link regeneration for proposal',
+            existingProposal.proposalNumber
+          );
+        } else {
+          // Deactivate old payment link if it exists
+          if (existingProposal.stripePaymentLinkId) {
+            await stripe.paymentLinks.update(existingProposal.stripePaymentLinkId, {
+              active: false,
+            });
+          }
+
+          // Create new Stripe product
+          const product = await stripe.products.create({
+            name: title || existingProposal.title,
+            description:
+              description !== undefined
+                ? description
+                : existingProposal.description || undefined,
+            metadata: {
+              proposalNumber: existingProposal.proposalNumber,
+              clientEmail: existingProposal.clientEmail,
+            },
           });
-        }
 
-        // Create new Stripe product
-        const product = await stripe.products.create({
-          name: title || existingProposal.title,
-          description: description !== undefined ? description : existingProposal.description || undefined,
-          metadata: {
-            proposalNumber: existingProposal.proposalNumber,
-            clientEmail: existingProposal.clientEmail,
-          },
-        });
+          // Create new price (in cents)
+          const priceAmount = Math.round(newTotal * 100);
 
-        // Create new price (in cents)
-        const priceAmount = Math.round(newTotal * 100);
-        
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: priceAmount,
-          currency: 'usd',
-        });
+          const price = await stripe.prices.create({
+            product: product.id,
+            unit_amount: priceAmount,
+            currency: 'usd',
+          });
 
-        // Create new payment link
-        const paymentLink = await stripe.paymentLinks.create({
-          line_items: [
-            {
-              price: price.id,
-              quantity: 1,
-            },
-          ],
-          after_completion: {
-            type: 'redirect',
-            redirect: {
-              url: `${process.env.NEXTAUTH_URL}/proposal-success?proposal=${existingProposal.proposalNumber}`,
-            },
-          },
-          metadata: {
-            proposalNumber: existingProposal.proposalNumber,
-          },
-          invoice_creation: {
-            enabled: true,
-            invoice_data: {
-              description: `Payment for ${title || existingProposal.title}`,
-              custom_fields: [
-                {
-                  name: 'Proposal Number',
-                  value: existingProposal.proposalNumber,
-                },
-              ],
-              metadata: {
-                proposalNumber: existingProposal.proposalNumber,
+          // Create new payment link
+          const paymentLink = await stripe.paymentLinks.create({
+            line_items: [
+              {
+                price: price.id,
+                quantity: 1,
+              },
+            ],
+            after_completion: {
+              type: 'redirect',
+              redirect: {
+                url: `${process.env.NEXTAUTH_URL}/proposal-success?proposal=${existingProposal.proposalNumber}`,
               },
             },
-          },
-        });
+            metadata: {
+              proposalNumber: existingProposal.proposalNumber,
+            },
+            invoice_creation: {
+              enabled: true,
+              invoice_data: {
+                description: `Payment for ${title || existingProposal.title}`,
+                custom_fields: [
+                  {
+                    name: 'Proposal Number',
+                    value: existingProposal.proposalNumber,
+                  },
+                ],
+                metadata: {
+                  proposalNumber: existingProposal.proposalNumber,
+                },
+              },
+            },
+          });
 
-        updateData.stripePaymentUrl = paymentLink.url;
-        updateData.stripePaymentLinkId = paymentLink.id;
+          updateData.stripePaymentUrl = paymentLink.url;
+          updateData.stripePaymentLinkId = paymentLink.id;
+        }
       } catch (stripeError: any) {
         console.error('Error updating Stripe payment link:', stripeError);
         // Continue with proposal update even if Stripe fails
