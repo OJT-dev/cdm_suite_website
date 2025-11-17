@@ -180,8 +180,58 @@ class SMSModeService {
   }
 }
 
-// Export singleton instance
-export const smsService = new SMSModeService();
+// Lazy SMS client accessor to avoid build-time side effects
+let smsClient: SMSModeService | null = null;
+
+function getSmsModeClient(): SMSModeService | null {
+  const apiKey = process.env.SMSMODE_API_KEY;
+  if (!apiKey) {
+    console.warn('SMSMode API key not configured');
+    return null;
+  }
+
+  if (!smsClient) {
+    smsClient = new SMSModeService();
+  }
+
+  return smsClient;
+}
+
+export const smsService = {
+  async sendSMS(
+    to: string,
+    message: string,
+    from: string = 'CDM Suite'
+  ): Promise<SMSSendResponse> {
+    const client = getSmsModeClient();
+    if (!client) {
+      return {
+        success: false,
+        error: 'SMS service not configured',
+      };
+    }
+
+    return client.sendSMS(to, message, from);
+  },
+
+  async getDeliveryStatus(messageId: string): Promise<SMSStatus | null> {
+    const client = getSmsModeClient();
+    if (!client) {
+      return null;
+    }
+
+    return client.getDeliveryStatus(messageId);
+  },
+
+  async getBalance(): Promise<number | null> {
+    const client = getSmsModeClient();
+    if (!client) {
+      return null;
+    }
+
+    return client.getBalance();
+  },
+};
 
 // Export types
 export type { SMSSendResponse, SMSStatus };

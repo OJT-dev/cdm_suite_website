@@ -3,9 +3,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-10-29.clover',
-});
+export const runtime = 'nodejs';
+
+function getStripeClient() {
+  const apiKey = process.env.STRIPE_SECRET_KEY;
+  if (!apiKey) {
+    console.warn('STRIPE_SECRET_KEY not configured. Checkout sessions cannot be created.');
+    return null;
+  }
+
+  return new Stripe(apiKey, {
+    apiVersion: '2025-10-29.clover',
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -50,6 +60,14 @@ export async function POST(request: NextRequest) {
     });
 
     // Create Stripe checkout session
+    const stripe = getStripeClient();
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Payment service not configured' },
+        { status: 500 }
+      );
+    }
+
     const session = await stripe.checkout.sessions.create({
       customer_email: email,
       line_items: [

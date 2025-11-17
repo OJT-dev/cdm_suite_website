@@ -2,7 +2,21 @@
 
 import { Resend } from 'resend';
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+let resendClient: Resend | null = null;
+
+function getResendClient(): Resend | null {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.warn('⚠️  RESEND_API_KEY not configured. Emails will be logged to console only.');
+    return null;
+  }
+
+  if (!resendClient) {
+    resendClient = new Resend(apiKey);
+  }
+
+  return resendClient;
+}
 
 function formatCurrency(value: number): string {
   return new Intl.NumberFormat('en-US', {
@@ -731,6 +745,7 @@ async function sendTeamNotification({
 </html>
   `;
 
+  const resend = getResendClient();
   if (!resend) {
     console.log('📧 Team Notification (Dev Mode):\n', emailHtml.substring(0, 500));
     return { success: true, mode: 'dev' };
@@ -839,6 +854,7 @@ async function sendLeadThankYouEmail({
 </html>
   `;
 
+  const resend = getResendClient();
   if (!resend) {
     console.log('📧 Lead Thank You Email (Dev Mode):\n', emailHtml.substring(0, 500));
     return { success: true, mode: 'dev' };
