@@ -2,9 +2,21 @@ name = "cdm-suite"
 compatibility_date = "2025-11-16"
 pages_build_output_dir = ".vercel/output/static"
 
-# Build configuration
-# Note: Cloudflare Pages will run the build command from the nextjs_space directory
-# The SKIP_BUILD_STATIC_GENERATION env var prevents database calls during build
+# Build environment variables
+[env.production.vars]
+SKIP_BUILD_STATIC_GENERATION = "true"
+NEXT_BUILD_SKIP_DB_VALIDATION = "true"
+DATABASE_URL = "postgresql://dummy:dummy@localhost:5432/dummy"
+
+# Environment variables for different deployment stages
+[env.production.vars]
+NEXT_PUBLIC_APP_URL = "https://cdm-suite.pages.dev"
+
+[env.production.vars]
+NEXTAUTH_URL = "https://cdm-suite.pages.dev"
+
+[env.production.vars]
+NEXTAUTH_SECRET = "a-very-long-random-string-for-build-only"
 
 [observability]
 enabled = true

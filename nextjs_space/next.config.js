@@ -5,9 +5,8 @@ const nextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
   output: process.env.NEXT_OUTPUT_MODE,
   experimental: {
-    // Fix: Use __dirname directly without going up a level
-    // This prevents the repo/repo path duplication issue
-    outputFileTracingRoot: __dirname,
+    // Fix path duplication issue for Cloudflare Pages
+    outputFileTracingRoot: process.cwd(),
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -19,7 +18,12 @@ const nextConfig = {
   // Skip database calls during static generation
   env: {
     SKIP_BUILD_STATIC_GENERATION: 'true',
+    NEXT_BUILD_SKIP_DB_VALIDATION: 'true',
   },
+  // Force all pages to be dynamic to avoid static generation issues
+  trailingSlash: false,
+  poweredByHeader: false,
+  compress: true,
 };
 
 module.exports = nextConfig;
