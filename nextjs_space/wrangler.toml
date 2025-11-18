@@ -1,0 +1,10 @@
+name = "cdm-suite"
+compatibility_date = "2025-11-16"
+pages_build_output_dir = ".vercel/output/static"
+
+# Build configuration
+# Note: Cloudflare Pages will run the build command from the nextjs_space directory
+# The SKIP_BUILD_STATIC_GENERATION env var prevents database calls during build
+
+[observability]
+enabled = true
