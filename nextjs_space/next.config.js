@@ -6,7 +6,7 @@ const nextConfig = {
   output: process.env.NEXT_OUTPUT_MODE,
   experimental: {
     // Fix path duplication issue for Cloudflare Pages
-    outputFileTracingRoot: process.cwd(),
+    outputFileTracingRoot: __dirname,
   },
   eslint: {
     ignoreDuringBuilds: true,

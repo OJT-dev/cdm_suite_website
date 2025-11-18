@@ -2,8 +2,8 @@ name = "cdm-suite"
 compatibility_date = "2025-11-16"
 pages_build_output_dir = ".vercel/output/static"
 
-# Build environment variables
-[env.production.vars]
+# Environment variables for build and runtime (Cloudflare Pages format)
+[vars]
 SKIP_BUILD_STATIC_GENERATION = "true"
 NEXT_BUILD_SKIP_DB_VALIDATION = "true"
 DATABASE_URL = "postgresql://dummy:dummy@localhost:5432/dummy"
