@@ -1,0 +1,428 @@
+These are the services we have and the prices, create stripe products for each and also I want to ensure that my app is CRO optimized
+
+[<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Results-Driven Ad Management | CDM Suite</title>
+    <meta name="description" content="Stop wasting your ad budget. CDM Suite offers data-driven ad management for Meta, Google & TikTok to turn clicks into actual customers. Get your free ad strategy call today!">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Results-Driven Ad Management | CDM Suite">
+    <meta property="og:description" content="We manage your digital ad campaigns with a focus on one thing: growing your bottom line. Let's build a strategy that works.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:url" content="[Your Website URL Here]">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A very light gray background */
+        }
+        .card-shadow {
+            box-shadow: 0 10px B-3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .best-value-badge {
+            transform: rotate(45deg);
+        }
+        .calendly-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #3b82f6; /* blue-500 */
+            animation: spin 1s ease infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <!-- Hero Section -->
+    <div class="relative bg-gray-800 overflow-hidden">
+        <div class="absolute inset-0">
+            <!-- Background Image -->
+            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" 
+                 class="w-full h-full object-cover" 
+                 alt="A diverse marketing team, including Black professionals, collaborating energetically around a laptop.">
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        
+        <div class="relative container mx-auto px-4 py-24 md:py-32">
+            <header class="text-center max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight [text-shadow:1px_1px_3px_rgba(0,0,0,0.5)]">Tired of Wasting Money on Ads? Let's Turn Clicks Into Customers.</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 [text-shadow:1px_1px_3px_rgba(0,0,0,0.5)]">
+                    Think of us as your co-pilot for digital advertising. We handle the complex stuff, from the data and targeting to the constant tweaks, to make sure your budget finds real people who actually want what you sell. No more shouting into the void; just smart ads that work.
+                </p>
+                <button class="schedule-btn-trigger bg-blue-600 text-white font-bold py-4 px-8 rounded-full hover:bg-blue-700 transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    Get Your Free Ad Strategy Call
+                </button>
+            </header>
+        </div>
+    </div>
+
+    <!-- Container for page content -->
+    <div class="container mx-auto px-4 pb-12 md:pb-20">
+
+        <!-- "Why Us" Section with overlap -->
+        <section class="relative z-10 -mt-24 max-w-4xl mx-auto mb-12 md:mb-20 bg-white p-8 rounded-2xl card-shadow">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">More Than an Agency, We're Your Growth Team.</h2>
+            <p class="text-center text-gray-600 mb-8">Look, anyone can boost a post. The real magic is in the day-to-day work of testing, learning, and optimizing. That's where we come in. We genuinely plug into your business, acting like an in-house team that's obsessed with one thing: helping you grow.</p>
+            <div class="grid md:grid-cols-2 gap-8 text-gray-700">
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">We Speak Every Platform's Language</h3>
+                    <p>Whether your customers are scrolling Instagram, searching on Google, or discovering trends on TikTok, we're there. We craft ads that feel native and engaging, not intrusive.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">We Focus on Real Results (ROAS)</h3>
+                    <p>Vanity metrics like 'likes' are nice, but we chase the numbers that actually matter: leads, sales, and a healthy Return on Ad Spend. Every dollar is tracked, tested, and put to work for your bottom line.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">No-Jargon, Honest Reporting</h3>
+                    <p>You'll never be in the dark. We provide simple, clear reports that show you what's working and what we're doing about it. You’ll always know exactly how your campaigns are performing.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">We See the Bigger Picture</h3>
+                    <p>A click is just the beginning. We look at the whole customer journey, from the ad to your landing page, to make sure the experience is seamless. It’s how we turn curious clicks into happy customers.</p>
+                </div>
+            </div>
+        </section>
+<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+<stripe-pricing-table pricing-table-id="prctbl_1SDdvACoJ4iodUWeAcmcLGzy"
+publishable-key="pk_live_51R45rUCoJ4iodUWeEcmoTwOLBXI2dbeK3vfBdLBKQFR4rYhHqSJTwepBRHkmvOaZAxRm4IiFOq3piyHeObmNhHpE00KYD9TQtB">
+</stripe-pricing-table>
+
+        <!-- Call to Action Section -->
+        <section id="ctaSection" class="text-center mt-16 md:mt-24 max-w-3xl mx-auto">
+            <div id="ctaContent">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to See What Your Ads Can *Really* Do?</h2>
+                <p class="text-gray-600 mb-8 text-lg">
+                   Hop on a free, no-strings-attached strategy call with us. We'll take a look at what you're doing now, listen to your goals, and give you some honest, actionable advice. It’s a chat, not a sales pitch. Let's figure this out together.
+                </p>
+                <button class="schedule-btn-trigger bg-blue-600 text-white font-bold py-4 px-8 rounded-full hover:bg-blue-700 transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    Schedule My Free Strategy Call
+                </button>
+            </div>
+            
+            <!-- Calendly Scheduler Section (hidden by default) -->
+            <div id="scheduler" class="hidden mt-8 min-h-[700px]">
+                <div id="spinner" class="flex justify-center items-center h-full pt-20">
+                    <div class="calendly-spinner"></div>
+                </div>
+                <div id="calendlyWidget" class="hidden">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/cdm-creativemedia/digital-marketing-power-session" style="min-width:320px;height:700px;"></div>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="max-w-3xl mx-auto mt-16 md:mt-24 border-t pt-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Common Questions</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Is the monthly ad spend included in your price?</h3>
+                    <p class="text-gray-600">Great question! Our pricing is for our team's expertise—the strategy, management, and optimization. Your ad spend (the money that goes directly to Google, Meta, etc.) is a separate budget. We'll help you determine the right starting budget for your goals during our strategy call.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">How long until I see results?</h3>
+                    <p class="text-gray-600">We get it, you're excited to see a return! While you can start seeing traffic and data within days, it usually takes about 2-3 months to fully optimize campaigns for consistent, profitable results. The first month is all about gathering data and learning, then we scale what works.</p>
+                </div>
+                 <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">How do you get access to my accounts?</h3>
+                    <p class="text-gray-600">Your security and ownership are top priorities. We use a secure, professional process and will request partner-level access to your ad accounts (like Facebook Business Manager and Google Ads). This way, you always remain the owner of your accounts and data. We'll never ask for your personal login details.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scheduleButtons = document.querySelectorAll('.schedule-btn-trigger');
+            const ctaSection = document.getElementById('ctaSection');
+            const ctaContent = document.getElementById('ctaContent');
+            const scheduler = document.getElementById('scheduler');
+            const spinner = document.getElementById('spinner');
+            const calendlyWidgetContainer = document.getElementById('calendlyWidget');
+            let isCalendlyLoaded = false;
+
+            scheduleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Scroll to the CTA section smoothly
+                    ctaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Show the spinner and hide the CTA content
+                    ctaContent.classList.add('hidden');
+                    scheduler.classList.remove('hidden');
+                    spinner.classList.remove('hidden');
+                    calendlyWidgetContainer.classList.add('hidden');
+
+                    // Load Calendly script if it hasn't been loaded yet
+                    if (!isCalendlyLoaded) {
+                        const script = document.createElement('script');
+                        script.type = 'text/javascript';
+                        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+                        script.async = true;
+                        
+                        document.head.appendChild(script);
+
+                        // Listen for Calendly to be ready
+                        script.onload = () => {
+                            isCalendlyLoaded = true;
+                             // A small delay to ensure the widget has time to initialize
+                            setTimeout(() => {
+                                spinner.classList.add('hidden');
+                                calendlyWidgetContainer.classList.remove('hidden');
+                                calendlyWidgetContainer.classList.add('fade-in');
+                            }, 500); 
+                        };
+                    } else {
+                        // If already loaded, just show it
+                        spinner.classList.add('hidden');
+                        calendlyWidgetContainer.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+]
+
+[<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Strategic SEO Services That Drive Real Traffic | CDM Suite</title>
+    <meta name="description" content="Get found by the customers who are searching for you. CDM Suite offers strategic SEO services designed to increase your visibility, traffic, and sales.">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Strategic SEO Services That Drive Real Traffic | CDM Suite">
+    <meta property="og:description" content="Let's climb the search rankings together. We focus on sustainable SEO strategies that deliver long-term growth for your business.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop">
+    <meta property="og:url" content="[Your Website URL Here]">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .best-value-badge {
+            transform: rotate(45deg);
+        }
+        .calendly-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #3b82f6; /* blue-500 */
+            animation: spin 1s ease infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <!-- Hero Section -->
+    <div class="relative bg-gray-800 overflow-hidden">
+        <div class="absolute inset-0">
+            <!-- Background Image -->
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" 
+                 class="w-full h-full object-cover" 
+                 alt="A team collaborating on a whiteboard with graphs and charts, representing SEO strategy.">
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        
+        <div class="relative container mx-auto px-4 py-24 md:py-32">
+            <header class="text-center max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight [text-shadow:1px_1px_3px_rgba(0,0,0,0.5)]">Get Found by the Customers Looking for You.</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 [text-shadow:1px_1px_3px_rgba(0,0,0,0.5)]">
+                    Good SEO isn't about tricking Google. It's about making your website the best possible answer for your future customers. We handle the technical details and strategic content so you can connect with the people who need you most.
+                </p>
+                <button class="schedule-btn-trigger bg-blue-600 text-white font-bold py-4 px-8 rounded-full hover:bg-blue-700 transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    Get Your Free SEO Audit
+                </button>
+            </header>
+        </div>
+    </div>
+
+    <!-- Container for page content -->
+    <div class="container mx-auto px-4 pb-12 md:pb-20">
+
+        <!-- "Why Us" Section with overlap -->
+        <section class="relative z-10 -mt-24 max-w-4xl mx-auto mb-12 md:mb-20 bg-white p-8 rounded-2xl card-shadow">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">We Play the Long Game.</h2>
+            <p class="text-center text-gray-600 mb-8">SEO is a marathon, not a sprint. While others might promise instant #1 rankings with risky tactics, we focus on building a powerful, sustainable foundation for your website. We build your authority, earn trust with search engines, and create a lasting asset that brings in qualified traffic month after month.</p>
+            <div class="grid md:grid-cols-2 gap-8 text-gray-700">
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Focused on Your Bottom Line</h3>
+                    <p>Ranking for a keyword is useless if it doesn't bring in business. We start by understanding your goals and target the keywords that your ideal customers are actually using.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">A Holistic Approach</h3>
+                    <p>Great SEO doesn't live in a bubble. It works hand-in-hand with a well-designed website, quality content, and a smart user experience. We look at the whole picture to ensure success.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">No-Nonsense Reporting</h3>
+                    <p>We believe in total transparency. Our reports are clear, easy to understand, and focus on the metrics that matter most: your traffic, your leads, and your growth.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Always Learning, Always Adapting</h3>
+                    <p>Google's algorithm is always changing. Part of our job is to stay on top of the latest trends and updates to keep your strategy effective and ahead of the curve.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section Header -->
+        <section class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Find the Perfect SEO Plan for Your Business</h2>
+            <p class="text-lg text-gray-600">Whether you're just starting out or ready to scale, we have a plan designed for your stage of growth.</p>
+        </section>
+
+        <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+<stripe-pricing-table pricing-table-id="prctbl_1SDehqCoJ4iodUWeH1cRUTSR"
+publishable-key="pk_live_51R45rUCoJ4iodUWeEcmoTwOLBXI2dbeK3vfBdLBKQFR4rYhHqSJTwepBRHkmvOaZAxRm4IiFOq3piyHeObmNhHpE00KYD9TQtB">
+</stripe-pricing-table>
+
+        <!-- Call to Action Section -->
+        <section id="ctaSection" class="text-center mt-16 md:mt-24 max-w-3xl mx-auto">
+            <div id="ctaContent">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Climb the Ranks?</h2>
+                <p class="text-gray-600 mb-8 text-lg">
+                   Let's start with a free, no-obligation SEO audit. We'll analyze your website, identify your biggest opportunities, and give you a clear, actionable roadmap for growth. No hard sell, just honest advice.
+                </p>
+                <button class="schedule-btn-trigger bg-blue-600 text-white font-bold py-4 px-8 rounded-full hover:bg-blue-700 transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    Get My Free SEO Audit
+                </button>
+            </div>
+            
+            <!-- Calendly Scheduler Section (hidden by default) -->
+            <div id="scheduler" class="hidden mt-8 min-h-[700px]">
+                <div id="spinner" class="flex justify-center items-center h-full pt-20">
+                    <div class="calendly-spinner"></div>
+                </div>
+                <div id="calendlyWidget" class="hidden">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/cdm-creativemedia/digital-marketing-power-session" style="min-width:320px;height:700px;"></div>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="max-w-3xl mx-auto mt-16 md:mt-24 border-t pt-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Your SEO Questions, Answered</h2>
+            <div class="space-y-6">
+                 <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">How long does it take to see results from SEO?</h3>
+                    <p class="text-gray-600">This is the most common and important question! SEO is a long-term strategy. While you might see some positive movement in the first 2-3 months, significant, lasting results typically take 6-12 months to build. It's an investment that pays off with steady, "free" traffic over time.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Can you guarantee a #1 ranking on Google?</h3>
+                    <p class="text-gray-600">No reputable SEO professional can or should guarantee a #1 spot. Google's algorithm is complex and constantly changing. What we can guarantee is that we will use the best, most up-to-date strategies to significantly improve your visibility, traffic, and rankings for the keywords that matter to your business.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">What's the difference between on-page and off-page SEO?</h3>
+                    <p class="text-gray-600">Think of it like this: On-page SEO is everything you control directly on your website (like content, keywords, site speed). Off-page SEO is about building your site's authority and reputation around the web (mostly through getting high-quality backlinks from other reputable sites).</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scheduleButtons = document.querySelectorAll('.schedule-btn-trigger');
+            const ctaSection = document.getElementById('ctaSection');
+            const ctaContent = document.getElementById('ctaContent');
+            const scheduler = document.getElementById('scheduler');
+            const spinner = document.getElementById('spinner');
+            const calendlyWidgetContainer = document.getElementById('calendlyWidget');
+            let isCalendlyLoaded = false;
+
+            scheduleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    ctaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    ctaContent.classList.add('hidden');
+                    scheduler.classList.remove('hidden');
+                    spinner.classList.remove('hidden');
+                    calendlyWidgetContainer.classList.add('hidden');
+
+                    if (!isCalendlyLoaded) {
+                        const script = document.createElement('script');
+                        script.type = 'text/javascript';
+                        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+                        script.async = true;
+                        
+                        document.head.appendChild(script);
+
+                        script.onload = () => {
+                            isCalendlyLoaded = true;
+                            setTimeout(() => {
+                                spinner.classList.add('hidden');
+                                calendlyWidgetContainer.classList.remove('hidden');
+                                calendlyWidgetContainer.classList.add('fade-in');
+                            }, 500); 
+                        };
+                    } else {
+                        spinner.classList.add('hidden');
+                        calendlyWidgetContainer.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+]
+
+[https://cdmsuite.com/services/]
+
+And recreate a similar look for the pages with the header image and for the homepage make the header image more approachable, you could replicate something similar to this [hiveandheart.studio]

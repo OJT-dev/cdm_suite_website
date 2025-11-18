@@ -1,0 +1,115 @@
+Okay for all the users that werent sent to the admin send all the info to them also, for the emails that go to the leads, you will try to get their first name and NOT use the ID that looks weird eg [ <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to CDM Suite</title>
+</head>
+
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td align="center" style="padding: 40px 0;">
+        <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center;">
+              <div style="background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%); color: white; padding: 12px 24px; border-radius: 8px; display: inline-block; font-weight: bold; font-size: 20px;">
+                CDM Suite
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding: 0 40px 40px;">
+              <h1 style="margin: 0 0 20px; font-size: 24px; color: #111827;">Welcome to CDM Suite! 🎉</h1>
+              <p style="margin: 0 0 20px; font-size: 16px; line-height: 1.5; color: #4b5563;">
+                Hi YmalZMHqWCqOTNYrPMqowdx,
+              </p>
+              <p style="margin: 0 0 20px; font-size: 16px; line-height: 1.5; color: #4b5563;">
+                Thank you for joining CDM Suite! We're excited to help you grow your business with our digital marketing tools and services.
+              </p>
+
+              <div style="background-color: #f0f9ff; border-left: 4px solid #2563eb; padding: 16px; margin: 20px 0;">
+                <p style="margin: 0 0 10px; font-weight: 600; color: #1e40af;">🚀 Your first project is FREE!</p>
+                <p style="margin: 0; font-size: 14px; color: #1e3a8a;">
+                  Start with our AI Website Builder to create your first website at no cost.
+                </p>
+              </div>
+
+              <table role="presentation" style="margin: 30px 0;">
+                <tr>
+                  <td style="border-radius: 6px; background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);">
+                    <a href="https://cdmsuite.com/auth/login" target="_blank" style="display: inline-block; padding: 14px 40px; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 16px;">
+                      Get Started
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin: 20px 0 0; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px; line-height: 1.5; color: #6b7280;">
+                Need help? Our support team is here for you at <a href="mailto:hello@cdmsuite.com" style="color: #2563eb; text-decoration: none;">hello@cdmsuite.com</a>
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding: 20px 40px; background-color: #f9fafb; border-radius: 0 0 8px 8px;">
+              <p style="margin: 0; font-size: 12px; color: #6b7280; text-align: center;">
+                © 2025 CDM Suite. All rights reserved.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html> ] looks weird,  and also who said we offer FREE websites... fix that and thoroughly Test the notification with a dummy signup. 
+
+Also I tried to run a proposal again and got this error [ Error in bid extraction endpoint: Error: aborted
+    at abortIncoming (node:_http_server:809:17)
+    at socketOnClose (node:_http_server:803:3)
+    at Socket.emit (node:events:530:35)
+    at TCP.<anonymous> (node:net:351:12)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17) {
+  code: 'ECONNRESET'
+}
+Processing 6 RFP files and 0 email files for AI extraction...
+Starting sequential extraction of 6 files...
+[1/6] Extracting Attachment A Scope of Work.pdf (104KB)...
+✓ Extracted 6 pages, 7121 characters from PDF
+✓ Successfully extracted 7114 characters from Attachment A Scope of Work.pdf
+✓ [1/6] Completed Attachment A Scope of Work.pdf
+[2/6] Extracting Exhibit B-Bid Clauses.pdf (246KB)...
+✓ Extracted 5 pages, 7496 characters from PDF
+✓ Successfully extracted 7459 characters from Exhibit B-Bid Clauses.pdf
+✓ [2/6] Completed Exhibit B-Bid Clauses.pdf
+⚠ Large PDF detected: FY- 26 Other Services HUB Subcontracting Plan (003).pdf (6MB) - may require extended processing time
+[3/6] Extracting FY- 26 Other Services HUB Subcontracting Plan (003).pdf (5673KB)...
+
+<--- Last few GCs --->
+
+[8:0x43df4000]   188568 ms: Scavenge (interleaved) 507.6 (519.2) -> 507.4 (519.2) MB, pooled: 4 MB, 2.35 / 0.00 ms  (average mu = 0.130, current mu = 0.020) allocation failure; 
+[8:0x43df4000]   188669 ms: Scavenge (interleaved) 507.6 (519.2) -> 507.6 (525.0) MB, pooled: 0 MB, 101.16 / 0.00 ms  (average mu = 0.130, current mu = 0.020) allocation failure; 
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0xe36196 node::OOMErrorHandler(char const*, v8::OOMDetails const&) [next-server (v14.2.28)]
+ 2: 0x123f4a0 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [next-server (v14.2.28)]
+ 3: 0x123f777 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [next-server (v14.2.28)]
+ 4: 0x146d1a5  [next-server (v14.2.28)]
+ 5: 0x1486a19 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [next-server (v14.2.28)]
+ 6: 0x145b0e8 v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [next-server (v14.2.28)]
+ 7: 0x145c015 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [next-server (v14.2.28)]
+ 8: 0x1434cee v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [next-server (v14.2.28)]
+ 9: 0x18962ec v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [next-server (v14.2.28)]
+10: 0x1df27c9  [next-server (v14.2.28)]
+Aborted] [Failed to load resource: the server responded with a status of 503 ()
+2117-ff6eff4b10ef7cff.js:1 Error creating bid proposal: SyntaxError: Unexpected token 'u', "upstream c"... is not valid JSON
+window.console.error	@	2117-ff6eff4b10ef7cff.js:1]

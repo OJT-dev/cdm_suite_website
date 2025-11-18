@@ -1,0 +1,267 @@
+Got this error [page-65ddd1389c227399.js:1 
+ POST https://cdmsuite.com/api/analytics/reddit-conversion 400 (Bad Request)
+P	@	page-65ddd1389c227399.js:1
+a_	@	fd9d1056-def3aac4257a2603.js:1
+aR	@	fd9d1056-def3aac4257a2603.js:1
+(anonymous)	@	fd9d1056-def3aac4257a2603.js:1
+sF	@	fd9d1056-def3aac4257a2603.js:1
+sM	@	fd9d1056-def3aac4257a2603.js:1
+(anonymous)	@	fd9d1056-def3aac4257a2603.js:1
+o4	@	fd9d1056-def3aac4257a2603.js:1
+iV	@	fd9d1056-def3aac4257a2603.js:1
+sU	@	fd9d1056-def3aac4257a2603.js:1
+uR	@	fd9d1056-def3aac4257a2603.js:1
+uM	@	fd9d1056-def3aac4257a2603.js:1
+
+2117-ff6eff4b10ef7cff.js:1 Error sending test event: Error: [object Object]
+
+Details: {"error":{"code":400,"message":"There were 1 invalid conversion events. None were processed.","fields":[{"field":"$.data.events[0].action_source","message":"missing action_source"}]}}
+
+    at P (page-65ddd1389c227399.js:3:33)
+window.console.error	@	2117-ff6eff4b10ef7cff.js:1
+P	@	page-65ddd1389c227399.js:3
+await in P		
+a_	@	fd9d1056-def3aac4257a2603.js:1
+aR	@	fd9d1056-def3aac4257a2603.js:1
+(anonymous)	@	fd9d1056-def3aac4257a2603.js:1
+sF	@	fd9d1056-def3aac4257a2603.js:1
+sM	@	fd9d1056-def3aac4257a2603.js:1
+(anonymous)	@	fd9d1056-def3aac4257a2603.js:1
+o4	@	fd9d1056-def3aac4257a2603.js:1
+iV	@	fd9d1056-def3aac4257a2603.js:1
+sU	@	fd9d1056-def3aac4257a2603.js:1
+uR	@	fd9d1056-def3aac4257a2603.js:1
+uM	@	fd9d1056-def3aac4257a2603.js:1]
+
+this is from [ https://ads-api.reddit.com/docs/v3/operations/Post%20Conversion%20Events]  [Post Conversion Events
+post
+https://ads-api.reddit.com/api/v3/pixels/{pixel_id}/conversion_events
+Important: The values for several fields—such as tracking_type—are different in CAPI v3. Learn how to migrate from v2.
+
+Post conversion events. Learn more about setting up CAPI events.
+
+Rate Limit
+“Conversions API” limits on both the number of requests as well as the number of conversion events in requests.
+
+
+
+Request
+Path Parameters
+pixel_id
+string
+required
+The ID of the Reddit Ads Pixel that the conversion event belongs to.
+
+Body
+
+application/json
+
+application/json
+data
+object
+required
+test_id
+string
+The ID copied from Events Manager for event testing.
+
+events
+array[ConversionEvent]
+required
+An array of conversion events posting to a pixel.
+
+>= 1 items
+<= 1000 items
+Responses
+200
+400
+401
+403
+404
+429
+5XX
+Post conversion events response.
+
+Body
+
+application/json
+
+application/json
+data
+object
+required
+message
+string
+required
+A message summarizing the results of the processed conversion events.
+
+Example:
+Successfully processed 3 conversion events.
+Token
+:
+Bearer 123
+pixel_id*
+:
+string
+{
+  "data": {
+    "test_id": "string",
+    "events": [
+      {
+        "click_id": "3184742045291813272",
+        "event_at": 1514764800000,
+        "action_source": "WEBSITE",
+        "type": {
+          "custom_event_name": "PromotionEvent",
+          "tracking_type": "PAGE_VISIT"
+        },
+        "metadata": {
+          "conversion_id": "H72B9A4YXQ",
+          "currency": "USD",
+          "item_count": 5,
+          "value": 10.99,
+          "products": [
+            {
+              "category": "Food Items",
+              "id": "item-213",
+              "name": "Carne Asada Burrito"
+            }
+          ]
+        },
+        "user": {
+          "email": "snoo@example.com",
+          "external_id": "7c73f2ae-a433-4d7b-9838-f467da98f48e",
+          "ip_address": "192.0.2.1",
+          "phone_number": "+15554441234",
+          "user_agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+          "aaid": "cdda802e-fb9c-47ad-9866-0794d394c912",
+          "idfa": "EA7583CD-A667-48BC-B806-42ECB2B48606",
+          "uuid": "1684189007728.7c73f2ae-a433-4d7b-9838-f467da98f48e",
+          "data_processing_options": {
+            "country": "US",
+            "region": "US-CA",
+            "modes": [
+              "LDU"
+            ]
+          },
+          "screen_dimensions": {
+            "height": 1440,
+            "width": 3440
+          }
+        }
+      }
+    ]
+  }
+}
+{
+  "data": {
+    "test_id": "string",
+    "events": [
+      {
+        "click_id": "3184742045291813272",
+        "event_at": 1514764800000,
+        "action_source": "WEBSITE",
+        "type": {
+          "custom_event_name": "PromotionEvent",
+          "tracking_type": "PAGE_VISIT"
+        },
+        "metadata": {
+          "conversion_id": "H72B9A4YXQ",
+          "currency": "USD",
+          "item_count": 5,
+          "value": 10.99,
+          "products": [
+            {
+              "category": "Food Items",
+              "id": "item-213",
+              "name": "Carne Asada Burrito"
+            }
+          ]
+        },
+        "user": {
+          "email": "snoo@example.com",
+          "external_id": "7c73f2ae-a433-4d7b-9838-f467da98f48e",
+          "ip_address": "192.0.2.1",
+          "phone_number": "+15554441234",
+          "user_agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+          "aaid": "cdda802e-fb9c-47ad-9866-0794d394c912",
+          "idfa": "EA7583CD-A667-48BC-B806-42ECB2B48606",
+          "uuid": "1684189007728.7c73f2ae-a433-4d7b-9838-f467da98f48e",
+          "data_processing_options": {
+            "country": "US",
+            "region": "US-CA",
+            "modes": [
+              "LDU"
+            ]
+          },
+          "screen_dimensions": {
+            "height": 1440,
+            "width": 3440
+          }
+        }
+      }
+    ]
+  }
+}
+Send API Request
+curl --request POST \
+  --url https://ads-api.reddit.com/api/v3/pixels/{pixel_id}/conversion_events \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer 123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "data": {
+    "test_id": "string",
+    "events": [
+      {
+        "click_id": "3184742045291813272",
+        "event_at": 1514764800000,
+        "action_source": "WEBSITE",
+        "type": {
+          "custom_event_name": "PromotionEvent",
+          "tracking_type": "PAGE_VISIT"
+        },
+        "metadata": {
+          "conversion_id": "H72B9A4YXQ",
+          "currency": "USD",
+          "item_count": 5,
+          "value": 10.99,
+          "products": [
+            {
+              "category": "Food Items",
+              "id": "item-213",
+              "name": "Carne Asada Burrito"
+            }
+          ]
+        },
+        "user": {
+          "email": "snoo@example.com",
+          "external_id": "7c73f2ae-a433-4d7b-9838-f467da98f48e",
+          "ip_address": "192.0.2.1",
+          "phone_number": "+15554441234",
+          "user_agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+          "aaid": "cdda802e-fb9c-47ad-9866-0794d394c912",
+          "idfa": "EA7583CD-A667-48BC-B806-42ECB2B48606",
+          "uuid": "1684189007728.7c73f2ae-a433-4d7b-9838-f467da98f48e",
+          "data_processing_options": {
+            "country": "US",
+            "region": "US-CA",
+            "modes": [
+              "LDU"
+            ]
+          },
+          "screen_dimensions": {
+            "height": 1440,
+            "width": 3440
+          }
+        }
+      }
+    ]
+  }
+}'
+{
+  "data": {
+    "message": "Successfully processed 3 conversion events."
+  }
+}]
+
+You can also check [https://ads-api.reddit.com/docs/v3]

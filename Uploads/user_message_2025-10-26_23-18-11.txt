@@ -1,0 +1,71 @@
+Error fetching analytics: n [Error]: Dynamic server usage: Route /api/analytics/dashboard couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/8412.js:1:37216)
+    at c (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/3378.js:1:1443)
+    at s (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/6003.js:25:19244)
+    at c (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/app/api/analytics/dashboard/route.js:1:1293)
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+    at NoopContextManager.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+    at ProxyTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+  description: "Route /api/analytics/dashboard couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching audit history: n [Error]: Dynamic server usage: Route /api/auditor/history couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/8412.js:1:37216)
+    at c (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/3378.js:1:1443)
+    at s (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/6003.js:25:19244)
+    at d (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/app/api/auditor/history/route.js:1:1304)
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+    at NoopContextManager.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+    at ProxyTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+  description: "Route /api/auditor/history couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching stats: n [Error]: Dynamic server usage: Route /api/crm/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/8412.js:1:37216)
+    at c (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/3378.js:1:1443)
+    at s (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/6003.js:25:19244)
+    at c (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/app/api/crm/stats/route.js:1:1306)
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+    at NoopContextManager.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+    at ProxyTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+  description: "Route /api/crm/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching employee stats: n [Error]: Dynamic server usage: Route /api/dashboard/employee-stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/8412.js:1:37216)
+    at c (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/3378.js:1:1443)
+    at s (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/6003.js:25:19244)
+    at o (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/app/api/page-builder/pages/[id]/route.js:1:4880)
+    at u (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/app/api/dashboard/employee-stats/route.js:1:1280)
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+    at NoopContextManager.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
+  description: "Route /api/dashboard/employee-stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (39/159) 
+Error fetching team workload: n [Error]: Dynamic server usage: Route /api/team/workload couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/8412.js:1:37216)
+    at c (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/3378.js:1:1443)
+    at s (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/chunks/6003.js:25:19244)
+    at d (/home/ubuntu/cdm_suite_website/nextjs_space/.build/server/app/api/team/workload/route.js:1:1317)
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+    at /opt/hostedapp/node/root/app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+    at NoopContextManager.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+    at ProxyTracer.startActiveSpan (/opt/hostedapp/node/root/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+  description: "Route /api/team/workload couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}

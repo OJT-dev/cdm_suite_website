@@ -1,0 +1,177 @@
+AI API error: <!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <title>
+      Abacus.AI - The World's First Super Assistant For Professionals And
+      Enterprises.
+    </title>
+    <meta
+      name="description"
+      content="Abacus.AI is a foundational AI research company that  solves the hard problems that enterprises face in the AI/ML space, and packages that research into easy-to-use cloud services."
+    />
+
+    <link id="iconFav1" rel="shortcut icon" href="/icon2/favicon.ico" />
+    <link
+      id="iconFav2"
+      rel="icon"
+      type="image/x-icon"
+      sizes="16x16 32x32"
+      href="/icon2/favicon.ico"
+    />
+    <link rel="icon" sizes="192x192" href="/icon2/favicon-192.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon-180-precomposed.png"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icon2/favicon-144.png" />
+
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/static/css/uikit.min.css" />
+    <script src="/static/js/uikit.min.js"></script>
+    <script src="/static/js/uikit-icons.min.js"></script>
+
+    <link rel="stylesheet" href="/css/general.css" />
+
+    <script src="/static/js/jquery-3.7.1.min.js"></script>
+    <script src="/static/js/anime.min.js"></script>
+    <script src="/static/js/lodash-4.17.21.min.js"></script>
+    <script src="/static/js/velocity.min.js"></script>
+    <script src="/static/js/store.everything.min.js"></script>
+    <script src="/static/js/js.storage.min.js"></script>
+    <script
+      src="https://browser.sentry-cdn.com/6.2.0/bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/static/css/semantic.css" />
+    <script src="/static/js/semantic.min.js"></script>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NM4YZNYB7G"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date(), { cookie_flags: "secure;samesite=none" });
+
+      gtag("config", "G-NM4YZNYB7G", { cookie_flags: "secure;samesite=none" });
+    </script>
+    <script>
+      var cancelAnim = false;
+      var isRunMobile = false;
+      var tokenLand = null;
+    </script>
+  </head>
+  <body style="margin: 0; padding: 0" class="backBlue">
+    <div
+      style="
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        z-index: 1;
+      "
+      class="backBlue"
+    >
+      <div class="backCircles" style="z-index: 2"></div>
+      <div style="overflow: hidden; position: relative; background: inherit">
+        <div
+          id="main"
+          class="contentBody"
+          style="position: relative; margin: 0 auto 80px auto; z-index: 4"
+        >
+          <img
+            src="/static/imgs/logo_text80.webp"
+            style="width: 338px; position: absolute; top: 45px; left: 50px"
+            onclick="goTab('/')"
+          />
+          <div style="text-align: center">
+            <img
+              src="/static/imgs/404.webp"
+              style="margin-top: 190px; width: 500px"
+              alt=""
+            />
+            <h2 style="margin-top: 70px">This page doesn't exist!</h2>
+            <div
+              class="getInvited"
+              style="
+                cursor: pointer;
+                margin-top: 50px;
+                display: inline-block;
+                padding: 13px 24px;
+                border-radius: 44px;
+                color: #f1f1f1;
+                font-size: 23px;
+                font-weight: 400;
+                font-family: Matter, sans-serif;
+              "
+              onclick="goTab('/')"
+            >
+              Go Home
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/general.js?t=6"></script>
+  </body>
+</html>
+
+Error generating sequence with AI: Error: AI generation failed
+    at d (/run/root/app/.build/standalone/app/.build/server/app/api/ai/generate-sequence/route.js:14:266)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /run/root/app/.build/standalone/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38411
+    at async e_.execute (/run/root/app/.build/standalone/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:27880)
+    at async e_.handle (/run/root/app/.build/standalone/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:39943)
+    at async doRender (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1588:28)
+    at async NextNodeServer.renderToResponseWithComponentsImpl (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1496:28)
+    at async NextNodeServer.renderPageComponent (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1924:24)
+    at async NextNodeServer.renderToResponseImpl (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1962:32)
+Using fallback sequence generation for type: email
+AI email generation error: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13502:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async c (/run/root/app/.build/standalone/app/.build/server/app/api/ai/generate-compelling-email/route.js:87:20)
+    at async /run/root/app/.build/standalone/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38411
+    at async e_.execute (/run/root/app/.build/standalone/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:27880)
+    at async e_.handle (/run/root/app/.build/standalone/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:39943)
+    at async doRender (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1588:28)
+    at async NextNodeServer.renderToResponseWithComponentsImpl (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1496:28)
+    at async NextNodeServer.renderPageComponent (/run/root/app/.build/standalone/app/node_modules/next/dist/server/base-server.js:1924:24) {
+  [cause]: [Error: C04CB23BA3720000:error:0A000410:SSL routines:ssl3_read_bytes:sslv3 alert handshake failure:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 40
+  ] {
+    library: 'SSL routines',
+    reason: 'sslv3 alert handshake failure',
+    code: 'ERR_SSL_SSLV3_ALERT_HANDSHAKE_FAILURE'
+  }
+}
