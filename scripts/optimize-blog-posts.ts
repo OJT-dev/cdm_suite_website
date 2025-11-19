@@ -32,6 +32,8 @@ async function optimizeBlogPosts() {
         // Generate structured data
         const structuredData = generateStructuredData({
           ...post,
+          tags: JSON.parse(post.tags),
+          categories: JSON.parse(post.categories),
           readTime,
           metaDescription,
         });

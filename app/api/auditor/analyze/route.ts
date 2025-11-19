@@ -283,7 +283,7 @@ export async function POST(request: NextRequest) {
         source: 'auditor',
         interest: `Website Audit - Score: ${auditResult.overall_score}`,
         assessmentResults: JSON.stringify(auditResult),
-        tags: phone ? ['website-audit', 'phone-provided'] : ['website-audit'],
+        tags: JSON.stringify(phone ? ['website-audit', 'phone-provided'] : ['website-audit']),
       },
     });
 
@@ -300,7 +300,7 @@ export async function POST(request: NextRequest) {
       recommendations: auditResult.recommendations,
       suggestedServices: auditResult.suggestedServices,
     });
-    
+
     sendEmail({
       to: email,
       subject: `${auditResult.overall_score < 60 ? '⚠️ URGENT' : auditResult.overall_score < 75 ? '📊' : '✅'} Your Website Audit Results - ${auditResult.overall_score}/100`,
@@ -317,7 +317,7 @@ export async function POST(request: NextRequest) {
       score: auditResult.overall_score,
       goals: goals || [],
     });
-    
+
     sendEmail({
       to: process.env.ADMIN_EMAIL || 'support@cdmsuite.com',
       subject: `${auditResult.overall_score < 60 ? '🔥 HIGH PRIORITY' : auditResult.overall_score < 75 ? '⚡ NEW' : '✅ QUALITY'} Lead: ${websiteUrl} (${auditResult.overall_score}/100)${phone ? ' 📞' : ''}`,

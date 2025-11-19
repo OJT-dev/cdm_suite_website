@@ -1,0 +1,695 @@
+2025-11-18T00:57:41.860396Z	Cloning repository...
+2025-11-18T00:57:43.443853Z	From https://github.com/OJT-dev/cdm_suite_website
+2025-11-18T00:57:43.444476Z	 * branch            9f5e90a8199a6ed488e5755419b9b1700304645f -> FETCH_HEAD
+2025-11-18T00:57:43.444614Z	
+2025-11-18T00:57:43.582811Z	HEAD is now at 9f5e90a Rely on Cloudflare Pages environment variables instead of wrangler vars
+2025-11-18T00:57:43.583343Z	
+2025-11-18T00:57:43.663157Z	
+2025-11-18T00:57:43.663642Z	Using v2 root directory strategy
+2025-11-18T00:57:43.687786Z	Success: Finished cloning repository files
+2025-11-18T00:57:45.556753Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-11-18T00:57:45.557701Z	
+2025-11-18T00:57:45.558684Z	Found wrangler.toml file. Reading build configuration...
+2025-11-18T00:57:45.565009Z	pages_build_output_dir: .vercel/output/static
+2025-11-18T00:57:45.565212Z	Build environment variables: (none found)
+2025-11-18T00:57:46.682726Z	Successfully read wrangler.toml file.
+2025-11-18T00:57:46.74644Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2025-11-18T00:57:46.747048Z	Installing project dependencies: npm clean-install --progress=false
+2025-11-18T00:57:48.662758Z	npm warn ERESOLVE overriding peer dependency
+2025-11-18T00:57:48.663253Z	npm warn While resolving: react-redux@9.2.0
+2025-11-18T00:57:48.663546Z	npm warn Found: @types/react@18.2.22
+2025-11-18T00:57:48.663652Z	npm warn node_modules/@types/react
+2025-11-18T00:57:48.663843Z	npm warn   dev @types/react@"18.2.22" from the root project
+2025-11-18T00:57:48.664379Z	npm warn   93 more (@radix-ui/react-accordion, ...)
+2025-11-18T00:57:48.664531Z	npm warn
+2025-11-18T00:57:48.664669Z	npm warn Could not resolve dependency:
+2025-11-18T00:57:48.66479Z	npm warn peerOptional @types/react@"^18.2.25 || ^19" from react-redux@9.2.0
+2025-11-18T00:57:48.664896Z	npm warn node_modules/react-redux
+2025-11-18T00:57:48.665065Z	npm warn   peerOptional react-redux@"^7.2.1 || ^8.1.3 || ^9.0.0" from @reduxjs/toolkit@2.10.1
+2025-11-18T00:57:48.665184Z	npm warn   node_modules/@reduxjs/toolkit
+2025-11-18T00:57:48.665331Z	npm warn   1 more (recharts)
+2025-11-18T00:57:48.665412Z	npm warn
+2025-11-18T00:57:48.665486Z	npm warn Conflicting peer dependency: @types/react@19.2.5
+2025-11-18T00:57:48.665664Z	npm warn node_modules/@types/react
+2025-11-18T00:57:48.665762Z	npm warn   peerOptional @types/react@"^18.2.25 || ^19" from react-redux@9.2.0
+2025-11-18T00:57:48.665841Z	npm warn   node_modules/react-redux
+2025-11-18T00:57:48.665924Z	npm warn     peerOptional react-redux@"^7.2.1 || ^8.1.3 || ^9.0.0" from @reduxjs/toolkit@2.10.1
+2025-11-18T00:57:48.666056Z	npm warn     node_modules/@reduxjs/toolkit
+2025-11-18T00:57:48.666164Z	npm warn     1 more (recharts)
+2025-11-18T00:57:51.327182Z	npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-11-18T00:57:52.478323Z	npm warn deprecated mumath@3.3.4: Redundant dependency in your project.
+2025-11-18T00:57:53.006269Z	npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-11-18T00:57:56.395102Z	npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2025-11-18T00:57:56.4156Z	npm warn deprecated @humanwhocodes/config-array@0.11.14: Use @eslint/config-array instead
+2025-11-18T00:57:57.370279Z	npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-11-18T00:58:01.195742Z	npm warn deprecated eslint@8.57.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2025-11-18T00:58:16.256818Z	
+2025-11-18T00:58:16.257106Z	added 1390 packages, and audited 1391 packages in 29s
+2025-11-18T00:58:16.257255Z	
+2025-11-18T00:58:16.257379Z	318 packages are looking for funding
+2025-11-18T00:58:16.257518Z	  run `npm fund` for details
+2025-11-18T00:58:16.307791Z	
+2025-11-18T00:58:16.308113Z	5 vulnerabilities (3 moderate, 2 high)
+2025-11-18T00:58:16.308228Z	
+2025-11-18T00:58:16.308296Z	To address issues that do not require attention, run:
+2025-11-18T00:58:16.308379Z	  npm audit fix
+2025-11-18T00:58:16.308438Z	
+2025-11-18T00:58:16.308492Z	To address all issues, run:
+2025-11-18T00:58:16.308552Z	  npm audit fix --force
+2025-11-18T00:58:16.308613Z	
+2025-11-18T00:58:16.30868Z	Run `npm audit` for details.
+2025-11-18T00:58:16.343776Z	Executing user command: npx @cloudflare/next-on-pages@1
+2025-11-18T00:58:17.819469Z	npm warn exec The following package was not found and will be installed: @cloudflare/next-on-pages@1.13.16
+2025-11-18T00:58:30.093871Z	npm warn deprecated path-match@1.2.4: This package is archived and no longer maintained. For support, visit https://github.com/expressjs/express/discussions
+2025-11-18T00:58:31.33036Z	npm warn deprecated @cloudflare/next-on-pages@1.13.16: Please use the OpenNext adapter instead: https://opennext.js.org/cloudflare
+2025-11-18T00:58:39.516635Z	⚡️ @cloudflare/next-on-pages CLI v.1.13.16
+2025-11-18T00:58:39.678144Z	⚡️ Detected Package Manager: npm (10.9.2)
+2025-11-18T00:58:39.678461Z	⚡️ Preparing project...
+2025-11-18T00:58:39.681708Z	⚡️ Project is ready
+2025-11-18T00:58:39.681883Z	⚡️ Building project...
+2025-11-18T00:58:40.772433Z	▲  npm warn exec The following package was not found and will be installed: vercel@48.10.3
+2025-11-18T00:58:44.980086Z	▲  npm warn deprecated path-match@1.2.4: This package is archived and no longer maintained. For support, visit https://github.com/expressjs/express/discussions
+2025-11-18T00:58:47.630199Z	▲  Vercel CLI 48.10.3
+2025-11-18T00:58:47.634582Z	▲  > NOTE: The Vercel CLI now collects telemetry regarding usage of the CLI.
+2025-11-18T00:58:47.634843Z	▲  > This information is used to shape the CLI roadmap and prioritize features.
+2025-11-18T00:58:47.635056Z	▲  > You can learn more, including how to opt-out if you'd not like to participate in this program, by visiting the following URL:
+2025-11-18T00:58:47.635948Z	▲  > https://vercel.com/docs/cli/about-telemetry
+2025-11-18T00:58:47.74313Z	▲  WARN! Build not running on Vercel. System environment variables will not be available.
+2025-11-18T00:58:47.977392Z	▲  Installing dependencies...
+2025-11-18T00:58:49.454041Z	▲  npm warn ERESOLVE overriding peer dependency
+2025-11-18T00:58:49.454619Z	▲  npm warn While resolving: react-redux@9.2.0
+2025-11-18T00:58:49.455Z	▲  npm warn Found: @types/react@18.2.22
+2025-11-18T00:58:49.455207Z	▲  npm warn node_modules/@types/react
+2025-11-18T00:58:49.455383Z	▲  npm warn   dev @types/react@"18.2.22" from the root project
+2025-11-18T00:58:49.455503Z	▲  npm warn   93 more (@radix-ui/react-accordion, ...)
+2025-11-18T00:58:49.455617Z	▲  npm warn
+2025-11-18T00:58:49.455714Z	▲  npm warn Could not resolve dependency:
+2025-11-18T00:58:49.455819Z	▲  npm warn peerOptional @types/react@"^18.2.25 || ^19" from react-redux@9.2.0
+2025-11-18T00:58:49.455941Z	▲  npm warn node_modules/react-redux
+2025-11-18T00:58:49.456071Z	▲  npm warn   peerOptional react-redux@"^7.2.1 || ^8.1.3 || ^9.0.0" from @reduxjs/toolkit@2.10.1
+2025-11-18T00:58:49.456299Z	▲  npm warn   node_modules/@reduxjs/toolkit
+2025-11-18T00:58:49.456401Z	▲  npm warn   1 more (recharts)
+2025-11-18T00:58:49.456511Z	▲  npm warn
+2025-11-18T00:58:49.456613Z	▲  npm warn Conflicting peer dependency: @types/react@19.2.5
+2025-11-18T00:58:49.456703Z	▲  npm warn node_modules/@types/react
+2025-11-18T00:58:49.4568Z	▲  npm warn   peerOptional @types/react@"^18.2.25 || ^19" from react-redux@9.2.0
+2025-11-18T00:58:49.456897Z	▲  npm warn   node_modules/react-redux
+2025-11-18T00:58:49.457009Z	▲  npm warn     peerOptional react-redux@"^7.2.1 || ^8.1.3 || ^9.0.0" from @reduxjs/toolkit@2.10.1
+2025-11-18T00:58:49.45711Z	▲  npm warn     node_modules/@reduxjs/toolkit
+2025-11-18T00:58:49.457205Z	▲  npm warn     1 more (recharts)
+2025-11-18T00:58:50.044604Z	▲  up to date in 2s
+2025-11-18T00:58:50.044851Z	▲  318 packages are looking for funding
+2025-11-18T00:58:50.045484Z	▲  run `npm fund` for details
+2025-11-18T00:58:50.055754Z	▲  Detected Next.js version: 14.2.28
+2025-11-18T00:58:50.064338Z	▲  Running "npm run build"
+2025-11-18T00:58:50.2487Z	▲  > build
+2025-11-18T00:58:50.248996Z	▲  > next build
+2025-11-18T00:58:50.893517Z	▲  Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-11-18T00:58:50.893838Z	▲  This information is used to shape Next.js' roadmap and prioritize features.
+2025-11-18T00:58:50.894062Z	▲  You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-11-18T00:58:50.894171Z	▲  https://nextjs.org/telemetry
+2025-11-18T00:58:50.956313Z	▲  ▲ Next.js 14.2.28
+2025-11-18T00:58:50.95659Z	▲  - Experiments (use with caution):
+2025-11-18T00:58:50.956752Z	▲  · outputFileTracingRoot
+2025-11-18T00:58:51.03202Z	▲  Creating an optimized production build ...
+2025-11-18T00:59:46.775106Z	▲  ✓ Compiled successfully
+2025-11-18T00:59:46.776375Z	▲  Skipping linting
+2025-11-18T00:59:46.776587Z	▲  Checking validity of types ...
+2025-11-18T01:00:22.67886Z	▲  Collecting page data ...
+2025-11-18T01:00:24.346877Z	▲  ⚠️  RESEND_API_KEY not configured. Emails will be logged to console only.
+2025-11-18T01:00:24.352894Z	▲  ⚠️  RESEND_API_KEY not configured. Emails will be logged to console only.
+2025-11-18T01:00:24.63864Z	▲  ⚠️  RESEND_API_KEY not configured. Emails will be logged to console only.
+2025-11-18T01:00:24.749316Z	▲  ⚠️  RESEND_API_KEY not configured. Emails will be logged to console only.
+2025-11-18T01:00:25.256578Z	▲  ⚠️  RESEND_API_KEY not configured. Emails will be logged to console only.
+2025-11-18T01:00:25.320359Z	▲  ⚠ Using edge runtime on a page currently disables static generation for that page
+2025-11-18T01:00:25.434495Z	▲  ⚠️  RESEND_API_KEY not configured. Emails will be logged to console only.
+2025-11-18T01:00:27.21667Z	▲  Generating static pages (0/137) ...
+2025-11-18T01:00:29.917532Z	▲  Generating static pages (34/137)
+2025-11-18T01:00:30.962758Z	▲  prisma:error 
+2025-11-18T01:00:30.963064Z	▲  Invalid `prisma.service.findMany()` invocation:
+2025-11-18T01:00:30.963216Z	▲  
+2025-11-18T01:00:30.96334Z	▲  
+2025-11-18T01:00:30.963702Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:30.96405Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:30.964384Z	▲    | 
+2025-11-18T01:00:30.964572Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:30.964747Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:30.964887Z	▲    | 
+2025-11-18T01:00:30.965028Z	▲  
+2025-11-18T01:00:30.965156Z	▲  Validation Error Count: 1
+2025-11-18T01:00:30.965283Z	▲  Error fetching services: PrismaClientInitializationError: 
+2025-11-18T01:00:30.965392Z	▲  Invalid `prisma.service.findMany()` invocation:
+2025-11-18T01:00:30.965497Z	▲  
+2025-11-18T01:00:30.965601Z	▲  
+2025-11-18T01:00:30.965705Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:30.966071Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:30.966216Z	▲    | 
+2025-11-18T01:00:30.966331Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:30.966442Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:30.966552Z	▲    | 
+2025-11-18T01:00:30.966676Z	▲  
+2025-11-18T01:00:30.966787Z	▲  Validation Error Count: 1
+2025-11-18T01:00:30.967325Z	▲     at zn.handleRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:7759)
+2025-11-18T01:00:30.967527Z	▲     at zn.handleAndLogRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6784)
+2025-11-18T01:00:30.967684Z	▲     at zn.request (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6491)
+2025-11-18T01:00:30.967818Z	▲     at async l (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:130:9778)
+2025-11-18T01:00:30.967944Z	▲     at async u (/opt/buildhome/repo/.next/server/app/api/services/route.js:1:573)
+2025-11-18T01:00:30.968104Z	▲     at async /opt/buildhome/repo/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38411
+2025-11-18T01:00:30.968292Z	▲     at async e_.execute (/opt/buildhome/repo/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:27880)
+2025-11-18T01:00:30.968413Z	▲     at async e_.handle (/opt/buildhome/repo/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:39943)
+2025-11-18T01:00:30.968539Z	▲     at async exportAppRoute (/opt/buildhome/repo/node_modules/next/dist/export/routes/app-route.js:77:26)
+2025-11-18T01:00:30.968645Z	▲     at async exportPageImpl (/opt/buildhome/repo/node_modules/next/dist/export/worker.js:175:20)
+2025-11-18T01:00:30.968914Z	▲     at async Span.traceAsyncFn (/opt/buildhome/repo/node_modules/next/dist/trace/trace.js:154:20)
+2025-11-18T01:00:30.969454Z	▲     at async Object.exportPage (/opt/buildhome/repo/node_modules/next/dist/export/worker.js:237:20) {
+2025-11-18T01:00:30.969734Z	▲   clientVersion: '6.7.0',
+2025-11-18T01:00:30.970373Z	▲   errorCode: undefined,
+2025-11-18T01:00:30.971018Z	▲   retryable: undefined
+2025-11-18T01:00:30.971399Z	▲  }
+2025-11-18T01:00:31.142808Z	▲  Generating static pages (68/137)
+2025-11-18T01:00:31.524598Z	▲  Error fetching analytics: n [Error]: Dynamic server usage: Route /api/bid-proposals/analytics couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+2025-11-18T01:00:31.524899Z	▲    at l (/opt/buildhome/repo/.next/server/chunks/8948.js:1:37220)
+2025-11-18T01:00:31.525121Z	▲    at d (/opt/buildhome/repo/.next/server/chunks/5609.js:25:28585)
+2025-11-18T01:00:31.525338Z	▲    at s (/opt/buildhome/repo/.next/server/chunks/5609.js:25:19236)
+2025-11-18T01:00:31.525532Z	▲    at d (/opt/buildhome/repo/.next/server/app/api/bid-proposals/analytics/route.js:1:1343)
+2025-11-18T01:00:31.525686Z	▲    at /opt/buildhome/repo/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+2025-11-18T01:00:31.526151Z	▲    at /opt/buildhome/repo/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+2025-11-18T01:00:31.52644Z	▲    at NoopContextManager.with (/opt/buildhome/repo/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+2025-11-18T01:00:31.526611Z	▲    at ContextAPI.with (/opt/buildhome/repo/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+2025-11-18T01:00:31.52696Z	▲    at NoopTracer.startActiveSpan (/opt/buildhome/repo/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+2025-11-18T01:00:31.527211Z	▲    at ProxyTracer.startActiveSpan (/opt/buildhome/repo/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+2025-11-18T01:00:31.52741Z	▲    at /opt/buildhome/repo/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+2025-11-18T01:00:31.52758Z	▲    at NoopContextManager.with (/opt/buildhome/repo/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+2025-11-18T01:00:31.527738Z	▲    at ContextAPI.with (/opt/buildhome/repo/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+2025-11-18T01:00:31.527859Z	▲    at NextTracerImpl.trace (/opt/buildhome/repo/node_modules/next/dist/server/lib/trace/tracer.js:122:28)
+2025-11-18T01:00:31.52797Z	▲    at /opt/buildhome/repo/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:29925
+2025-11-18T01:00:31.528164Z	▲    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:91:14) {
+2025-11-18T01:00:31.528421Z	▲  description: "Route /api/bid-proposals/analytics couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+2025-11-18T01:00:31.528605Z	▲  digest: 'DYNAMIC_SERVER_USAGE'
+2025-11-18T01:00:31.528832Z	▲  }
+2025-11-18T01:00:31.707951Z	▲  prisma:error 
+2025-11-18T01:00:31.708306Z	▲  Invalid `prisma.blogPost.findMany()` invocation:
+2025-11-18T01:00:31.708768Z	▲  
+2025-11-18T01:00:31.708931Z	▲  
+2025-11-18T01:00:31.709085Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:31.709198Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:31.709324Z	▲    | 
+2025-11-18T01:00:31.709427Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:31.709526Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:31.709636Z	▲    | 
+2025-11-18T01:00:31.709734Z	▲  
+2025-11-18T01:00:31.709835Z	▲  Validation Error Count: 1
+2025-11-18T01:00:31.709939Z	▲  prisma:error 
+2025-11-18T01:00:31.710066Z	▲  Invalid `prisma.caseStudy.findMany()` invocation:
+2025-11-18T01:00:31.710189Z	▲  
+2025-11-18T01:00:31.710305Z	▲  
+2025-11-18T01:00:31.710408Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:31.710509Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:31.710617Z	▲    | 
+2025-11-18T01:00:31.710728Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:31.710956Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:31.711182Z	▲    | 
+2025-11-18T01:00:31.711321Z	▲  
+2025-11-18T01:00:31.711436Z	▲  Validation Error Count: 1
+2025-11-18T01:00:31.711545Z	▲  prisma:error 
+2025-11-18T01:00:31.711631Z	▲  Invalid `prisma.service.findMany()` invocation:
+2025-11-18T01:00:31.711722Z	▲  
+2025-11-18T01:00:31.711815Z	▲  
+2025-11-18T01:00:31.712504Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:31.712867Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:31.713025Z	▲    | 
+2025-11-18T01:00:31.713133Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:31.71324Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:31.713345Z	▲    | 
+2025-11-18T01:00:31.713448Z	▲  
+2025-11-18T01:00:31.713553Z	▲  Validation Error Count: 1
+2025-11-18T01:00:31.713958Z	▲  prisma:error 
+2025-11-18T01:00:31.714365Z	▲  Invalid `prisma.customPage.findMany()` invocation:
+2025-11-18T01:00:31.71452Z	▲  
+2025-11-18T01:00:31.714643Z	▲  
+2025-11-18T01:00:31.714753Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:31.714864Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:31.714967Z	▲    | 
+2025-11-18T01:00:31.715106Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:31.715216Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:31.715322Z	▲    | 
+2025-11-18T01:00:31.715422Z	▲  
+2025-11-18T01:00:31.71552Z	▲  Validation Error Count: 1
+2025-11-18T01:00:31.774595Z	▲  Generating static pages (102/137)
+2025-11-18T01:00:31.817876Z	▲  prisma:error 
+2025-11-18T01:00:31.818159Z	▲  Invalid `prisma.caseStudy.findMany()` invocation:
+2025-11-18T01:00:31.818347Z	▲  
+2025-11-18T01:00:31.818465Z	▲  
+2025-11-18T01:00:31.81857Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:31.818674Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:31.819425Z	▲    | 
+2025-11-18T01:00:31.819638Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:31.820324Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:31.820757Z	▲    | 
+2025-11-18T01:00:31.821179Z	▲  
+2025-11-18T01:00:31.821457Z	▲  Validation Error Count: 1
+2025-11-18T01:00:31.821656Z	▲  prisma:error 
+2025-11-18T01:00:31.822176Z	▲  Invalid `prisma.caseStudy.findMany()` invocation:
+2025-11-18T01:00:31.822718Z	▲  
+2025-11-18T01:00:31.822913Z	▲  
+2025-11-18T01:00:31.823032Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:31.823141Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:31.823374Z	▲    | 
+2025-11-18T01:00:31.823623Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:31.823766Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:31.823891Z	▲    | 
+2025-11-18T01:00:31.824248Z	▲  
+2025-11-18T01:00:31.8244Z	▲  Validation Error Count: 1
+2025-11-18T01:00:31.82453Z	▲  Error fetching case studies: PrismaClientInitializationError: 
+2025-11-18T01:00:31.824666Z	▲  Invalid `prisma.caseStudy.findMany()` invocation:
+2025-11-18T01:00:31.824843Z	▲  
+2025-11-18T01:00:31.82497Z	▲  
+2025-11-18T01:00:31.825123Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:31.825236Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:31.825362Z	▲    | 
+2025-11-18T01:00:31.825505Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:31.825629Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:31.825758Z	▲    | 
+2025-11-18T01:00:31.825873Z	▲  
+2025-11-18T01:00:31.826172Z	▲  Validation Error Count: 1
+2025-11-18T01:00:31.826534Z	▲     at zn.handleRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:7759)
+2025-11-18T01:00:31.826704Z	▲     at zn.handleAndLogRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6784)
+2025-11-18T01:00:31.82682Z	▲     at zn.request (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6491)
+2025-11-18T01:00:31.826924Z	▲     at async l (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:130:9778)
+2025-11-18T01:00:31.827064Z	▲     at async m (/opt/buildhome/repo/.next/server/app/case-studies/page.js:1:10148)
+2025-11-18T01:00:31.827205Z	▲     at async u (/opt/buildhome/repo/.next/server/app/case-studies/page.js:1:10348) {
+2025-11-18T01:00:31.827342Z	▲   clientVersion: '6.7.0',
+2025-11-18T01:00:31.827461Z	▲   errorCode: undefined,
+2025-11-18T01:00:31.827634Z	▲   retryable: undefined
+2025-11-18T01:00:31.828129Z	▲  }
+2025-11-18T01:00:31.828618Z	▲  Error fetching case studies: PrismaClientInitializationError: 
+2025-11-18T01:00:31.829006Z	▲  Invalid `prisma.caseStudy.findMany()` invocation:
+2025-11-18T01:00:31.829274Z	▲  
+2025-11-18T01:00:31.829639Z	▲  
+2025-11-18T01:00:31.829969Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:31.83012Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:31.830222Z	▲    | 
+2025-11-18T01:00:31.830355Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:31.830467Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:31.830574Z	▲    | 
+2025-11-18T01:00:31.830678Z	▲  
+2025-11-18T01:00:31.830783Z	▲  Validation Error Count: 1
+2025-11-18T01:00:31.830891Z	▲     at zn.handleRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:7759)
+2025-11-18T01:00:31.83136Z	▲     at zn.handleAndLogRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6784)
+2025-11-18T01:00:31.831685Z	▲     at zn.request (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6491)
+2025-11-18T01:00:31.832023Z	▲     at async l (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:130:9778)
+2025-11-18T01:00:31.832145Z	▲     at async m (/opt/buildhome/repo/.next/server/app/case-studies/page.js:1:10148)
+2025-11-18T01:00:31.832258Z	▲     at async u (/opt/buildhome/repo/.next/server/app/case-studies/page.js:1:10348) {
+2025-11-18T01:00:31.832365Z	▲   clientVersion: '6.7.0',
+2025-11-18T01:00:31.832473Z	▲   errorCode: undefined,
+2025-11-18T01:00:31.832577Z	▲   retryable: undefined
+2025-11-18T01:00:31.83268Z	▲  }
+2025-11-18T01:00:32.029595Z	▲  prisma:error 
+2025-11-18T01:00:32.029878Z	▲  Invalid `prisma.websiteGallery.findMany()` invocation:
+2025-11-18T01:00:32.030027Z	▲  
+2025-11-18T01:00:32.030137Z	▲  
+2025-11-18T01:00:32.030245Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:32.030354Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:32.030451Z	▲    | 
+2025-11-18T01:00:32.030559Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:32.03066Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:32.030762Z	▲    | 
+2025-11-18T01:00:32.030856Z	▲  
+2025-11-18T01:00:32.030948Z	▲  Validation Error Count: 1
+2025-11-18T01:00:32.03107Z	▲  prisma:error 
+2025-11-18T01:00:32.031165Z	▲  Invalid `prisma.websiteGallery.findMany()` invocation:
+2025-11-18T01:00:32.031282Z	▲  
+2025-11-18T01:00:32.031388Z	▲  
+2025-11-18T01:00:32.031495Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:32.031604Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:32.031706Z	▲    | 
+2025-11-18T01:00:32.0318Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:32.031888Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:32.031969Z	▲    | 
+2025-11-18T01:00:32.032092Z	▲  
+2025-11-18T01:00:32.032191Z	▲  Validation Error Count: 1
+2025-11-18T01:00:32.0323Z	▲  Error fetching website gallery: PrismaClientInitializationError: 
+2025-11-18T01:00:32.032398Z	▲  Invalid `prisma.websiteGallery.findMany()` invocation:
+2025-11-18T01:00:32.032527Z	▲  
+2025-11-18T01:00:32.032635Z	▲  
+2025-11-18T01:00:32.032736Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:32.032886Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:32.033029Z	▲    | 
+2025-11-18T01:00:32.033142Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:32.034016Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:32.034243Z	▲    | 
+2025-11-18T01:00:32.034448Z	▲  
+2025-11-18T01:00:32.034672Z	▲  Validation Error Count: 1
+2025-11-18T01:00:32.036198Z	▲     at zn.handleRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:7759)
+2025-11-18T01:00:32.03637Z	▲     at zn.handleAndLogRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6784)
+2025-11-18T01:00:32.036508Z	▲     at zn.request (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6491)
+2025-11-18T01:00:32.036639Z	▲     at async l (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:130:9778)
+2025-11-18T01:00:32.036767Z	▲     at async n (/opt/buildhome/repo/.next/server/app/gallery/websites/page.js:1:8076) {
+2025-11-18T01:00:32.036904Z	▲   clientVersion: '6.7.0',
+2025-11-18T01:00:32.037081Z	▲   errorCode: undefined,
+2025-11-18T01:00:32.037191Z	▲   retryable: undefined
+2025-11-18T01:00:32.037299Z	▲  }
+2025-11-18T01:00:32.037408Z	▲  Error fetching website gallery: PrismaClientInitializationError: 
+2025-11-18T01:00:32.037507Z	▲  Invalid `prisma.websiteGallery.findMany()` invocation:
+2025-11-18T01:00:32.037629Z	▲  
+2025-11-18T01:00:32.037808Z	▲  
+2025-11-18T01:00:32.038002Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:32.03819Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:32.038354Z	▲    | 
+2025-11-18T01:00:32.038482Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:32.038607Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:32.038725Z	▲    | 
+2025-11-18T01:00:32.038837Z	▲  
+2025-11-18T01:00:32.038952Z	▲  Validation Error Count: 1
+2025-11-18T01:00:32.039092Z	▲     at zn.handleRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:7759)
+2025-11-18T01:00:32.039206Z	▲     at zn.handleAndLogRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6784)
+2025-11-18T01:00:32.039327Z	▲     at zn.request (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6491)
+2025-11-18T01:00:32.039435Z	▲     at async l (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:130:9778)
+2025-11-18T01:00:32.039536Z	▲     at async n (/opt/buildhome/repo/.next/server/app/gallery/websites/page.js:1:8076) {
+2025-11-18T01:00:32.039646Z	▲   clientVersion: '6.7.0',
+2025-11-18T01:00:32.039757Z	▲   errorCode: undefined,
+2025-11-18T01:00:32.039862Z	▲   retryable: undefined
+2025-11-18T01:00:32.040045Z	▲  }
+2025-11-18T01:00:32.069186Z	▲  prisma:error 
+2025-11-18T01:00:32.069502Z	▲  Invalid `prisma.aIAgent.findMany()` invocation:
+2025-11-18T01:00:32.069652Z	▲  
+2025-11-18T01:00:32.069761Z	▲  
+2025-11-18T01:00:32.069878Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:32.070594Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:32.070724Z	▲    | 
+2025-11-18T01:00:32.070852Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:32.070997Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:32.071126Z	▲    | 
+2025-11-18T01:00:32.071237Z	▲  
+2025-11-18T01:00:32.071352Z	▲  Validation Error Count: 1
+2025-11-18T01:00:32.071471Z	▲  prisma:error 
+2025-11-18T01:00:32.071586Z	▲  Invalid `prisma.aIAgent.findMany()` invocation:
+2025-11-18T01:00:32.071698Z	▲  
+2025-11-18T01:00:32.071806Z	▲  
+2025-11-18T01:00:32.071913Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:32.072053Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:32.072165Z	▲    | 
+2025-11-18T01:00:32.072274Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:32.072382Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:32.072508Z	▲    | 
+2025-11-18T01:00:32.073358Z	▲  
+2025-11-18T01:00:32.073434Z	▲  Validation Error Count: 1
+2025-11-18T01:00:32.0735Z	▲  Error fetching AI agent gallery: PrismaClientInitializationError: 
+2025-11-18T01:00:32.074722Z	▲  Invalid `prisma.aIAgent.findMany()` invocation:
+2025-11-18T01:00:32.074885Z	▲  
+2025-11-18T01:00:32.075248Z	▲  
+2025-11-18T01:00:32.075584Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:32.07573Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:32.076096Z	▲    | 
+2025-11-18T01:00:32.076268Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:32.076395Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:32.076593Z	▲    | 
+2025-11-18T01:00:32.076746Z	▲  
+2025-11-18T01:00:32.076885Z	▲  Validation Error Count: 1
+2025-11-18T01:00:32.077032Z	▲     at zn.handleRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:7759)
+2025-11-18T01:00:32.077161Z	▲     at zn.handleAndLogRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6784)
+2025-11-18T01:00:32.077291Z	▲     at zn.request (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6491)
+2025-11-18T01:00:32.077435Z	▲     at async l (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:130:9778)
+2025-11-18T01:00:32.077542Z	▲     at async n (/opt/buildhome/repo/.next/server/app/gallery/ai-agents/page.js:1:7952) {
+2025-11-18T01:00:32.077606Z	▲   clientVersion: '6.7.0',
+2025-11-18T01:00:32.077664Z	▲   errorCode: undefined,
+2025-11-18T01:00:32.077723Z	▲   retryable: undefined
+2025-11-18T01:00:32.077778Z	▲  }
+2025-11-18T01:00:32.07789Z	▲  Error fetching AI agent gallery: PrismaClientInitializationError: 
+2025-11-18T01:00:32.07829Z	▲  Invalid `prisma.aIAgent.findMany()` invocation:
+2025-11-18T01:00:32.078442Z	▲  
+2025-11-18T01:00:32.07856Z	▲  
+2025-11-18T01:00:32.078698Z	▲  error: Environment variable not found: DATABASE_URL.
+2025-11-18T01:00:32.078821Z	▲   -->  schema.prisma:7
+2025-11-18T01:00:32.078932Z	▲    | 
+2025-11-18T01:00:32.079058Z	▲  6 |   provider  = "postgresql"
+2025-11-18T01:00:32.079125Z	▲  7 |   url       = env("DATABASE_URL")
+2025-11-18T01:00:32.079181Z	▲    | 
+2025-11-18T01:00:32.079248Z	▲  
+2025-11-18T01:00:32.079305Z	▲  Validation Error Count: 1
+2025-11-18T01:00:32.079366Z	▲     at zn.handleRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:7759)
+2025-11-18T01:00:32.079427Z	▲     at zn.handleAndLogRequestError (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6784)
+2025-11-18T01:00:32.079482Z	▲     at zn.request (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:121:6491)
+2025-11-18T01:00:32.079537Z	▲     at async l (/opt/buildhome/repo/node_modules/@prisma/client/runtime/library.js:130:9778)
+2025-11-18T01:00:32.079591Z	▲     at async n (/opt/buildhome/repo/.next/server/app/gallery/ai-agents/page.js:1:7952) {
+2025-11-18T01:00:32.079645Z	▲   clientVersion: '6.7.0',
+2025-11-18T01:00:32.079698Z	▲   errorCode: undefined,
+2025-11-18T01:00:32.079757Z	▲   retryable: undefined
+2025-11-18T01:00:32.07981Z	▲  }
+2025-11-18T01:00:32.355346Z	▲  ✓ Generating static pages (137/137)
+2025-11-18T01:00:33.672476Z	▲  Finalizing page optimization ...
+2025-11-18T01:00:33.67317Z	▲  Collecting build traces ...
+2025-11-18T01:00:40.170285Z	▲  
+2025-11-18T01:00:40.190211Z	▲  Route (app)                                                       Size     First Load JS
+2025-11-18T01:00:40.190474Z	▲  ┌ ○ /                                                             19.8 kB         201 kB
+2025-11-18T01:00:40.190599Z	▲  ├ ○ /_not-found                                                   165 B          87.5 kB
+2025-11-18T01:00:40.190704Z	▲  ├ ƒ /[slug]                                                       2.69 kB         109 kB
+2025-11-18T01:00:40.190807Z	▲  ├ ○ /404                                                          196 B           136 kB
+2025-11-18T01:00:40.190906Z	▲  ├ ○ /about                                                        5.57 kB         176 kB
+2025-11-18T01:00:40.191071Z	▲  ├ ○ /admin                                                        10.9 kB         121 kB
+2025-11-18T01:00:40.191217Z	▲  ├ ƒ /admin/employees                                              5.19 kB         132 kB
+2025-11-18T01:00:40.191334Z	▲  ├ ƒ /admin/employees/[id]                                         164 B           148 kB
+2025-11-18T01:00:40.191568Z	▲  ├ ƒ /admin/employees/new                                          163 B           148 kB
+2025-11-18T01:00:40.191671Z	▲  ├ ○ /admin/reddit-test                                            6.65 kB         133 kB
+2025-11-18T01:00:40.191767Z	▲  ├ ○ /admin/settings                                               9.1 kB          119 kB
+2025-11-18T01:00:40.192059Z	▲  ├ ƒ /api/admin/employees                                          0 B                0 B
+2025-11-18T01:00:40.192222Z	▲  ├ ƒ /api/admin/employees/[id]                                     0 B                0 B
+2025-11-18T01:00:40.19232Z	▲  ├ ƒ /api/admin/settings                                           0 B                0 B
+2025-11-18T01:00:40.192388Z	▲  ├ ƒ /api/admin/sms/test                                           0 B                0 B
+2025-11-18T01:00:40.192451Z	▲  ├ ƒ /api/affiliate                                                0 B                0 B
+2025-11-18T01:00:40.192511Z	▲  ├ ƒ /api/affiliate/generate-code                                  0 B                0 B
+2025-11-18T01:00:40.192586Z	▲  ├ ƒ /api/agents                                                   0 B                0 B
+2025-11-18T01:00:40.192645Z	▲  ├ ƒ /api/agents/[agentId]                                         0 B                0 B
+2025-11-18T01:00:40.192709Z	▲  ├ ƒ /api/ai/generate-compelling-email                             0 B                0 B
+2025-11-18T01:00:40.192777Z	▲  ├ ƒ /api/ai/generate-sequence                                     0 B                0 B
+2025-11-18T01:00:40.192844Z	▲  ├ ƒ /api/ai/suggest-step                                          0 B                0 B
+2025-11-18T01:00:40.1929Z	▲  ├ ƒ /api/analytics/dashboard                                      0 B                0 B
+2025-11-18T01:00:40.192957Z	▲  ├ ƒ /api/analytics/reddit-conversion                              0 B                0 B
+2025-11-18T01:00:40.193061Z	▲  ├ ƒ /api/assistant/autofill                                       0 B                0 B
+2025-11-18T01:00:40.193122Z	▲  ├ ƒ /api/assistant/chat                                           0 B                0 B
+2025-11-18T01:00:40.193187Z	▲  ├ ƒ /api/assistant/context                                        0 B                0 B
+2025-11-18T01:00:40.193251Z	▲  ├ ƒ /api/audit                                                    0 B                0 B
+2025-11-18T01:00:40.193307Z	▲  ├ ƒ /api/auditor/analyze                                          0 B                0 B
+2025-11-18T01:00:40.193376Z	▲  ├ ƒ /api/auditor/history                                          0 B                0 B
+2025-11-18T01:00:40.193439Z	▲  ├ ƒ /api/auth/[...nextauth]                                       0 B                0 B
+2025-11-18T01:00:40.193495Z	▲  ├ ƒ /api/auth/request-reset                                       0 B                0 B
+2025-11-18T01:00:40.193553Z	▲  ├ ƒ /api/auth/reset-password                                      0 B                0 B
+2025-11-18T01:00:40.193611Z	▲  ├ ƒ /api/auth/signup                                              0 B                0 B
+2025-11-18T01:00:40.193673Z	▲  ├ ƒ /api/bid-proposals                                            0 B                0 B
+2025-11-18T01:00:40.19373Z	▲  ├ ƒ /api/bid-proposals/[id]                                       0 B                0 B
+2025-11-18T01:00:40.193793Z	▲  ├ ƒ /api/bid-proposals/[id]/add-to-calendar                       0 B                0 B
+2025-11-18T01:00:40.193854Z	▲  ├ ƒ /api/bid-proposals/[id]/attachments                           0 B                0 B
+2025-11-18T01:00:40.193913Z	▲  ├ ƒ /api/bid-proposals/[id]/documents                             0 B                0 B
+2025-11-18T01:00:40.194028Z	▲  ├ ƒ /api/bid-proposals/[id]/documents/[docId]/download            0 B                0 B
+2025-11-18T01:00:40.194179Z	▲  ├ ƒ /api/bid-proposals/[id]/documents/combined                    0 B                0 B
+2025-11-18T01:00:40.194295Z	▲  ├ ƒ /api/bid-proposals/[id]/download-combined-pdf                 0 B                0 B
+2025-11-18T01:00:40.194382Z	▲  ├ ƒ /api/bid-proposals/[id]/download-pdf                          0 B                0 B
+2025-11-18T01:00:40.194465Z	▲  ├ ƒ /api/bid-proposals/[id]/download-slides                       0 B                0 B
+2025-11-18T01:00:40.194549Z	▲  ├ ƒ /api/bid-proposals/[id]/download-word                         0 B                0 B
+2025-11-18T01:00:40.194634Z	▲  ├ ƒ /api/bid-proposals/[id]/generate                              0 B                0 B
+2025-11-18T01:00:40.194717Z	▲  ├ ƒ /api/bid-proposals/[id]/global-update                         0 B                0 B
+2025-11-18T01:00:40.194804Z	▲  ├ ƒ /api/bid-proposals/[id]/intelligence                          0 B                0 B
+2025-11-18T01:00:40.194896Z	▲  ├ ƒ /api/bid-proposals/[id]/regenerate                            0 B                0 B
+2025-11-18T01:00:40.195012Z	▲  ├ ƒ /api/bid-proposals/[id]/regenerate-cover                      0 B                0 B
+2025-11-18T01:00:40.195106Z	▲  ├ ƒ /api/bid-proposals/[id]/regenerate-section                    0 B                0 B
+2025-11-18T01:00:40.195197Z	▲  ├ ƒ /api/bid-proposals/[id]/regenerate-title                      0 B                0 B
+2025-11-18T01:00:40.195293Z	▲  ├ ƒ /api/bid-proposals/[id]/submit                                0 B                0 B
+2025-11-18T01:00:40.195386Z	▲  ├ ƒ /api/bid-proposals/[id]/update-content                        0 B                0 B
+2025-11-18T01:00:40.195481Z	▲  ├ ƒ /api/bid-proposals/[id]/update-cover                          0 B                0 B
+2025-11-18T01:00:40.195574Z	▲  ├ ƒ /api/bid-proposals/[id]/update-section                        0 B                0 B
+2025-11-18T01:00:40.195667Z	▲  ├ ƒ /api/bid-proposals/[id]/update-title                          0 B                0 B
+2025-11-18T01:00:40.195761Z	▲  ├ ƒ /api/bid-proposals/[id]/verify-businesses                     0 B                0 B
+2025-11-18T01:00:40.195849Z	▲  ├ ƒ /api/bid-proposals/analytics                                  0 B                0 B
+2025-11-18T01:00:40.195934Z	▲  ├ ƒ /api/bid-proposals/batch-update-titles                        0 B                0 B
+2025-11-18T01:00:40.196035Z	▲  ├ ƒ /api/bid-proposals/bulk                                       0 B                0 B
+2025-11-18T01:00:40.196117Z	▲  ├ ƒ /api/bid-proposals/bulk-delete                                0 B                0 B
+2025-11-18T01:00:40.196198Z	▲  ├ ƒ /api/bid-proposals/extract                                    0 B                0 B
+2025-11-18T01:00:40.19628Z	▲  ├ ƒ /api/bid-proposals/generate-all-titles                        0 B                0 B
+2025-11-18T01:00:40.196358Z	▲  ├ ƒ /api/bid-proposals/reminders                                  0 B                0 B
+2025-11-18T01:00:40.196454Z	▲  ├ ƒ /api/bid-proposals/templates                                  0 B                0 B
+2025-11-18T01:00:40.196535Z	▲  ├ ƒ /api/bid-proposals/templates/[id]                             0 B                0 B
+2025-11-18T01:00:40.196612Z	▲  ├ ƒ /api/blog/generate-audio                                      0 B                0 B
+2025-11-18T01:00:40.196689Z	▲  ├ ƒ /api/builder/chat                                             0 B                0 B
+2025-11-18T01:00:40.19677Z	▲  ├ ƒ /api/builder/download-image                                   0 B                0 B
+2025-11-18T01:00:40.196847Z	▲  ├ ƒ /api/builder/gallery                                          0 B                0 B
+2025-11-18T01:00:40.196926Z	▲  ├ ƒ /api/builder/generate                                         0 B                0 B
+2025-11-18T01:00:40.19703Z	▲  ├ ƒ /api/builder/generate-sitemap                                 0 B                0 B
+2025-11-18T01:00:40.197114Z	▲  ├ ƒ /api/builder/global-styles                                    0 B                0 B
+2025-11-18T01:00:40.197202Z	▲  ├ ƒ /api/builder/improve-content                                  0 B                0 B
+2025-11-18T01:00:40.197293Z	▲  ├ ƒ /api/builder/leads/submit                                     0 B                0 B
+2025-11-18T01:00:40.197379Z	▲  ├ ƒ /api/builder/navigation                                       0 B                0 B
+2025-11-18T01:00:40.19746Z	▲  ├ ƒ /api/builder/publish                                          0 B                0 B
+2025-11-18T01:00:40.197541Z	▲  ├ ƒ /api/builder/regenerate-section                               0 B                0 B
+2025-11-18T01:00:40.197622Z	▲  ├ ƒ /api/builder/seo                                              0 B                0 B
+2025-11-18T01:00:40.197708Z	▲  ├ ƒ /api/builder/shopify                                          0 B                0 B
+2025-11-18T01:00:40.197789Z	▲  ├ ƒ /api/builder/styles                                           0 B                0 B
+2025-11-18T01:00:40.197871Z	▲  ├ ƒ /api/builder/update                                           0 B                0 B
+2025-11-18T01:00:40.197988Z	▲  ├ ƒ /api/chatbot                                                  0 B                0 B
+2025-11-18T01:00:40.198072Z	▲  ├ ƒ /api/checkout/website-fix                                     0 B                0 B
+2025-11-18T01:00:40.198164Z	▲  ├ ƒ /api/contact                                                  0 B                0 B
+2025-11-18T01:00:40.198246Z	▲  ├ ƒ /api/content/case-studies                                     0 B                0 B
+2025-11-18T01:00:40.198331Z	▲  ├ ƒ /api/content/case-studies/[id]                                0 B                0 B
+2025-11-18T01:00:40.198409Z	▲  ├ ƒ /api/content/case-studies/slug/[slug]                         0 B                0 B
+2025-11-18T01:00:40.198493Z	▲  ├ ƒ /api/content/media                                            0 B                0 B
+2025-11-18T01:00:40.198568Z	▲  ├ ƒ /api/content/media/[id]                                       0 B                0 B
+2025-11-18T01:00:40.198661Z	▲  ├ ƒ /api/create-checkout-session                                  0 B                0 B
+2025-11-18T01:00:40.198747Z	▲  ├ ƒ /api/create-tripwire-checkout                                 0 B                0 B
+2025-11-18T01:00:40.198828Z	▲  ├ ƒ /api/credits                                                  0 B                0 B
+2025-11-18T01:00:40.19892Z	▲  ├ ƒ /api/credits/deduct                                           0 B                0 B
+2025-11-18T01:00:40.199033Z	▲  ├ ƒ /api/credits/purchase                                         0 B                0 B
+2025-11-18T01:00:40.199116Z	▲  ├ ƒ /api/crm/leads                                                0 B                0 B
+2025-11-18T01:00:40.199208Z	▲  ├ ƒ /api/crm/leads/[id]                                           0 B                0 B
+2025-11-18T01:00:40.199297Z	▲  ├ ƒ /api/crm/leads/[id]/activities                                0 B                0 B
+2025-11-18T01:00:40.199385Z	▲  ├ ƒ /api/crm/leads/[id]/sequences                                 0 B                0 B
+2025-11-18T01:00:40.19947Z	▲  ├ ƒ /api/crm/leads/bulk-delete                                    0 B                0 B
+2025-11-18T01:00:40.199557Z	▲  ├ ƒ /api/crm/leads/bulk-import                                    0 B                0 B
+2025-11-18T01:00:40.19964Z	▲  ├ ƒ /api/crm/leads/create                                         0 B                0 B
+2025-11-18T01:00:40.199735Z	▲  ├ ƒ /api/crm/leads/export                                         0 B                0 B
+2025-11-18T01:00:40.199831Z	▲  ├ ƒ /api/crm/sequences                                            0 B                0 B
+2025-11-18T01:00:40.199918Z	▲  ├ ƒ /api/crm/sequences/[id]                                       0 B                0 B
+2025-11-18T01:00:40.200024Z	▲  ├ ƒ /api/crm/sequences/[id]/activate                              0 B                0 B
+2025-11-18T01:00:40.200117Z	▲  ├ ƒ /api/crm/sequences/[id]/approve                               0 B                0 B
+2025-11-18T01:00:40.200204Z	▲  ├ ƒ /api/crm/sequences/assignments                                0 B                0 B
+2025-11-18T01:00:40.20039Z	▲  ├ ƒ /api/crm/sequences/assignments/[id]                           0 B                0 B
+2025-11-18T01:00:40.200485Z	▲  ├ ƒ /api/crm/stats                                                0 B                0 B
+2025-11-18T01:00:40.20079Z	▲  ├ ƒ /api/cron/process-sequences                                   0 B                0 B
+2025-11-18T01:00:40.200904Z	▲  ├ ƒ /api/dashboard/employee-stats                                 0 B                0 B
+2025-11-18T01:00:40.201031Z	▲  ├ ƒ /api/file/[key]                                               0 B                0 B
+2025-11-18T01:00:40.201144Z	▲  ├ ƒ /api/file/download                                            0 B                0 B
+2025-11-18T01:00:40.20126Z	▲  ├ ƒ /api/get-stripe-key                                           0 B                0 B
+2025-11-18T01:00:40.201372Z	▲  ├ ƒ /api/leads                                                    0 B                0 B
+2025-11-18T01:00:40.201472Z	▲  ├ ƒ /api/marketing-assessment                                     0 B                0 B
+2025-11-18T01:00:40.201591Z	▲  ├ ƒ /api/page-builder/pages                                       0 B                0 B
+2025-11-18T01:00:40.201707Z	▲  ├ ƒ /api/page-builder/pages/[id]                                  0 B                0 B
+2025-11-18T01:00:40.201797Z	▲  ├ ƒ /api/page-builder/pages/slug/[slug]                           0 B                0 B
+2025-11-18T01:00:40.201915Z	▲  ├ ƒ /api/projects                                                 0 B                0 B
+2025-11-18T01:00:40.202029Z	▲  ├ ƒ /api/projects/[id]                                            0 B                0 B
+2025-11-18T01:00:40.202101Z	▲  ├ ƒ /api/proposals                                                0 B                0 B
+2025-11-18T01:00:40.202195Z	▲  ├ ƒ /api/proposals/[id]                                           0 B                0 B
+2025-11-18T01:00:40.202313Z	▲  ├ ƒ /api/proposals/[id]/payment-link                              0 B                0 B
+2025-11-18T01:00:40.202396Z	▲  ├ ƒ /api/proposals/[id]/pdf                                       0 B                0 B
+2025-11-18T01:00:40.20249Z	▲  ├ ƒ /api/proposals/[id]/send                                      0 B                0 B
+2025-11-18T01:00:40.202559Z	▲  ├ ƒ /api/self-service/access                                      0 B                0 B
+2025-11-18T01:00:40.20263Z	▲  ├ ƒ /api/send-tool-results                                        0 B                0 B
+2025-11-18T01:00:40.202703Z	▲  ├ ƒ /api/services                                                 0 B                0 B
+2025-11-18T01:00:40.20277Z	▲  ├ ƒ /api/services/[id]                                            0 B                0 B
+2025-11-18T01:00:40.202847Z	▲  ├ ƒ /api/services/by-slug/[slug]                                  0 B                0 B
+2025-11-18T01:00:40.202931Z	▲  ├ ƒ /api/stripe-webhook                                           0 B                0 B
+2025-11-18T01:00:40.203037Z	▲  ├ ƒ /api/subscription/create-checkout                             0 B                0 B
+2025-11-18T01:00:40.203124Z	▲  ├ ƒ /api/team/workload                                            0 B                0 B
+2025-11-18T01:00:40.20323Z	▲  ├ ƒ /api/upload                                                   0 B                0 B
+2025-11-18T01:00:40.203341Z	▲  ├ ƒ /api/user/change-password                                     0 B                0 B
+2025-11-18T01:00:40.20345Z	▲  ├ ƒ /api/user/update-onboarding                                   0 B                0 B
+2025-11-18T01:00:40.203551Z	▲  ├ ƒ /api/user/update-profile                                      0 B                0 B
+2025-11-18T01:00:40.203656Z	▲  ├ ƒ /api/webhook/stripe                                           0 B                0 B
+2025-11-18T01:00:40.203819Z	▲  ├ ƒ /api/webhooks/resend                                          0 B                0 B
+2025-11-18T01:00:40.203904Z	▲  ├ ƒ /api/webhooks/stripe                                          0 B                0 B
+2025-11-18T01:00:40.204049Z	▲  ├ ƒ /api/workflows                                                0 B                0 B
+2025-11-18T01:00:40.204159Z	▲  ├ ƒ /api/workflows/[id]                                           0 B                0 B
+2025-11-18T01:00:40.204309Z	▲  ├ ƒ /api/workflows/[id]/assign-team                               0 B                0 B
+2025-11-18T01:00:40.204398Z	▲  ├ ƒ /api/workflows/[id]/tasks                                     0 B                0 B
+2025-11-18T01:00:40.204517Z	▲  ├ ƒ /api/workflows/templates                                      0 B                0 B
+2025-11-18T01:00:40.204601Z	▲  ├ ○ /auditor                                                      19.6 kB         190 kB
+2025-11-18T01:00:40.204725Z	▲  ├ ○ /auth/error                                                   2.17 kB         112 kB
+2025-11-18T01:00:40.204847Z	▲  ├ ○ /auth/forgot-password                                         4.1 kB          114 kB
+2025-11-18T01:00:40.204957Z	▲  ├ ƒ /auth/login                                                   2.11 kB         135 kB
+2025-11-18T01:00:40.205074Z	▲  ├ ○ /auth/reset-password                                          4.5 kB          114 kB
+2025-11-18T01:00:40.205168Z	▲  ├ ƒ /auth/signup                                                  4.7 kB          213 kB
+2025-11-18T01:00:40.205247Z	▲  ├ ƒ /blog                                                         3.8 kB          142 kB
+2025-11-18T01:00:40.205339Z	▲  ├ ƒ /blog/[slug]                                                  3.74 kB         147 kB
+2025-11-18T01:00:40.205432Z	▲  ├ ƒ /builder                                                      11.5 kB         167 kB
+2025-11-18T01:00:40.205538Z	▲  ├ ƒ /builder/editor/[id]                                          33.1 kB         357 kB
+2025-11-18T01:00:40.20564Z	▲  ├ ƒ /builder/preview/[id]                                         4.46 kB         114 kB
+2025-11-18T01:00:40.205752Z	▲  ├ ○ /case-studies                                                 3.91 kB         175 kB
+2025-11-18T01:00:40.205853Z	▲  ├ ● /case-studies/[slug]                                          1.47 kB         140 kB
+2025-11-18T01:00:40.205951Z	▲  ├ ○ /category/blog                                                165 B          87.5 kB
+2025-11-18T01:00:40.206072Z	▲  ├ ○ /contact                                                      7.17 kB         228 kB
+2025-11-18T01:00:40.206182Z	▲  ├ ○ /crm                                                          5.57 kB         160 kB
+2025-11-18T01:00:40.206282Z	▲  ├ ƒ /dashboard                                                    20.7 kB         157 kB
+2025-11-18T01:00:40.206401Z	▲  ├ ƒ /dashboard/affiliate                                          6.29 kB         107 kB
+2025-11-18T01:00:40.206504Z	▲  ├ ƒ /dashboard/ai-agents                                          7.93 kB         118 kB
+2025-11-18T01:00:40.206609Z	▲  ├ ƒ /dashboard/ai-agents/[agentId]                                16.9 kB         144 kB
+2025-11-18T01:00:40.206702Z	▲  ├ ƒ /dashboard/ai-agents/new                                      12.7 kB         139 kB
+2025-11-18T01:00:40.206803Z	▲  ├ ƒ /dashboard/analytics                                          9.84 kB         115 kB
+2025-11-18T01:00:40.206912Z	▲  ├ ƒ /dashboard/audits                                             133 kB          284 kB
+2025-11-18T01:00:40.207249Z	▲  ├ ƒ /dashboard/audits/new                                         17.5 kB         151 kB
+2025-11-18T01:00:40.207363Z	▲  ├ ƒ /dashboard/bid-proposals                                      7.18 kB         164 kB
+2025-11-18T01:00:40.207522Z	▲  ├ ƒ /dashboard/bid-proposals/[id]                                 56.3 kB         197 kB
+2025-11-18T01:00:40.207633Z	▲  ├ ƒ /dashboard/bid-proposals/new                                  5.5 kB          119 kB
+2025-11-18T01:00:40.207733Z	▲  ├ ƒ /dashboard/billing                                            7.15 kB         108 kB
+2025-11-18T01:00:40.207841Z	▲  ├ ƒ /dashboard/builder                                            184 B          96.3 kB
+2025-11-18T01:00:40.207941Z	▲  ├ ƒ /dashboard/content/case-studies                               10.4 kB         165 kB
+2025-11-18T01:00:40.208052Z	▲  ├ ƒ /dashboard/content/case-studies/[id]                          3.64 kB         153 kB
+2025-11-18T01:00:40.208158Z	▲  ├ ƒ /dashboard/crm                                                11.9 kB         179 kB
+2025-11-18T01:00:40.208266Z	▲  ├ ƒ /dashboard/crm/sequences                                      7.74 kB         148 kB
+2025-11-18T01:00:40.208377Z	▲  ├ ƒ /dashboard/crm/sequences/[id]                                 11.9 kB         126 kB
+2025-11-18T01:00:40.208473Z	▲  ├ ƒ /dashboard/crm/sequences/[id]/edit                            6.73 kB         144 kB
+2025-11-18T01:00:40.208575Z	▲  ├ ƒ /dashboard/crm/sequences/new                                  7.42 kB         144 kB
+2025-11-18T01:00:40.208678Z	▲  ├ ƒ /dashboard/my-services                                        165 B          87.5 kB
+2025-11-18T01:00:40.20875Z	▲  ├ ƒ /dashboard/onboarding                                         6.65 kB         108 kB
+2025-11-18T01:00:40.208821Z	▲  ├ ƒ /dashboard/pages                                              184 B          96.3 kB
+2025-11-18T01:00:40.208923Z	▲  ├ ƒ /dashboard/pages/edit/[id]                                    9.36 kB         150 kB
+2025-11-18T01:00:40.209042Z	▲  ├ ƒ /dashboard/pages/new                                          7.1 kB          108 kB
+2025-11-18T01:00:40.209152Z	▲  ├ ƒ /dashboard/projects                                           3.79 kB         114 kB
+2025-11-18T01:00:40.209272Z	▲  ├ ƒ /dashboard/projects/[projectId]/shopify                       9.24 kB         119 kB
+2025-11-18T01:00:40.209353Z	▲  ├ ƒ /dashboard/proposals                                          9.69 kB         166 kB
+2025-11-18T01:00:40.209411Z	▲  ├ ƒ /dashboard/proposals/[id]                                     7.79 kB         150 kB
+2025-11-18T01:00:40.209468Z	▲  ├ ƒ /dashboard/proposals/[id]/edit                                11.4 kB         161 kB
+2025-11-18T01:00:40.209553Z	▲  ├ ƒ /dashboard/proposals/new                                      27.7 kB         177 kB
+2025-11-18T01:00:40.209648Z	▲  ├ ƒ /dashboard/self-service                                       6.28 kB         126 kB
+2025-11-18T01:00:40.209757Z	▲  ├ ƒ /dashboard/sequences                                          165 B          87.5 kB
+2025-11-18T01:00:40.209854Z	▲  ├ ƒ /dashboard/services                                           16.6 kB         118 kB
+2025-11-18T01:00:40.209946Z	▲  ├ ƒ /dashboard/settings                                           5.4 kB          106 kB
+2025-11-18T01:00:40.210058Z	▲  ├ ƒ /dashboard/team                                               4.9 kB          116 kB
+2025-11-18T01:00:40.21016Z	▲  ├ ƒ /dashboard/workflows                                          9.64 kB         129 kB
+2025-11-18T01:00:40.210261Z	▲  ├ ƒ /dashboard/workflows/[id]                                     5.83 kB         117 kB
+2025-11-18T01:00:40.210361Z	▲  ├ ƒ /dashboard/workflows/create                                   8.74 kB         158 kB
+2025-11-18T01:00:40.210452Z	▲  ├ ○ /free-3-minute-marketing-assessment-get-a-custom-growth-plan  165 B          87.5 kB
+2025-11-18T01:00:40.210556Z	▲  ├ ○ /gallery/ai-agents                                            3.34 kB         104 kB
+2025-11-18T01:00:40.210653Z	▲  ├ ○ /gallery/websites                                             3.7 kB          110 kB
+2025-11-18T01:00:40.210759Z	▲  ├ ○ /marketing-assessment                                         9.77 kB         231 kB
+2025-11-18T01:00:40.210859Z	▲  ├ ○ /pricing                                                      165 B          87.5 kB
+2025-11-18T01:00:40.210957Z	▲  ├ ○ /privacy                                                      1.45 kB         134 kB
+2025-11-18T01:00:40.211092Z	▲  ├ ○ /proposal-success                                             3.11 kB         113 kB
+2025-11-18T01:00:40.211267Z	▲  ├ ○ /services                                                     19 kB           193 kB
+2025-11-18T01:00:40.211378Z	▲  ├ ● /services/[slug]                                              21.2 kB         159 kB
+2025-11-18T01:00:40.211479Z	▲  ├ ○ /services/ad-management                                       4.22 kB         163 kB
+2025-11-18T01:00:40.211579Z	▲  ├ ○ /services/ai-solutions                                        5.68 kB         144 kB
+2025-11-18T01:00:40.211703Z	▲  ├ ○ /services/app-development                                     3.3 kB          162 kB
+2025-11-18T01:00:40.211767Z	▲  ├ ○ /services/seo                                                 4.05 kB         163 kB
+2025-11-18T01:00:40.211861Z	▲  ├ ○ /services/social-media                                        3.23 kB         162 kB
+2025-11-18T01:00:40.211947Z	▲  ├ ○ /services/web-design                                          3.65 kB         163 kB
+2025-11-18T01:00:40.212062Z	▲  ├ ○ /services/website-fix                                         10.5 kB         179 kB
+2025-11-18T01:00:40.212149Z	▲  ├ ○ /services/website-fix/success                                 3.59 kB         169 kB
+2025-11-18T01:00:40.212235Z	▲  ├ ƒ /site/[subdomain]                                             7.07 kB         282 kB
+2025-11-18T01:00:40.212354Z	▲  ├ ƒ /site/[subdomain]/robots.txt                                  0 B                0 B
+2025-11-18T01:00:40.212466Z	▲  ├ ƒ /site/[subdomain]/sitemap.xml                                 0 B                0 B
+2025-11-18T01:00:40.212591Z	▲  ├ ○ /sitemap.xml                                                  0 B                0 B
+2025-11-18T01:00:40.212705Z	▲  ├ ○ /success                                                      4.99 kB         200 kB
+2025-11-18T01:00:40.212803Z	▲  ├ ○ /terms                                                        1.45 kB         134 kB
+2025-11-18T01:00:40.212901Z	▲  ├ ○ /tools                                                        5.87 kB         171 kB
+2025-11-18T01:00:40.21301Z	▲  ├ ○ /tools/budget-calculator                                      10.8 kB         238 kB
+2025-11-18T01:00:40.213115Z	▲  ├ ○ /tools/conversion-analyzer                                    11.2 kB         233 kB
+2025-11-18T01:00:40.213224Z	▲  ├ ○ /tools/email-tester                                           11.6 kB         238 kB
+2025-11-18T01:00:40.213326Z	▲  ├ ○ /tools/roi-calculator                                         8.48 kB         235 kB
+2025-11-18T01:00:40.213414Z	▲  ├ ○ /tools/seo-checker                                            11.6 kB         238 kB
+2025-11-18T01:00:40.213517Z	▲  ├ ○ /tools/website-auditor                                        165 B          87.5 kB
+2025-11-18T01:00:40.213628Z	▲  └ ○ /tools/website-need-checker                                   10.4 kB         236 kB
+2025-11-18T01:00:40.21374Z	▲  + First Load JS shared by all                                     87.4 kB
+2025-11-18T01:00:40.213839Z	▲  ├ chunks/2117-ff6eff4b10ef7cff.js                               31.8 kB
+2025-11-18T01:00:40.213928Z	▲  ├ chunks/fd9d1056-def3aac4257a2603.js                           53.6 kB
+2025-11-18T01:00:40.21404Z	▲  └ other shared chunks (total)                                   1.97 kB
+2025-11-18T01:00:40.214153Z	▲  
+2025-11-18T01:00:40.214259Z	▲  
+2025-11-18T01:00:40.214355Z	▲  ƒ Middleware                                                      49.6 kB
+2025-11-18T01:00:40.214451Z	▲  ○  (Static)   prerendered as static content
+2025-11-18T01:00:40.214551Z	▲  ●  (SSG)      prerendered as static HTML (uses getStaticProps)
+2025-11-18T01:00:40.214654Z	▲  ƒ  (Dynamic)  server-rendered on demand
+2025-11-18T01:00:40.682918Z	▲  Traced Next.js server files in: 222.418ms
+2025-11-18T01:00:40.687837Z	▲  Error: ENOENT: no such file or directory, lstat '/opt/buildhome/repo/repo/.next/routes-manifest.json'
+2025-11-18T01:00:40.846523Z	
+2025-11-18T01:00:40.847199Z	⚡️ The Vercel build (`npx vercel build`) command failed. For more details see the Vercel logs above.
+2025-11-18T01:00:40.847331Z	⚡️ If you need help solving the issue, refer to the Vercel or Next.js documentation or their repositories.
+2025-11-18T01:00:40.847571Z	
+2025-11-18T01:00:40.884937Z	Failed: Error while executing user command. Exited with error code: 1
+2025-11-18T01:00:40.89512Z	Failed: build command exited with code: 1
+2025-11-18T01:00:42.627855Z	Failed: error occurred while running build command

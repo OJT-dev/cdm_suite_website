@@ -65,9 +65,12 @@ export default async function ServicePage({ params }: { params: { slug: string }
   const category = getServiceCategory(service.slug);
 
   return (
-    <ServicePageClient 
-      service={service} 
-      heroImage={heroImage} 
+    <ServicePageClient
+      service={{
+        ...service,
+        features: JSON.parse(service.features) // Parse JSON string to string[]
+      }}
+      heroImage={heroImage}
       category={category}
     />
   );

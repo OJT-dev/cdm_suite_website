@@ -20,7 +20,7 @@ async function checkDashboardData() {
         _count: true,
       });
       console.log('   Leads by status:');
-      leadsByStatus.forEach(group => {
+      leadsByStatus.forEach((group: any) => {
         console.log(`   - ${group.status}: ${group._count}`);
       });
 
@@ -37,7 +37,7 @@ async function checkDashboardData() {
         },
       });
       console.log('\n   Recent leads:');
-      recentLeads.forEach(lead => {
+      recentLeads.forEach((lead: any) => {
         console.log(`   - ${lead.name || lead.email} (${lead.status}) - Created: ${lead.createdAt.toLocaleDateString()}`);
       });
     }
@@ -52,7 +52,7 @@ async function checkDashboardData() {
         _count: true,
       });
       console.log('   Proposals by status:');
-      proposalsByStatus.forEach(group => {
+      proposalsByStatus.forEach((group: any) => {
         console.log(`   - ${group.status}: ${group._count}`);
       });
 
@@ -70,7 +70,7 @@ async function checkDashboardData() {
         },
       });
       console.log('\n   Recent proposals:');
-      recentProposals.forEach(proposal => {
+      recentProposals.forEach((proposal: any) => {
         console.log(`   - ${proposal.proposalNumber}: ${proposal.title} (${proposal.status}) - $${proposal.total}`);
       });
     }
@@ -89,14 +89,14 @@ async function checkDashboardData() {
     });
 
     console.log(`📧 Found ${employees.length} @cdmsuite.com users:\n`);
-    employees.forEach(user => {
+    employees.forEach((user: any) => {
       console.log(`   Email: ${user.email}`);
       console.log(`   Name: ${user.name || 'Not set'}`);
       console.log(`   Role: ${user.role}`);
       console.log(`   Tier: ${user.tier}`);
       console.log(`   Credits: ${user.credits}`);
-      console.log(`   Employee Profile: ${user.employeeProfile ? 
-        `${user.employeeProfile.employeeRole} (${user.employeeProfile.department || 'No dept'})` : 
+      console.log(`   Employee Profile: ${user.employeeProfile ?
+        `${user.employeeProfile.employeeRole} (${user.employeeProfile.department || 'No dept'})` :
         '❌ NOT SET'}`);
       console.log('   ---');
     });
@@ -118,7 +118,7 @@ async function checkDashboardData() {
 
     console.log(`\n👤 Other Users: ${otherUsers.length}`);
     if (otherUsers.length > 0 && otherUsers.length <= 10) {
-      otherUsers.forEach(user => {
+      otherUsers.forEach((user: any) => {
         console.log(`   - ${user.email} (${user.role})`);
       });
     }
@@ -151,10 +151,10 @@ async function checkDashboardData() {
       console.log('   Solution: Create some test proposals.');
     }
 
-    const missingProfiles = employees.filter(e => !e.employeeProfile);
+    const missingProfiles = employees.filter((e: any) => !e.employeeProfile);
     if (missingProfiles.length > 0) {
       console.log('\n⚠️  WARNING: Some employees missing profiles:');
-      missingProfiles.forEach(user => {
+      missingProfiles.forEach((user: any) => {
         console.log(`   - ${user.email}`);
       });
       console.log('   Run the fix-employee-access.ts script to fix this.');

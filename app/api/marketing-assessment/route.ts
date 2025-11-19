@@ -29,6 +29,7 @@ export async function POST(request: NextRequest) {
         source: 'assessment',
         interest: `Marketing Assessment - Score: ${score}%`,
         assessmentResults: JSON.stringify({ score, recommendations }),
+        tags: JSON.stringify(['marketing-assessment']),
       },
     });
 
@@ -42,10 +43,10 @@ export async function POST(request: NextRequest) {
       console.error('Assessment email sending failed:', error);
     });
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       assessmentId: assessment.id,
-      score 
+      score
     });
   } catch (error) {
     console.error('Error saving assessment:', error);

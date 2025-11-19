@@ -48,8 +48,8 @@ export async function POST(request: NextRequest) {
         thumbnail: businessData.thumbnail || "/images/placeholder-website.jpg",
         category: project.template || "business",
         industry: businessData.industry || null,
-        tags: businessData.services || [],
-        highlightedFeatures: extractFeatures(pages),
+        tags: JSON.stringify(businessData.services || []),
+        highlightedFeatures: JSON.stringify(extractFeatures(pages)),
         liveUrl: project.subdomain ? `https://${project.subdomain}.cdmsuite.com` : null,
         status: "pending", // Requires approval before showing publicly
         isPublic: false,
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
 // Helper function to extract features from pages
 function extractFeatures(pages: any[]): string[] {
   const features: string[] = [];
-  
+
   if (pages.some(p => p.slug === "contact")) {
     features.push("Contact Form");
   }
@@ -82,6 +82,6 @@ function extractFeatures(pages: any[]): string[] {
   if (pages.some(p => p.slug === "about")) {
     features.push("About Us");
   }
-  
+
   return features.slice(0, 5); // Max 5 features
 }

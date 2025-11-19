@@ -8,11 +8,11 @@ export async function searchBlogPosts(query: string, limit: number = 5) {
       where: {
         status: 'published',
         OR: [
-          { title: { contains: query, mode: 'insensitive' } },
-          { content: { contains: query, mode: 'insensitive' } },
-          { excerpt: { contains: query, mode: 'insensitive' } },
-          { tags: { hasSome: [query] } },
-          { categories: { hasSome: [query] } },
+          { title: { contains: query } },
+          { content: { contains: query } },
+          { excerpt: { contains: query } },
+          { tags: { contains: query } },
+          { categories: { contains: query } },
         ],
       },
       take: limit,
@@ -37,7 +37,7 @@ export async function searchBlogPosts(query: string, limit: number = 5) {
 
 export async function getRelevantBlogContext(query: string): Promise<string> {
   const posts = await searchBlogPosts(query, 3);
-  
+
   if (posts.length === 0) {
     return '';
   }

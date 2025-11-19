@@ -1,7 +1,12 @@
 
 import { BlogPost } from '@prisma/client';
 
-export function generateStructuredData(post: BlogPost) {
+export type FormattedBlogPost = Omit<BlogPost, 'tags' | 'categories'> & {
+  tags: string[];
+  categories: string[];
+};
+
+export function generateStructuredData(post: FormattedBlogPost) {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -44,17 +49,17 @@ export function calculateReadTime(content: string): number {
 
 export function generateMetaDescription(post: BlogPost): string {
   if (post.excerpt) return post.excerpt.substring(0, 160);
-  
+
   const cleanContent = post.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-  return cleanContent.length > 157 
-    ? cleanContent.substring(0, 157) + '...' 
+  return cleanContent.length > 157
+    ? cleanContent.substring(0, 157) + '...'
     : cleanContent;
 }
 
 export function extractHeadings(content: string): { level: number; text: string; id: string }[] {
   const headingRegex = /<h([1-6])[^>]*>(.*?)<\/h\1>/gi;
   const headings: { level: number; text: string; id: string }[] = [];
-  
+
   let match;
   while ((match = headingRegex.exec(content)) !== null) {
     const level = parseInt(match[1]);
@@ -62,7 +67,7 @@ export function extractHeadings(content: string): { level: number; text: string;
     const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     headings.push({ level, text, id });
   }
-  
+
   return headings;
 }
 

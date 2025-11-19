@@ -1,5 +1,5 @@
 
-export const runtime = 'edge';
+export const runtime = 'nodejs'; // Changed from 'edge' to support Prisma Client
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     // Verify cron secret (basic authentication)
     const authHeader = request.headers.get('authorization');
     const cronSecret = process.env.CRON_SECRET || 'default-cron-secret';
-    
+
     if (authHeader !== `Bearer ${cronSecret}`) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -65,11 +65,11 @@ export async function GET(request: NextRequest) {
 
       const closingDate = new Date(bid.closingDate);
       const daysUntilClosing = Math.ceil((closingDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-      
+
       // Send reminder based on days until closing
       let shouldSendReminder = false;
       let urgencyLevel = '';
-      
+
       if (daysUntilClosing <= 1) {
         shouldSendReminder = true;
         urgencyLevel = 'URGENT';
@@ -135,7 +135,7 @@ export async function GET(request: NextRequest) {
             subject,
             html: htmlContent,
           });
-          
+
           remindersSent.push(`${bid.title} (${user.email})`);
           console.log(`Sent reminder for bid ${bid.id} to ${user.email}`);
         } catch (emailError) {

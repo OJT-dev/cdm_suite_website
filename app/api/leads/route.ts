@@ -5,6 +5,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { sendToolLeadNotifications, generateToolFollowUpActions } from '@/lib/tool-email-templates';
+import { safeJSONStringify } from '@/lib/json-helper';
 
 // Helper to parse and format tool assessment data
 function parseAssessmentData(notes: string, source: string) {
@@ -92,7 +93,7 @@ function formatWebsiteNeedData(data: any): string {
   };
 
   let formatted = '📊 Website Need Assessment Results\n\n';
-  
+
   for (const [key, label] of Object.entries(labels)) {
     if (data[key]) {
       formatted += `${label}: `;
@@ -104,7 +105,7 @@ function formatWebsiteNeedData(data: any): string {
       }
     }
   }
-  
+
   return formatted;
 }
 
@@ -140,7 +141,7 @@ export async function POST(request: NextRequest) {
 
     // Parse assessment data for better formatting
     const assessmentInfo = notes ? parseAssessmentData(notes, source) : { hasData: false, data: null, formatted: null };
-    
+
     // Extract score if present
     let score = 0;
     let needLevel = 'medium';
@@ -163,7 +164,9 @@ export async function POST(request: NextRequest) {
       existingLead = await prisma.lead.findFirst({
         where: { email },
       });
-    } else if (phone) {
+    }
+
+    if (!existingLead && phone) {
       existingLead = await prisma.lead.findFirst({
         where: { phone },
       });
@@ -184,7 +187,7 @@ export async function POST(request: NextRequest) {
           notes: notes
             ? `${existingLead.notes || ''}\n\n[${new Date().toISOString()}] ${notes}`
             : existingLead.notes,
-          tags: tags || existingLead.tags,
+          tags: tags ? safeJSONStringify(tags) : existingLead.tags,
           updatedAt: new Date(),
         },
       });
@@ -193,7 +196,7 @@ export async function POST(request: NextRequest) {
       const activityDescription = assessmentInfo.hasData && assessmentInfo.formatted
         ? assessmentInfo.formatted
         : notes || 'Lead information updated';
-      
+
       // Generate follow-up actions
       const followUpActions = generateToolFollowUpActions(source, score, assessmentInfo.data);
 
@@ -246,7 +249,7 @@ export async function POST(request: NextRequest) {
         priority: priority,
         score: score,
         notes: notes || null,
-        tags: tags || [],
+        tags: safeJSONStringify(tags || []),
       },
     });
 
@@ -254,7 +257,7 @@ export async function POST(request: NextRequest) {
     const activityDescription = assessmentInfo.hasData && assessmentInfo.formatted
       ? assessmentInfo.formatted
       : notes || `Lead captured from ${source}`;
-    
+
     // Generate follow-up actions
     const followUpActions = generateToolFollowUpActions(source, score, assessmentInfo.data);
 
@@ -352,7 +355,7 @@ async function autoCreateSequence(leadId: string, source: string, score: number,
         leadId,
         name: template.name,
         description: `Auto-generated sequence for ${source} lead (Score: ${score})`,
-        steps: JSON.stringify(template.steps),
+        steps: JSON.stringify(template.steps), // steps is likely Json or String, if String this is correct
         status: 'pending', // Requires approval before activation
         aiGenerated: true,
         aiRecommendedBy: 'system',

@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
           phone: phone || null, // Phone is optional
           source: toolName,
           status: 'NEW',
-          tags: [toolName.toLowerCase().replace(/\s+/g, '-'), 'free-tool-user'],
+          tags: JSON.stringify([toolName.toLowerCase().replace(/\s+/g, '-'), 'free-tool-user']),
           notes: JSON.stringify({ toolData, results }),
         },
       });
@@ -35,18 +35,18 @@ export async function POST(request: NextRequest) {
 
     // Get tripwire offer
     const tripwireOffer = getTripwireOffer(toolName);
-    
+
     // Generate email content using new HTML template
     try {
       const { sendEmail, getToolResultsEmail } = await import('@/lib/email');
       const emailContent = getToolResultsEmail(toolName, name, email, results, tripwireOffer);
-      
+
       await sendEmail({
         to: email,
         subject: `🎯 Your ${toolName} Results Are Ready!`,
         html: emailContent,
       });
-      
+
       console.log('✅ Email sent successfully to:', email);
     } catch (emailError) {
       console.error('❌ Failed to send email:', emailError);
@@ -186,10 +186,10 @@ Based on your inputs:
 
 HERE'S WHAT WE FOUND:
 
-${results.projectedRevenue > results.currentRevenue * 2 ? 
-  '🚀 You\'re leaving MASSIVE money on the table! With proper marketing, you could DOUBLE your revenue.' :
-  '💡 There\'s significant untapped potential in your marketing.'
-}
+${results.projectedRevenue > results.currentRevenue * 2 ?
+        '🚀 You\'re leaving MASSIVE money on the table! With proper marketing, you could DOUBLE your revenue.' :
+        '💡 There\'s significant untapped potential in your marketing.'
+      }
 
 📊 BREAKDOWN:
 Current performance: $${results.currentRevenue.toLocaleString()}/mo
@@ -237,9 +237,9 @@ Your marketing budget analysis is complete!
 🎯 ROI PROJECTION: ${results.expectedROI}%
 
 BUDGET BREAKDOWN:
-${Object.entries(results.breakdown).map(([channel, amount]: [string, any]) => 
-  `• ${channel}: $${amount.toLocaleString()}/mo`
-).join('\n')}
+${Object.entries(results.breakdown).map(([channel, amount]: [string, any]) =>
+      `• ${channel}: $${amount.toLocaleString()}/mo`
+    ).join('\n')}
 
 WHY THIS MATTERS:
 

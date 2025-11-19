@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/session";
 import { prisma } from "@/lib/db";
 import { deductCredits } from "@/lib/credits";
+import { safeJSONParse } from "@/lib/json-helper";
 
 const CREDITS_PER_MESSAGE = 1;
 const FREE_TIER_DAILY_LIMIT = 10; // Free users get 10 messages per day
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
     if (!isAdminOrEmployee) {
       // Check usage limits based on tier
       const isFreeTier = user.tier === "free";
-      
+
       if (isFreeTier) {
         // Check if we need to reset daily count
         if (isNewDay(user.lastMessageDate)) {
@@ -96,6 +97,9 @@ export async function POST(request: NextRequest) {
       : [];
 
     // Build system message with business context
+    const services = safeJSONParse<string[]>(businessContext?.services, []);
+    const goals = safeJSONParse<string[]>(businessContext?.goals, []);
+
     const systemMessage = {
       role: "system",
       content: `You are an AI business assistant for ${user.name || "the user"} helping them build and grow their business with CDM Suite. 
@@ -104,9 +108,9 @@ ${businessContext ? `
 Business Context:
 - Business Name: ${businessContext.businessName || "Not set"}
 - Industry: ${businessContext.industry || "Not set"}
-- Services: ${businessContext.services?.join(", ") || "Not set"}
+- Services: ${services.join(", ") || "Not set"}
 - Target Audience: ${businessContext.targetAudience || "Not set"}
-- Goals: ${businessContext.goals?.join(", ") || "Not set"}
+- Goals: ${goals.join(", ") || "Not set"}
 - Brand Voice: ${businessContext.brandVoice || "Professional and friendly"}
 
 Key Insights: ${businessContext.keyInsights || "None yet"}
@@ -204,14 +208,14 @@ Be helpful, concise, and actionable. Remember previous context from the conversa
               }
 
               // Send completion message with usage info
-              const remaining = isFreeTier 
+              const remaining = isFreeTier
                 ? FREE_TIER_DAILY_LIMIT - (user.dailyMessageCount + 1)
                 : null;
-              
+
               controller.enqueue(
                 encoder.encode(
-                  `data: ${JSON.stringify({ 
-                    type: "done", 
+                  `data: ${JSON.stringify({
+                    type: "done",
                     conversationId: conversation.id,
                     remaining,
                     isFreeTier,

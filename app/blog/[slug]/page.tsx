@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -15,6 +14,7 @@ import { generateStructuredData, calculateReadTime, addIdsToHeadings, extractHea
 import { formatBlogPost } from '@/lib/blog-formatter';
 import { BlogAudioPlayer } from '@/components/blog-audio-player';
 import { TableOfContents } from '@/components/table-of-contents';
+import { safeJSONParse } from '@/lib/json-helper';
 
 export const revalidate = 3600;
 
@@ -38,19 +38,32 @@ async function getBlogPost(slug: string) {
       where: { id: post.id },
       data: { views: { increment: 1 } },
     });
+
+    // Parse JSON fields
+    return {
+      ...post,
+      tags: safeJSONParse<string[]>(post.tags, []),
+      categories: safeJSONParse<string[]>(post.categories, []),
+    };
   }
 
-  return post;
+  return null;
 }
 
 async function getRelatedPosts(slug: string, categories: string[], limit: number = 3) {
+  // For D1/SQLite, we can't use hasSome on a string field.
+  // We'll use OR with contains for each category as a workaround.
+  const categoryFilters = categories.map(cat => ({
+    categories: {
+      contains: cat
+    }
+  }));
+
   const posts = await prisma.blogPost.findMany({
     where: {
       slug: { not: slug },
       status: 'published',
-      categories: {
-        hasSome: categories,
-      },
+      OR: categoryFilters.length > 0 ? categoryFilters : undefined,
     },
     take: limit,
     orderBy: {
@@ -68,7 +81,11 @@ async function getRelatedPosts(slug: string, categories: string[], limit: number
     },
   });
 
-  return posts;
+  // Parse categories for returned posts
+  return posts.map((post: any) => ({
+    ...post,
+    categories: safeJSONParse(post.categories, []),
+  }));
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
@@ -122,7 +139,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const relatedPosts = await getRelatedPosts(post.slug, post.categories);
   const shareUrl = `https://cdmsuite.com/blog/${post.slug}`;
   const structuredData = generateStructuredData(post);
-  
+
   // Process content for better rendering
   let processedContent = formatBlogPost(post.content);
   processedContent = addIdsToHeadings(processedContent);
@@ -310,7 +327,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <div className="bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-2xl p-8 text-center mb-12">
                   <h3 className="text-2xl font-bold mb-4">Ready to Grow Your Business?</h3>
                   <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                    Get a comprehensive evaluation of your digital presence with our free marketing assessment, 
+                    Get a comprehensive evaluation of your digital presence with our free marketing assessment,
                     or run a quick website audit to identify immediate opportunities.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

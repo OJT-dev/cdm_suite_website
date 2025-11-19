@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
         source: 'Website Fix Checkout',
         interest: `${selectedPrice.name} - ${websiteUrl}`,
         status: 'NEW',
-        tags: ['website-fix', 'tripwire', serviceType],
+        tags: JSON.stringify(['website-fix', 'tripwire', serviceType]),
         notes: JSON.stringify({ company, websiteUrl, serviceType }),
       },
     });

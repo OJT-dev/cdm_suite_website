@@ -1,11 +1,11 @@
 generator client {
     provider = "prisma-client-js"
+    previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-    provider  = "postgresql"
+    provider  = "sqlite"
     url       = env("DATABASE_URL")
-    directUrl = env("DATABASE_DIRECT_URL")
 }
 
 model ContactSubmission {
@@ -42,7 +42,7 @@ model Service {
   name        String
   description String
   price       Float
-  features    String[]
+  features    String
   popular     Boolean  @default(false)
   active      Boolean  @default(true)
   sortOrder   Int      @default(0)
@@ -73,7 +73,7 @@ model Lead {
   priority            String               @default("medium")
   score               Int                  @default(0)
   status              String               @default("new")
-  tags                String[]
+  tags                String
   timeline            String?
   activities          LeadActivity[]
   sequences           LeadSequence[]
@@ -150,8 +150,8 @@ model BlogPost {
   author          String    @default("CDM Suite")
   authorEmail     String?
   featuredImage   String?
-  categories      String[]
-  tags            String[]
+  categories      String
+  tags            String
   status          String    @default("published")
   publishedAt     DateTime?
   createdAt       DateTime  @default(now())
@@ -203,7 +203,7 @@ model User {
   company                 String?
   phone                   String?
   industry                String?
-  goals                   String[]                @default([])
+  goals                   String                @default("[]")
   onboardingCompleted     Boolean                 @default(false)
   createdAt               DateTime                @default(now())
   updatedAt               DateTime                @updatedAt
@@ -430,10 +430,10 @@ model BusinessContext {
   userId         String   @unique
   businessName   String?
   industry       String?
-  services       String[] @default([])
+  services       String @default("[]")
   targetAudience String?
-  goals          String[] @default([])
-  brandColors    String[] @default([])
+  goals          String @default("[]")
+  brandColors    String @default("[]")
   brandVoice     String?
   keyInsights    String?
   createdAt      DateTime @default(now())
@@ -492,7 +492,7 @@ model Employee {
   department            String?
   capabilities          String
   weeklyCapacity        Float            @default(40)
-  skillSet              String[]         @default([])
+  skillSet              String         @default("[]")
   projectsCompleted     Int              @default(0)
   avgProjectRating      Float?
   status                String           @default("active")
@@ -530,7 +530,7 @@ model ProjectTask {
   estimatedHours Float?
   actualHours    Float     @default(0)
   assignedToId   String?
-  dependsOn      String[]  @default([])
+  dependsOn      String  @default("[]")
   completedAt    DateTime?
   dueDate        DateTime?
   aiGenerated    Boolean   @default(false)
@@ -557,9 +557,9 @@ model ProjectFile {
   mimeType         String
   cloudStoragePath String
   category         String?
-  tags             String[] @default([])
+  tags             String @default("[]")
   aiDescription    String?
-  aiTags           String[] @default([])
+  aiTags           String @default("[]")
   visibleToClient  Boolean  @default(false)
   status           String   @default("active")
   createdAt        DateTime @default(now())
@@ -644,7 +644,7 @@ model SequenceStep {
   conditions  String?
   aiSuggested Boolean  @default(false)
   aiReasoning String?
-  mergeTags   String[] @default([])
+  mergeTags   String @default("[]")
   active      Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -728,7 +728,7 @@ model Message {
   subject     String?
   content     String
   messageType String    @default("text")
-  attachments String[]  @default([])
+  attachments String  @default("[]")
   read        Boolean   @default(false)
   readAt      DateTime?
   important   Boolean   @default(false)
@@ -849,8 +849,8 @@ model WorkflowTask {
   priority        String           @default("medium")
   estimatedHours  Float?
   actualHours     Float            @default(0)
-  requiredSkills  String[]         @default([])
-  dependencies    String[]         @default([])
+  requiredSkills  String         @default("[]")
+  dependencies    String         @default("[]")
   deliverables    String?
   completedWork   String?
   dueDate         DateTime?
@@ -940,13 +940,13 @@ model CustomPage {
   settings        String?
   metaTitle       String?
   metaDescription String?
-  metaKeywords    String[]       @default([])
+  metaKeywords    String       @default("[]")
   ogImage         String?
   status          String         @default("draft")
   publishedAt     DateTime?
   views           Int            @default(0)
   requiresAuth    Boolean        @default(false)
-  allowedRoles    String[]       @default([])
+  allowedRoles    String       @default("[]")
   isTemplate      Boolean        @default(false)
   parentPageId    String?
   version         Int            @default(1)
@@ -1148,7 +1148,7 @@ model AIAgent {
   galleryDescription  String?
   galleryThumbnail    String?
   galleryCategory     String?
-  galleryTags         String[]            @default([])
+  galleryTags         String            @default("[]")
   galleryOrder        Int                 @default(0)
   galleryViews        Int                 @default(0)
   createdAt           DateTime            @default(now())
@@ -1328,8 +1328,8 @@ model WebsiteGallery {
   category            String
   clientName          String?
   industry            String?
-  tags                String[]  @default([])
-  highlightedFeatures String[]  @default([])
+  tags                String  @default("[]")
+  highlightedFeatures String  @default("[]")
   metricsImprovement  String?
   liveUrl             String?
   demoUrl             String?
@@ -1449,10 +1449,10 @@ model Product {
   trackInventory   Boolean   @default(false)
   inventoryCount   Int       @default(0)
   allowBackorder   Boolean   @default(false)
-  images           String[]  @default([])
+  images           String  @default("[]")
   featuredImage    String?
   category         String?
-  tags             String[]  @default([])
+  tags             String  @default("[]")
   requiresShipping Boolean   @default(true)
   weight           Float?
   dimensions       String?
@@ -1520,8 +1520,8 @@ model Membership {
   price          Float
   billingPeriod  String
   currency       String                 @default("USD")
-  protectedPages String[]               @default([])
-  features       String[]               @default([])
+  protectedPages String               @default("[]")
+  features       String               @default("[]")
   maxMembers     Int?
   currentMembers Int                    @default(0)
   stripePriceId  String?
@@ -1568,7 +1568,7 @@ model CustomCode {
   cssCode        String?
   jsCode         String?
   injectionPoint String
-  targetPages    String[] @default([])
+  targetPages    String @default("[]")
   loadCondition  String?
   status         String   @default("active")
   loadOrder      Int      @default(0)
@@ -1652,23 +1652,23 @@ model BidProposal {
   processingStatus          String    @default("idle")
   
   // Phase 1 Enhancements
-  generalProposalComment    String?   @db.Text  // Centralized comment included in all proposal documents
+  generalProposalComment    String?    // Centralized comment included in all proposal documents
   
   // HUB/Subcontracting Plan Logic
   hubPlanRequired           Boolean   @default(false)  // Whether full HUB plan is required
   hubFeeThreshold           Float?    // Governmental fee threshold for HUB requirements
   hubIntentWaiverGenerated  Boolean   @default(false)  // Whether intent/waiver document was generated
-  hubIntentWaiverContent    String?   @db.Text  // Content of the intent/waiver document
+  hubIntentWaiverContent    String?    // Content of the intent/waiver document
   
   // Business Listing Verification
-  businessListings          String?   @db.Text  // JSON array of businesses for contracting/helpers
+  businessListings          String?    // JSON array of businesses for contracting/helpers
   businessVerificationStatus String   @default("not_verified")  // not_verified, verifying, verified, failed
   
   // Title and Cover Page Management
-  proposalTitle             String?   @db.Text  // Auto-generated and editable proposal title
-  coverPageContent          String?   @db.Text  // Editable cover page content (HTML format)
-  businessVerificationResults String? @db.Text  // JSON results of verification
-  businessVerificationNote  String?   @db.Text  // Note about partnership status constraint
+  proposalTitle             String?    // Auto-generated and editable proposal title
+  coverPageContent          String?    // Editable cover page content (HTML format)
+  businessVerificationResults String?  // JSON results of verification
+  businessVerificationNote  String?    // Note about partnership status constraint
 
   // Relations
   bidAttachments            BidAttachment[]
@@ -1704,11 +1704,11 @@ model BidDocument {
   bidProposalId  String
   documentType   String    // technical, cost, hub_subcontracting, past_performance, etc.
   title          String
-  content        String?   @db.Text
+  content        String?  
   status         String    @default("pending") // pending, generating, completed, error
   generatedAt    DateTime?
   errorMessage   String?
-  metadata       String?   @db.Text // JSON for additional document-specific data
+  metadata       String?   // JSON for additional document-specific data
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 

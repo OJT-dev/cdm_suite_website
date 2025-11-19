@@ -44,8 +44,15 @@ async function getBlogPosts(page: number = 1, limit: number = 12) {
     }),
   ]);
 
+  // Parse categories and tags from JSON strings
+  const parsedPosts = posts.map(post => ({
+    ...post,
+    categories: JSON.parse(post.categories),
+    tags: JSON.parse(post.tags)
+  }));
+
   return {
-    posts,
+    posts: parsedPosts,
     totalCount,
     totalPages: Math.ceil(totalCount / limit),
     currentPage: page,
@@ -63,8 +70,16 @@ async function getCategories() {
   });
 
   const categoriesSet = new Set<string>();
-  posts.forEach((post: { categories: string[] }) => {
-    post.categories.forEach((cat: string) => categoriesSet.add(cat));
+  posts.forEach((post: { categories: string }) => {
+    // Parse the categories JSON string
+    try {
+      const parsedCategories = JSON.parse(post.categories);
+      if (Array.isArray(parsedCategories)) {
+        parsedCategories.forEach((cat: string) => categoriesSet.add(cat));
+      }
+    } catch (e) {
+      console.error('Error parsing categories:', e);
+    }
   });
 
   return Array.from(categoriesSet).sort();
@@ -83,43 +98,43 @@ export default async function BlogPage({
     <main>
       <Navigation />
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white/10 bg-[size:20px_20px]" />
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-500">
-              Digital Marketing Insights
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Stay ahead with expert tips, strategies, and industry insights from CDM Suite
-            </p>
-            <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                <span>{totalCount} Articles</span>
-              </div>
-              <div className="h-4 w-px bg-border" />
-              <div className="flex items-center gap-2">
-                <span>{categories.length} Categories</span>
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-white/10 bg-[size:20px_20px]" />
+          <div className="container mx-auto relative z-10">
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-500">
+                Digital Marketing Insights
+              </h1>
+              <p className="text-xl text-muted-foreground mb-8">
+                Stay ahead with expert tips, strategies, and industry insights from CDM Suite
+              </p>
+              <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                  <span>{totalCount} Articles</span>
+                </div>
+                <div className="h-4 w-px bg-border" />
+                <div className="flex items-center gap-2">
+                  <span>{categories.length} Categories</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Blog Posts Grid */}
-      <section className="py-12 px-4">
-        <div className="container mx-auto">
-          <BlogPostGrid
-            posts={posts}
-            categories={categories}
-            totalPages={totalPages}
-            currentPage={currentPage}
-            selectedCategory={searchParams.category}
-          />
-        </div>
-      </section>
+        {/* Blog Posts Grid */}
+        <section className="py-12 px-4">
+          <div className="container mx-auto">
+            <BlogPostGrid
+              posts={posts}
+              categories={categories}
+              totalPages={totalPages}
+              currentPage={currentPage}
+              selectedCategory={searchParams.category}
+            />
+          </div>
+        </section>
       </div>
       <Footer />
     </main>

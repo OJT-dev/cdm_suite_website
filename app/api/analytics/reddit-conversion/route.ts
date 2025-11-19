@@ -1,5 +1,5 @@
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -20,9 +20,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Extract IP address and user agent from request headers
-    const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0] || 
-                     request.headers.get('x-real-ip') || 
-                     'unknown';
+    const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
     const userAgent = request.headers.get('user-agent') || 'unknown';
 
     // Map event types to Reddit API v3 format (uppercase with underscores)
@@ -169,7 +169,7 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Reddit Conversions API error:', response.status, errorText);
-      
+
       let errorMessage = 'Failed to send conversion event';
       try {
         const errorData = JSON.parse(errorText);
@@ -177,12 +177,12 @@ export async function POST(request: NextRequest) {
       } catch {
         errorMessage = errorText || errorMessage;
       }
-      
+
       return NextResponse.json(
-        { 
+        {
           error: errorMessage,
           status: response.status,
-          details: errorText 
+          details: errorText
         },
         { status: response.status }
       );

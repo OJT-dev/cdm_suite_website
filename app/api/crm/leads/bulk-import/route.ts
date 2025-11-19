@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
               phone: parsedLead.phone || existingLead.phone,
               company: parsedLead.company || existingLead.company,
               interest: parsedLead.interest || existingLead.interest,
-              notes: existingLead.notes 
+              notes: existingLead.notes
                 ? `${existingLead.notes}\n\nBulk Import Update: ${parsedLead.rawText}`
                 : `Bulk Import: ${parsedLead.rawText}`,
             },
@@ -91,6 +91,7 @@ export async function POST(request: NextRequest) {
               priority: 'medium',
               notes: `Bulk Import: ${parsedLead.rawText}`,
               score: 0,
+              tags: JSON.stringify(['bulk-import']),
             },
           });
 
@@ -112,7 +113,7 @@ export async function POST(request: NextRequest) {
         if (generateProposals && parsedLead.email && parsedLead.serviceKeywords.length > 0) {
           try {
             const items = mapServicesToProposalItems(parsedLead.serviceKeywords);
-            
+
             // Calculate totals
             const subtotal = items.reduce((sum, item) => sum + item.total, 0);
             const tax = 0;

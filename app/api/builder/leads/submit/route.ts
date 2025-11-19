@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
           pageSlug: pageSlug || 'contact',
           submittedAt: new Date().toISOString(),
         }),
-        tags: ["website-lead", subdomain],
+        tags: JSON.stringify(["website-lead", subdomain]),
       },
     });
 
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
       data: { leads: { increment: 1 } },
     });
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       success: true,
       message: "Thank you! We'll be in touch soon.",
       leadId: lead.id,

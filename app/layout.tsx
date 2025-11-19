@@ -12,6 +12,8 @@ import { PostHogPageView } from '@/components/analytics/posthog-pageview';
 import GoogleAnalytics from '@/components/analytics/google-analytics';
 import { Suspense } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 const inter = Inter({ subsets: ["latin"] });
 
 // Base URL for metadata (resolves social OG/Twitter image URLs)

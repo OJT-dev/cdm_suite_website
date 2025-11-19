@@ -11,7 +11,7 @@ const prisma = new PrismaClient();
 async function updateAdminAccess() {
   try {
     console.log('🔍 Checking current status for everoythomas@gmail.com...');
-    
+
     // Check if user exists
     const user = await prisma.user.findUnique({
       where: { email: 'everoythomas@gmail.com' },
@@ -71,7 +71,7 @@ async function updateAdminAccess() {
             canManageBilling: true,
           }),
           weeklyCapacity: 40,
-          skillSet: ['management', 'sales', 'operations'],
+          skillSet: JSON.stringify(['management', 'sales', 'operations']),
           status: 'active',
         },
       });

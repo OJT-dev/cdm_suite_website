@@ -2,5 +2,14 @@ name = "cdm-suite"
 compatibility_date = "2025-11-16"
 pages_build_output_dir = ".vercel/output/static"
 
+[[d1_databases]]
+binding = "DB"
+database_name = "cdm-suite-db"
+database_id = "c47f2350-0f8b-4334-a121-dd2456298483"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "cdm-suite-assets"
+
 [observability]
 enabled = true
