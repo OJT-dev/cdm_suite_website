@@ -1,0 +1,22 @@
+I need you to set up the design system for my Next.js App Router project to match an existing style exactly. I have exported the core configuration files as text files. Please perform the following steps:
+
+1. **Dependencies**: Install the required packages referenced in the configuration:
+   ```bash
+   npm install tailwindcss-animate clsx tailwind-merge date-fns
+   ```
+
+2. **Global Styles**: 
+   - Read the content from `globals.css.txt`.
+   - Overwrite my project's `app/globals.css` file with this exact content. This sets up the color variables, typography, and custom utility classes.
+
+3. **Tailwind Configuration**:
+   - Read the content from `tailwind.config.ts.txt`.
+   - Overwrite my project's `tailwind.config.ts` file with this exact content. This configures the theme extensions, colors, and animations.
+
+4. **Utility Functions**:
+   - Read the content from `utils.ts.txt`.
+   - Create or overwrite `lib/utils.ts` with this exact content. This provides the `cn` utility for class merging which is used throughout the components.
+
+5. **Verify**: Ensure that the folder structure matches (e.g., `lib/` folder exists).
+
+The goal is to have my project inherit the exact visual identity (colors, fonts, animations) defined in these files.

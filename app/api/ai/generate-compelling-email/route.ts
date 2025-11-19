@@ -1,6 +1,5 @@
 
 import { NextRequest, NextResponse } from 'next/server';
-export const runtime = 'edge';
 
 
 const ABACUS_API_KEY = process.env.ABACUSAI_API_KEY;

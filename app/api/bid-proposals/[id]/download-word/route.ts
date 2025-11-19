@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { generateWordDocument } from '@/lib/docx-generator';
-export const runtime = 'edge';
 
 
 export async function GET(

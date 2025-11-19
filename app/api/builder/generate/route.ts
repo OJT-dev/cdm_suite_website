@@ -7,7 +7,6 @@ import { buildWebsiteGenerationPrompt } from "@/lib/builder/prompts";
 import { getTemplate } from "@/lib/builder/templates";
 import { downloadImagesForContent } from "@/lib/builder/image-generator";
 import { validateWebsiteContent, autoFixContent } from "@/lib/builder/validation";
-export const runtime = 'edge';
 
 
 export const dynamic = 'force-dynamic';

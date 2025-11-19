@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { smsService } from '@/lib/sms';
 import { prisma } from '@/lib/db';
-export const runtime = 'edge';
 
 
 export async function POST(req: Request) {

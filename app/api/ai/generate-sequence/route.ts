@@ -2,7 +2,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-export const runtime = 'edge';
 
 
 // POST /api/ai/generate-sequence - Generate a sequence using AI

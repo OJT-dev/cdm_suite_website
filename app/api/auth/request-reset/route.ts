@@ -1,9 +1,10 @@
 
+import crypto from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { sendEmail, getPasswordResetEmail } from "@/lib/email";
-import crypto from "crypto";
-export const runtime = 'edge';
+
+export const runtime = 'nodejs';
 
 
 export async function POST(request: NextRequest) {

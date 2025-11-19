@@ -2,7 +2,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { sendContactNotification, sendContactConfirmation } from "@/lib/email";
-export const runtime = 'edge';
 
 
 export const dynamic = "force-dynamic";

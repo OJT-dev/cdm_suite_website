@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { hasPermission } from '@/lib/auth-helpers';
-export const runtime = 'edge';
 
 
 // GET /api/crm/leads/[id]/activities - Get all activities for a lead

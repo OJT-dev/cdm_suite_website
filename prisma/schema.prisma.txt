@@ -1,0 +1,1784 @@
+generator client {
+    provider = "prisma-client-js"
+    previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+    provider  = "sqlite"
+    url       = env("DATABASE_URL")
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  message   String
+  formType  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contact_submissions")
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  stripeSessionId String   @unique
+  customerEmail   String
+  customerName    String?
+  packageName     String
+  packagePrice    Float
+  status          String   @default("pending")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("orders")
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String
+  price       Float
+  features    String
+  popular     Boolean  @default(false)
+  active      Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("services")
+}
+
+model Lead {
+  id                  String               @id @default(cuid())
+  email               String?
+  name                String?
+  phone               String?
+  source              String
+  interest            String?
+  chatHistory         String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  assessmentResults   String?
+  assignedToId        String?
+  budget              String?
+  company             String?
+  customFields        String?
+  lastContactedAt     DateTime?
+  nextFollowUpAt      DateTime?
+  notes               String?
+  priority            String               @default("medium")
+  score               Int                  @default(0)
+  status              String               @default("new")
+  tags                String
+  timeline            String?
+  activities          LeadActivity[]
+  sequences           LeadSequence[]
+  assignedTo          Employee?            @relation(fields: [assignedToId], references: [id])
+  proposals           Proposal[]
+  sequenceAssignments SequenceAssignment[]
+
+  @@index([status])
+  @@index([assignedToId])
+  @@index([email])
+  @@map("leads")
+}
+
+model LeadActivity {
+  id          String    @id @default(cuid())
+  leadId      String
+  type        String
+  title       String
+  description String?
+  metadata    String?
+  createdById String?
+  createdAt   DateTime  @default(now())
+  createdBy   Employee? @relation(fields: [createdById], references: [id])
+  lead        Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([createdAt])
+  @@map("lead_activities")
+}
+
+model LeadSequence {
+  id              String    @id @default(cuid())
+  leadId          String
+  name            String
+  description     String?
+  steps           String
+  currentStep     Int       @default(0)
+  status          String    @default("pending")
+  aiGenerated     Boolean   @default(false)
+  aiRecommendedBy String?
+  approvedBy      String?
+  approvedAt      DateTime?
+  startedAt       DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  lead            Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([status])
+  @@map("lead_sequences")
+}
+
+model ChatConversation {
+  id           String   @id @default(cuid())
+  sessionId    String   @unique
+  email        String?
+  name         String?
+  messages     String
+  leadCaptured Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("chat_conversations")
+}
+
+model BlogPost {
+  id              String    @id @default(cuid())
+  wpId            Int?      @unique
+  title           String
+  slug            String    @unique
+  content         String
+  excerpt         String?
+  author          String    @default("CDM Suite")
+  authorEmail     String?
+  featuredImage   String?
+  categories      String
+  tags            String
+  status          String    @default("published")
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  audioUrl        String?
+  metaDescription String?
+  readTime        Int       @default(5)
+  structuredData  String?
+  views           Int       @default(0)
+
+  @@index([status, publishedAt])
+  @@index([slug])
+  @@index([views])
+  @@map("blog_posts")
+}
+
+model MarketingAssessment {
+  id              String   @id @default(cuid())
+  email           String
+  name            String?
+  company         String?
+  responses       String
+  score           Int
+  recommendations String
+  reportSent      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id])
+
+  @@index([email])
+  @@index([createdAt])
+  @@index([userId])
+  @@map("marketing_assessments")
+}
+
+model User {
+  id                      String                  @id @default(cuid())
+  name                    String?
+  email                   String                  @unique
+  emailVerified           DateTime?
+  image                   String?
+  password                String?
+  tier                    String                  @default("free")
+  subscriptionStatus      String                  @default("inactive")
+  stripeCustomerId        String?                 @unique
+  trialEndsAt             DateTime?
+  subscriptionEndsAt      DateTime?
+  company                 String?
+  phone                   String?
+  industry                String?
+  goals                   String                @default("[]")
+  onboardingCompleted     Boolean                 @default(false)
+  createdAt               DateTime                @default(now())
+  updatedAt               DateTime                @updatedAt
+  lastLoginAt             DateTime?
+  stripeSubscriptionId    String?                 @unique
+  affiliateCode           String?                 @unique
+  affiliateCommissionRate Float                   @default(0.20)
+  affiliateEarnings       Float                   @default(0)
+  credits                 Int                     @default(1)
+  referredBy              String?
+  dailyMessageCount       Int                     @default(0)
+  lastMessageDate         DateTime?
+  role                    String                  @default("client")
+  accounts                Account[]
+  aiRecommendations       AIRecommendation[]
+  assistantConversations  AssistantConversation[]
+  businessContext         BusinessContext?
+  employeeProfile         Employee?
+  assessments             MarketingAssessment[]
+  receivedMessages        Message[]               @relation("MessageReceiver")
+  sentMessages            Message[]               @relation("MessageSender")
+  assignedProjects        Project[]               @relation("AssignedEmployee")
+  projects                Project[]
+  referrals               Referral[]
+  approvedSequences       Sequence[]              @relation("SequenceApprover")
+  sessions                Session[]
+  subscriptions           Subscription[]
+  timeLogs                TimeLog[]
+  audits                  WebsiteAudit[]
+
+  @@index([email])
+  @@index([tier])
+  @@index([subscriptionStatus])
+  @@index([affiliateCode])
+  @@index([referredBy])
+  @@index([role])
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expires   DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+  @@map("password_reset_tokens")
+}
+
+model Subscription {
+  id                   String   @id @default(cuid())
+  userId               String
+  stripeSubscriptionId String   @unique
+  stripePriceId        String
+  tier                 String
+  status               String
+  currentPeriodStart   DateTime
+  currentPeriodEnd     DateTime
+  cancelAtPeriodEnd    Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@map("subscriptions")
+}
+
+model Project {
+  id               String        @id @default(cuid())
+  userId           String
+  name             String
+  type             String
+  status           String        @default("draft")
+  domain           String?
+  description      String?
+  settings         String?
+  aiPrompt         String?
+  template         String?
+  visits           Int           @default(0)
+  leads            Int           @default(0)
+  conversions      Int           @default(0)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  launchedAt       DateTime?
+  auditId          String?
+  businessData     String?
+  customDomain     String?       @unique
+  exportUrl        String?
+  pages            String?
+  publishedAt      DateTime?
+  siteConfig       String?
+  subdomain        String?       @unique
+  actualHours      Float         @default(0)
+  assignedToId     String?
+  dueDate          DateTime?
+  estimatedHours   Float?
+  priority         String        @default("medium")
+  progressPercent  Int           @default(0)
+  globalStyles     String?
+  navigationConfig String?
+  messages         Message[]
+  files            ProjectFile[]
+  tasks            ProjectTask[]
+  assignedTo       User?         @relation("AssignedEmployee", fields: [assignedToId], references: [id])
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  timeLogs         TimeLog[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([type])
+  @@index([subdomain])
+  @@index([customDomain])
+  @@index([assignedToId])
+  @@index([priority])
+  @@index([dueDate])
+  @@map("projects")
+}
+
+model WebsiteAudit {
+  id               String   @id @default(cuid())
+  userId           String?
+  email            String
+  name             String?
+  websiteUrl       String
+  seoScore         Int      @default(0)
+  performanceScore Int      @default(0)
+  mobileScore      Int      @default(0)
+  securityScore    Int      @default(0)
+  overallScore     Int      @default(0)
+  issues           String
+  recommendations  String
+  reportSent       Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  user             User?    @relation(fields: [userId], references: [id])
+
+  @@index([email])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("website_audits")
+}
+
+model Referral {
+  id               String    @id @default(cuid())
+  referrerId       String
+  referredEmail    String
+  referredUserId   String?
+  status           String    @default("pending")
+  tierPurchased    String?
+  commissionAmount Float     @default(0)
+  paidAt           DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  referrer         User      @relation(fields: [referrerId], references: [id], onDelete: Cascade)
+
+  @@index([referrerId])
+  @@index([referredEmail])
+  @@index([referredUserId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("referrals")
+}
+
+model AssistantConversation {
+  id            String   @id @default(cuid())
+  userId        String
+  messages      String
+  context       String?
+  lastMessageAt DateTime @default(now())
+  creditsUsed   Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([lastMessageAt])
+  @@map("assistant_conversations")
+}
+
+model BusinessContext {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  businessName   String?
+  industry       String?
+  services       String @default("[]")
+  targetAudience String?
+  goals          String @default("[]")
+  brandColors    String @default("[]")
+  brandVoice     String?
+  keyInsights    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("business_contexts")
+}
+
+model Proposal {
+  id                  String    @id @default(cuid())
+  leadId              String?
+  clientName          String
+  clientEmail         String?
+  clientPhone         String?
+  clientCompany       String?
+  proposalNumber      String    @unique
+  title               String
+  description         String?
+  status              String    @default("draft")
+  items               String
+  subtotal            Float
+  tax                 Float     @default(0)
+  discount            Float     @default(0)
+  total               Float
+  terms               String?
+  notes               String?
+  dueDate             DateTime?
+  validUntil          DateTime?
+  stripePaymentLinkId String?   @unique
+  stripePaymentUrl    String?
+  createdById         String
+  sentAt              DateTime?
+  viewedAt            DateTime?
+  acceptedAt          DateTime?
+  declinedAt          DateTime?
+  paidAt              DateTime?
+  pdfUrl              String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  lead                Lead?     @relation(fields: [leadId], references: [id])
+
+  @@index([leadId])
+  @@index([clientEmail])
+  @@index([status])
+  @@index([proposalNumber])
+  @@index([createdById])
+  @@index([dueDate])
+  @@map("proposals")
+}
+
+model Employee {
+  id                    String           @id @default(cuid())
+  userId                String           @unique
+  employeeRole          String
+  department            String?
+  capabilities          String
+  weeklyCapacity        Float            @default(40)
+  skillSet              String         @default("[]")
+  projectsCompleted     Int              @default(0)
+  avgProjectRating      Float?
+  status                String           @default("active")
+  hireDate              DateTime         @default(now())
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  availableForWork      Boolean          @default(true)
+  avgTaskCompletionTime Float?
+  currentProjectCount   Int              @default(0)
+  currentWorkload       Float            @default(0)
+  expertiseLevel        String           @default("intermediate")
+  maxConcurrentProjects Int              @default(5)
+  onTimeDeliveryRate    Float?
+  user                  User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  leadActivities        LeadActivity[]
+  assignedLeads         Lead[]
+  teamAssignments       TeamAssignment[]
+  workflowTasks         WorkflowTask[]
+
+  @@index([userId])
+  @@index([employeeRole])
+  @@index([department])
+  @@index([status])
+  @@index([availableForWork])
+  @@map("employees")
+}
+
+model ProjectTask {
+  id             String    @id @default(cuid())
+  projectId      String
+  title          String
+  description    String?
+  status         String    @default("pending")
+  priority       String    @default("medium")
+  estimatedHours Float?
+  actualHours    Float     @default(0)
+  assignedToId   String?
+  dependsOn      String  @default("[]")
+  completedAt    DateTime?
+  dueDate        DateTime?
+  aiGenerated    Boolean   @default(false)
+  aiContext      String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  project        Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([status])
+  @@index([assignedToId])
+  @@index([priority])
+  @@index([dueDate])
+  @@map("project_tasks")
+}
+
+model ProjectFile {
+  id               String   @id @default(cuid())
+  projectId        String
+  uploadedById     String
+  fileName         String
+  fileType         String
+  fileSize         Int
+  mimeType         String
+  cloudStoragePath String
+  category         String?
+  tags             String @default("[]")
+  aiDescription    String?
+  aiTags           String @default("[]")
+  visibleToClient  Boolean  @default(false)
+  status           String   @default("active")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([uploadedById])
+  @@index([fileType])
+  @@index([category])
+  @@index([status])
+  @@index([createdAt])
+  @@map("project_files")
+}
+
+model TimeLog {
+  id          String    @id @default(cuid())
+  employeeId  String
+  projectId   String
+  taskId      String?
+  hours       Float
+  date        DateTime
+  description String?
+  billable    Boolean   @default(true)
+  hourlyRate  Float?
+  approved    Boolean   @default(false)
+  approvedBy  String?
+  approvedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  employee    User      @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([projectId])
+  @@index([date])
+  @@index([approved])
+  @@map("time_logs")
+}
+
+model Sequence {
+  id             String               @id @default(cuid())
+  name           String
+  description    String?
+  type           String
+  targetAudience String
+  aiGenerated    Boolean              @default(false)
+  aiPrompt       String?
+  status         String               @default("pending")
+  approvedById   String?
+  approvedAt     DateTime?
+  timesUsed      Int                  @default(0)
+  successRate    Float?
+  activatedAt    DateTime?
+  deactivatedAt  DateTime?
+  createdBy      String?
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  assignments    SequenceAssignment[]
+  steps          SequenceStep[]
+  approvedBy     User?                @relation("SequenceApprover", fields: [approvedById], references: [id])
+
+  @@index([status])
+  @@index([type])
+  @@index([targetAudience])
+  @@index([aiGenerated])
+  @@index([approvedById])
+  @@map("sequences")
+}
+
+model SequenceStep {
+  id          String   @id @default(cuid())
+  sequenceId  String
+  order       Int
+  stepType    String
+  title       String
+  content     String?
+  subject     String?
+  delayAmount Int      @default(0)
+  delayUnit   String   @default("hours")
+  delayFrom   String   @default("previous")
+  conditions  String?
+  aiSuggested Boolean  @default(false)
+  aiReasoning String?
+  mergeTags   String @default("[]")
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  sequence    Sequence @relation(fields: [sequenceId], references: [id], onDelete: Cascade)
+
+  @@index([sequenceId])
+  @@index([order])
+  @@index([stepType])
+  @@map("sequence_steps")
+}
+
+model SequenceAssignment {
+  id             String             @id @default(cuid())
+  sequenceId     String
+  leadId         String
+  assignedById   String
+  assignedBy     String
+  approvedById   String?
+  approvedAt     DateTime?
+  status         String             @default("pending")
+  currentStep    Int                @default(0)
+  startedAt      DateTime?
+  completedAt    DateTime?
+  pausedAt       DateTime?
+  stepsCompleted Int                @default(0)
+  emailsSent     Int                @default(0)
+  emailsOpened   Int                @default(0)
+  emailsClicked  Int                @default(0)
+  emailsReplied  Int                @default(0)
+  tasksCreated   Int                @default(0)
+  tasksCompleted Int                @default(0)
+  converted      Boolean            @default(false)
+  convertedAt    DateTime?
+  conversionType String?
+  notes          String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  activities     SequenceActivity[]
+  lead           Lead               @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  sequence       Sequence           @relation(fields: [sequenceId], references: [id], onDelete: Cascade)
+
+  @@unique([sequenceId, leadId])
+  @@index([sequenceId])
+  @@index([leadId])
+  @@index([status])
+  @@index([assignedBy])
+  @@index([startedAt])
+  @@map("sequence_assignments")
+}
+
+model SequenceActivity {
+  id           String             @id @default(cuid())
+  assignmentId String
+  stepOrder    Int
+  actionType   String
+  result       String?
+  messageId    String?
+  emailSubject String?
+  openedAt     DateTime?
+  clickedAt    DateTime?
+  repliedAt    DateTime?
+  error        String?
+  retryCount   Int                @default(0)
+  metadata     String?
+  timestamp    DateTime           @default(now())
+  createdAt    DateTime           @default(now())
+  assignment   SequenceAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+
+  @@index([assignmentId])
+  @@index([actionType])
+  @@index([timestamp])
+  @@map("sequence_activities")
+}
+
+model Message {
+  id          String    @id @default(cuid())
+  threadId    String
+  projectId   String?
+  senderId    String
+  receiverId  String
+  subject     String?
+  content     String
+  messageType String    @default("text")
+  attachments String  @default("[]")
+  read        Boolean   @default(false)
+  readAt      DateTime?
+  important   Boolean   @default(false)
+  aiSuggested Boolean   @default(false)
+  aiContext   String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  project     Project?  @relation(fields: [projectId], references: [id])
+  receiver    User      @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  sender      User      @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([threadId])
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([projectId])
+  @@index([read])
+  @@index([createdAt])
+  @@map("messages")
+}
+
+model AIRecommendation {
+  id              String    @id @default(cuid())
+  context         String
+  entityType      String
+  entityId        String?
+  suggestionType  String
+  title           String
+  description     String
+  reasoning       String
+  suggestedAction String
+  priority        String    @default("medium")
+  confidence      Float     @default(0.5)
+  status          String    @default("pending")
+  approvedById    String?
+  approvedAt      DateTime?
+  rejectedReason  String?
+  executedAt      DateTime?
+  executionResult String?
+  expiresAt       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  approvedBy      User?     @relation(fields: [approvedById], references: [id])
+
+  @@index([context])
+  @@index([entityType])
+  @@index([entityId])
+  @@index([status])
+  @@index([priority])
+  @@index([approvedById])
+  @@index([createdAt])
+  @@index([expiresAt])
+  @@map("ai_recommendations")
+}
+
+model WorkflowTemplate {
+  id                String             @id @default(cuid())
+  name              String
+  description       String?
+  serviceType       String
+  serviceTier       String?
+  estimatedDuration Int?
+  estimatedHours    Float?
+  tasksTemplate     String
+  milestones        String?
+  active            Boolean            @default(true)
+  version           Int                @default(1)
+  createdBy         String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  workflowInstances WorkflowInstance[]
+
+  @@index([serviceType])
+  @@index([serviceTier])
+  @@index([active])
+  @@map("workflow_templates")
+}
+
+model WorkflowInstance {
+  id                     String           @id @default(cuid())
+  templateId             String
+  userId                 String?
+  orderId                String?
+  stripeSessionId        String?
+  serviceName            String
+  serviceTier            String?
+  serviceAmount          Float
+  status                 String           @default("pending")
+  progress               Int              @default(0)
+  startedAt              DateTime?
+  expectedCompletionDate DateTime?
+  completedAt            DateTime?
+  primaryAssigneeId      String?
+  teamAssigned           Boolean          @default(false)
+  clientNotes            String?
+  internalNotes          String?
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
+  teamAssignments        TeamAssignment[]
+  template               WorkflowTemplate @relation(fields: [templateId], references: [id])
+  tasks                  WorkflowTask[]
+
+  @@index([templateId])
+  @@index([userId])
+  @@index([status])
+  @@index([orderId])
+  @@index([stripeSessionId])
+  @@map("workflow_instances")
+}
+
+model WorkflowTask {
+  id              String           @id @default(cuid())
+  workflowId      String
+  title           String
+  description     String?
+  order           Int
+  assignedToId    String?
+  status          String           @default("pending")
+  priority        String           @default("medium")
+  estimatedHours  Float?
+  actualHours     Float            @default(0)
+  requiredSkills  String         @default("[]")
+  dependencies    String         @default("[]")
+  deliverables    String?
+  completedWork   String?
+  dueDate         DateTime?
+  startedAt       DateTime?
+  completedAt     DateTime?
+  visibleToClient Boolean          @default(false)
+  blockedReason   String?
+  blockedUntil    DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  assignedTo      Employee?        @relation(fields: [assignedToId], references: [id])
+  workflow        WorkflowInstance @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  @@index([workflowId])
+  @@index([assignedToId])
+  @@index([status])
+  @@index([dueDate])
+  @@map("workflow_tasks")
+}
+
+model TeamAssignment {
+  id             String           @id @default(cuid())
+  workflowId     String
+  employeeId     String
+  role           String
+  allocatedHours Float?
+  actualHours    Float            @default(0)
+  status         String           @default("active")
+  assignedAt     DateTime         @default(now())
+  removedAt      DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  employee       Employee         @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  workflow       WorkflowInstance @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  @@unique([workflowId, employeeId])
+  @@index([workflowId])
+  @@index([employeeId])
+  @@index([status])
+  @@map("team_assignments")
+}
+
+model ServiceAccess {
+  id             String   @id @default(cuid())
+  userId         String
+  tier           String
+  toolsAccess    String
+  limits         String
+  usageThisMonth String
+  lastResetDate  DateTime @default(now())
+  features       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId])
+  @@index([tier])
+  @@map("service_access")
+}
+
+model ToolUsage {
+  id           String   @id @default(cuid())
+  userId       String?
+  email        String?
+  toolName     String
+  inputData    String?
+  results      String?
+  sessionId    String?
+  ipAddress    String?
+  userAgent    String?
+  leadCaptured Boolean  @default(false)
+  leadId       String?
+  createdAt    DateTime @default(now())
+
+  @@index([userId])
+  @@index([email])
+  @@index([toolName])
+  @@index([createdAt])
+  @@map("tool_usage")
+}
+
+model CustomPage {
+  id              String         @id @default(cuid())
+  title           String
+  slug            String         @unique
+  description     String?
+  content         String
+  settings        String?
+  metaTitle       String?
+  metaDescription String?
+  metaKeywords    String       @default("[]")
+  ogImage         String?
+  status          String         @default("draft")
+  publishedAt     DateTime?
+  views           Int            @default(0)
+  requiresAuth    Boolean        @default(false)
+  allowedRoles    String       @default("[]")
+  isTemplate      Boolean        @default(false)
+  parentPageId    String?
+  version         Int            @default(1)
+  createdById     String
+  lastEditedById  String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  revisions       PageRevision[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([publishedAt])
+  @@index([createdById])
+  @@index([isTemplate])
+  @@map("custom_pages")
+}
+
+model PageRevision {
+  id             String     @id @default(cuid())
+  pageId         String
+  content        String
+  settings       String?
+  title          String
+  description    String?
+  revisionNumber Int
+  comment        String?
+  createdById    String
+  createdAt      DateTime   @default(now())
+  page           CustomPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@index([pageId])
+  @@index([createdAt])
+  @@map("page_revisions")
+}
+
+model SubscriptionUsage {
+  id                 String    @id @default(cuid())
+  subscriptionId     String
+  periodStart        DateTime
+  periodEnd          DateTime
+  projectsCreated    Int       @default(0)
+  auditsPerformed    Int       @default(0)
+  seoChecksPerformed Int       @default(0)
+  aiMessagesUsed     Int       @default(0)
+  storageUsedMB      Float     @default(0)
+  additionalServices String?
+  baseAmount         Float
+  usageAmount        Float     @default(0)
+  totalAmount        Float
+  billed             Boolean   @default(false)
+  billedAt           DateTime?
+  stripeInvoiceId    String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([subscriptionId])
+  @@index([periodStart])
+  @@index([billed])
+  @@map("subscription_usage")
+}
+
+model PaymentRecovery {
+  id              String    @id @default(cuid())
+  userId          String
+  subscriptionId  String
+  stripeInvoiceId String
+  amountDue       Float
+  currency        String    @default("usd")
+  failureReason   String?
+  failureCode     String?
+  attemptCount    Int       @default(0)
+  status          String    @default("pending")
+  emailsSent      Int       @default(0)
+  lastEmailSentAt DateTime?
+  nextRetryAt     DateTime?
+  recoveredAt     DateTime?
+  cancelledAt     DateTime?
+  notes           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([subscriptionId])
+  @@index([status])
+  @@index([nextRetryAt])
+  @@map("payment_recovery")
+}
+
+model CaseStudy {
+  id                 String    @id @default(cuid())
+  slug               String    @unique
+  title              String
+  category           String
+  client             String
+  description        String
+  challenge          String?
+  solution           String?
+  results            Json?
+  testimonialQuote   String?
+  testimonialAuthor  String?
+  testimonialCompany String?
+  heroImage          String
+  additionalImages   Json?
+  tags               Json
+  metaTitle          String?
+  metaDescription    String?
+  status             String    @default("draft")
+  publishedAt        DateTime?
+  order              Int       @default(0)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([status])
+  @@index([category])
+  @@map("case_studies")
+}
+
+model MediaAsset {
+  id             String    @id @default(cuid())
+  fileName       String
+  fileSize       Int
+  mimeType       String
+  url            String
+  alt            String?
+  title          String?
+  caption        String?
+  folder         String?
+  tags           Json?
+  usageCount     Int       @default(0)
+  lastUsedAt     DateTime?
+  uploadedBy     String
+  uploadedByName String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([fileName])
+  @@index([folder])
+  @@index([uploadedBy])
+  @@map("media_assets")
+}
+
+model PageSection {
+  id               String   @id @default(cuid())
+  pagePath         String
+  sectionKey       String
+  content          Json
+  version          Int      @default(1)
+  isActive         Boolean  @default(true)
+  lastEditedBy     String
+  lastEditedByName String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([pagePath, sectionKey])
+  @@index([pagePath])
+  @@map("page_sections")
+}
+
+model AIAgent {
+  id                  String              @id @default(cuid())
+  userId              String
+  name                String
+  slug                String              @unique
+  description         String?
+  avatar              String?
+  personality         String              @default("professional")
+  tone                String              @default("helpful")
+  systemPrompt        String
+  agentType           String
+  industry            String?
+  trainingStatus      String              @default("untrained")
+  knowledgeBase       String?
+  canBookAppointments Boolean             @default(false)
+  canQualifyLeads     Boolean             @default(false)
+  canSendEmails       Boolean             @default(false)
+  canAccessCRM        Boolean             @default(false)
+  canProcessPayments  Boolean             @default(false)
+  customCapabilities  String?
+  widgetColor         String              @default("#3B82F6")
+  widgetPosition      String              @default("bottom-right")
+  welcomeMessage      String              @default("Hi! How can I help you today?")
+  placeholderText     String              @default("Type your message...")
+  integrations        String?
+  apiKeys             String?
+  workflows           String?
+  status              String              @default("draft")
+  isPublic            Boolean             @default(false)
+  deploymentUrl       String?
+  embedCode           String?
+  totalConversations  Int                 @default(0)
+  totalLeadsCaptured  Int                 @default(0)
+  totalAppointments   Int                 @default(0)
+  avgResponseTime     Float?
+  satisfactionRating  Float?
+  pricing             String?
+  stripeProductId     String?
+  galleryTitle        String?
+  galleryDescription  String?
+  galleryThumbnail    String?
+  galleryCategory     String?
+  galleryTags         String            @default("[]")
+  galleryOrder        Int                 @default(0)
+  galleryViews        Int                 @default(0)
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  analytics           AgentAnalytics[]
+  conversations       AgentConversation[]
+  integrationConfigs  AgentIntegration[]
+  knowledgeSources    AgentKnowledge[]
+  workflowRules       AgentWorkflow[]
+
+  @@index([userId])
+  @@index([slug])
+  @@index([status])
+  @@index([agentType])
+  @@index([isPublic])
+  @@map("ai_agents")
+}
+
+model AgentKnowledge {
+  id               String    @id @default(cuid())
+  agentId          String
+  sourceType       String
+  title            String
+  content          String?
+  processedContent String?
+  fileName         String?
+  fileSize         Int?
+  mimeType         String?
+  cloudStoragePath String?
+  websiteUrl       String?
+  crawlDepth       Int?
+  lastCrawledAt    DateTime?
+  status           String    @default("pending")
+  errorMessage     String?
+  embeddingModel   String?
+  vectorCount      Int?
+  timesReferenced  Int       @default(0)
+  lastReferencedAt DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  agent            AIAgent   @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@index([agentId])
+  @@index([status])
+  @@index([sourceType])
+  @@map("agent_knowledge")
+}
+
+model AgentIntegration {
+  id              String    @id @default(cuid())
+  agentId         String
+  serviceType     String
+  serviceName     String
+  config          String
+  credentials     String?
+  status          String    @default("disconnected")
+  lastSyncAt      DateTime?
+  errorMessage    String?
+  totalCalls      Int       @default(0)
+  successfulCalls Int       @default(0)
+  failedCalls     Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  agent           AIAgent   @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@index([agentId])
+  @@index([serviceType])
+  @@index([status])
+  @@map("agent_integrations")
+}
+
+model AgentWorkflow {
+  id                String    @id @default(cuid())
+  agentId           String
+  name              String
+  description       String?
+  triggerType       String
+  triggerConditions String
+  actions           String
+  status            String    @default("active")
+  priority          Int       @default(0)
+  executionCount    Int       @default(0)
+  successCount      Int       @default(0)
+  failureCount      Int       @default(0)
+  lastExecutedAt    DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  agent             AIAgent   @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@index([agentId])
+  @@index([status])
+  @@index([priority])
+  @@map("agent_workflows")
+}
+
+model AgentConversation {
+  id                String    @id @default(cuid())
+  agentId           String
+  sessionId         String    @unique
+  visitorId         String?
+  userId            String?
+  messages          String
+  messageCount      Int       @default(0)
+  leadCaptured      Boolean   @default(false)
+  leadData          String?
+  leadQuality       String?
+  appointmentBooked Boolean   @default(false)
+  appointmentData   String?
+  emailSent         Boolean   @default(false)
+  emailData         String?
+  crmSynced         Boolean   @default(false)
+  crmLeadId         String?
+  duration          Int?
+  responseTime      Float?
+  satisfactionScore Int?
+  feedback          String?
+  source            String?
+  referrer          String?
+  ipAddress         String?
+  userAgent         String?
+  startedAt         DateTime  @default(now())
+  endedAt           DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  agent             AIAgent   @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@index([agentId])
+  @@index([sessionId])
+  @@index([leadCaptured])
+  @@index([startedAt])
+  @@map("agent_conversations")
+}
+
+model AgentAnalytics {
+  id                    String   @id @default(cuid())
+  agentId               String
+  date                  DateTime
+  period                String
+  conversations         Int      @default(0)
+  uniqueVisitors        Int      @default(0)
+  avgConversationLength Float    @default(0)
+  avgResponseTime       Float    @default(0)
+  leadsCaptured         Int      @default(0)
+  appointmentsBooked    Int      @default(0)
+  emailsSent            Int      @default(0)
+  crmSynced             Int      @default(0)
+  leadConversionRate    Float    @default(0)
+  avgSatisfactionScore  Float    @default(0)
+  positiveRatings       Int      @default(0)
+  negativeRatings       Int      @default(0)
+  totalMessages         Int      @default(0)
+  avgMessagesPerConvo   Float    @default(0)
+  bounceRate            Float    @default(0)
+  integrationCalls      Int      @default(0)
+  successfulCalls       Int      @default(0)
+  failedCalls           Int      @default(0)
+  workflowsTriggered    Int      @default(0)
+  workflowsCompleted    Int      @default(0)
+  workflowsFailed       Int      @default(0)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  agent                 AIAgent  @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@unique([agentId, date, period])
+  @@index([agentId])
+  @@index([date])
+  @@index([period])
+  @@map("agent_analytics")
+}
+
+model WebsiteGallery {
+  id                  String    @id @default(cuid())
+  projectId           String    @unique
+  title               String
+  description         String
+  thumbnail           String
+  category            String
+  clientName          String?
+  industry            String?
+  tags                String  @default("[]")
+  highlightedFeatures String  @default("[]")
+  metricsImprovement  String?
+  liveUrl             String?
+  demoUrl             String?
+  status              String    @default("pending")
+  isPublic            Boolean   @default(false)
+  isFeatured          Boolean   @default(false)
+  views               Int       @default(0)
+  likes               Int       @default(0)
+  sortOrder           Int       @default(0)
+  approvedBy          String?
+  approvedAt          DateTime?
+  publishedAt         DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([isPublic])
+  @@index([isFeatured])
+  @@index([sortOrder])
+  @@map("website_gallery")
+}
+
+model ProjectVersion {
+  id               String   @id @default(cuid())
+  projectId        String
+  versionNumber    Int
+  versionLabel     String?
+  pages            String
+  siteConfig       String
+  navigationConfig String?
+  globalStyles     String?
+  changeType       String?
+  changesSummary   String?
+  createdBy        String
+  createdByName    String?
+  comment          String?
+  createdAt        DateTime @default(now())
+
+  @@index([projectId])
+  @@index([versionNumber])
+  @@index([createdAt])
+  @@map("project_versions")
+}
+
+model ProjectCollaborator {
+  id              String    @id @default(cuid())
+  projectId       String
+  userId          String
+  role            String    @default("viewer")
+  canEdit         Boolean   @default(false)
+  canPublish      Boolean   @default(false)
+  canInviteOthers Boolean   @default(false)
+  canDelete       Boolean   @default(false)
+  invitedBy       String
+  invitedAt       DateTime  @default(now())
+  status          String    @default("pending")
+  acceptedAt      DateTime?
+  revokedAt       DateTime?
+  lastViewedAt    DateTime?
+  lastEditedAt    DateTime?
+  editCount       Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([projectId, userId])
+  @@index([projectId])
+  @@index([userId])
+  @@index([status])
+  @@map("project_collaborators")
+}
+
+model ABTest {
+  id                     String    @id @default(cuid())
+  projectId              String
+  name                   String
+  description            String?
+  pageSlug               String
+  variantA               String
+  variantB               String
+  trafficSplit           Int       @default(50)
+  goalType               String
+  goalSelector           String?
+  status                 String    @default("draft")
+  variantAViews          Int       @default(0)
+  variantBViews          Int       @default(0)
+  variantAConversions    Int       @default(0)
+  variantBConversions    Int       @default(0)
+  variantAConversionRate Float     @default(0)
+  variantBConversionRate Float     @default(0)
+  confidence             Float?
+  winner                 String?
+  startedAt              DateTime?
+  endedAt                DateTime?
+  duration               Int?
+  createdBy              String
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@index([projectId])
+  @@index([status])
+  @@index([startedAt])
+  @@map("ab_tests")
+}
+
+model Product {
+  id               String    @id @default(cuid())
+  projectId        String
+  name             String
+  slug             String
+  description      String
+  shortDescription String?
+  price            Float
+  compareAtPrice   Float?
+  currency         String    @default("USD")
+  sku              String?
+  trackInventory   Boolean   @default(false)
+  inventoryCount   Int       @default(0)
+  allowBackorder   Boolean   @default(false)
+  images           String  @default("[]")
+  featuredImage    String?
+  category         String?
+  tags             String  @default("[]")
+  requiresShipping Boolean   @default(true)
+  weight           Float?
+  dimensions       String?
+  hasVariants      Boolean   @default(false)
+  variants         String?
+  metaTitle        String?
+  metaDescription  String?
+  status           String    @default("draft")
+  publishedAt      DateTime?
+  views            Int       @default(0)
+  sales            Int       @default(0)
+  revenue          Float     @default(0)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@unique([projectId, slug])
+  @@index([projectId])
+  @@index([status])
+  @@index([category])
+  @@map("products")
+}
+
+model EcommerceOrder {
+  id                    String    @id @default(cuid())
+  projectId             String
+  orderNumber           String    @unique
+  customerEmail         String
+  customerName          String?
+  shippingAddress       String
+  billingAddress        String
+  items                 String
+  subtotal              Float
+  shippingCost          Float     @default(0)
+  tax                   Float     @default(0)
+  discount              Float     @default(0)
+  total                 Float
+  currency              String    @default("USD")
+  paymentStatus         String    @default("pending")
+  paymentMethod         String?
+  stripePaymentIntentId String?
+  fulfillmentStatus     String    @default("unfulfilled")
+  trackingNumber        String?
+  carrier               String?
+  shippedAt             DateTime?
+  deliveredAt           DateTime?
+  customerNotes         String?
+  internalNotes         String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([projectId])
+  @@index([orderNumber])
+  @@index([customerEmail])
+  @@index([paymentStatus])
+  @@index([fulfillmentStatus])
+  @@map("ecommerce_orders")
+}
+
+model Membership {
+  id             String                 @id @default(cuid())
+  projectId      String
+  name           String
+  slug           String
+  description    String?
+  price          Float
+  billingPeriod  String
+  currency       String                 @default("USD")
+  protectedPages String               @default("[]")
+  features       String               @default("[]")
+  maxMembers     Int?
+  currentMembers Int                    @default(0)
+  stripePriceId  String?
+  status         String                 @default("active")
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  members        MembershipSubscriber[]
+
+  @@unique([projectId, slug])
+  @@index([projectId])
+  @@index([status])
+  @@map("memberships")
+}
+
+model MembershipSubscriber {
+  id                   String     @id @default(cuid())
+  membershipId         String
+  email                String
+  name                 String?
+  userId               String?
+  stripeSubscriptionId String?
+  status               String     @default("active")
+  accessToken          String     @unique
+  expiresAt            DateTime?
+  subscribedAt         DateTime   @default(now())
+  cancelledAt          DateTime?
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+  membership           Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+
+  @@index([membershipId])
+  @@index([email])
+  @@index([userId])
+  @@index([status])
+  @@map("membership_subscribers")
+}
+
+model CustomCode {
+  id             String   @id @default(cuid())
+  projectId      String
+  name           String
+  description    String?
+  htmlCode       String?
+  cssCode        String?
+  jsCode         String?
+  injectionPoint String
+  targetPages    String @default("[]")
+  loadCondition  String?
+  status         String   @default("active")
+  loadOrder      Int      @default(0)
+  createdBy      String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([status])
+  @@index([injectionPoint])
+  @@map("custom_code")
+}
+
+model BidProposal {
+  id                        String    @id @default(cuid())
+  proposalId                String?   @unique
+  bidSource                 String    @default("bidnetdirect")
+  solicitationNumber        String
+  referenceNumber           String?
+  bidUrl                    String?
+  title                     String
+  description               String?
+  issuingOrg                String?
+  solicitationType          String?
+  location                  String?
+  publicationDate           DateTime?
+  bidIntentDeadline         DateTime?
+  questionDeadline          DateTime?
+  closingDate               DateTime?
+  contactName               String?
+  contactEmail              String?
+  contactPhone              String?
+  bidDocuments              String?
+  envelope1Status           String    @default("draft")
+  envelope1Content          String?
+  envelope1Documents        String?
+  envelope1Notes            String?
+  envelope1GeneratedAt      DateTime?
+  envelope1GenerationPrompt String?
+  envelope2Status           String    @default("draft")
+  envelope2Content          String?
+  envelope2Pricing          String?
+  envelope2Documents        String?
+  envelope2Notes            String?
+  envelope2GeneratedAt      DateTime?
+  envelope2GenerationPrompt String?
+  submissionStatus          String    @default("not_submitted")
+  envelope1SubmittedAt      DateTime?
+  envelope2SubmittedAt      DateTime?
+  fullySubmittedAt          DateTime?
+  baseEmailProposal         String?
+  selectedServices          String?
+  aiModel                   String?
+  generationMetadata        String?
+  createdById               String
+  lastEditedById            String?
+  lastEditedAt              DateTime?
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
+  preliminaryEmail          String?
+  nextSteps                 String?
+  priceSource               String?
+  pricingNotes              String?
+  proposedPrice             Float?
+  suggestedFollowUp         String?
+  workflowStage             String    @default("initial")
+  competitiveIntelligence   String?
+  intelligenceGeneratedAt   DateTime?
+  outreachRecommendations   String?
+  riskAssessment            String?
+  winProbabilityFactors     String?
+  winProbabilityScore       Float?
+  adoptedBudgetAnalyzedAt   DateTime?
+  adoptedBudgetData         String?
+  processingCompletedAt     DateTime?
+  processingError           String?
+  processingMessage         String?
+  processingProgress        Int       @default(0)
+  processingStage           String?
+  processingStartedAt       DateTime?
+  processingStatus          String    @default("idle")
+  
+  // Phase 1 Enhancements
+  generalProposalComment    String?    // Centralized comment included in all proposal documents
+  
+  // HUB/Subcontracting Plan Logic
+  hubPlanRequired           Boolean   @default(false)  // Whether full HUB plan is required
+  hubFeeThreshold           Float?    // Governmental fee threshold for HUB requirements
+  hubIntentWaiverGenerated  Boolean   @default(false)  // Whether intent/waiver document was generated
+  hubIntentWaiverContent    String?    // Content of the intent/waiver document
+  
+  // Business Listing Verification
+  businessListings          String?    // JSON array of businesses for contracting/helpers
+  businessVerificationStatus String   @default("not_verified")  // not_verified, verifying, verified, failed
+  
+  // Title and Cover Page Management
+  proposalTitle             String?    // Auto-generated and editable proposal title
+  coverPageContent          String?    // Editable cover page content (HTML format)
+  businessVerificationResults String?  // JSON results of verification
+  businessVerificationNote  String?    // Note about partnership status constraint
+
+  // Relations
+  bidAttachments            BidAttachment[]
+
+  @@index([createdById])
+  @@index([solicitationNumber])
+  @@index([submissionStatus])
+  @@index([closingDate])
+  @@map("bid_proposals")
+}
+
+model ProposalTemplate {
+  id               String   @id @default(cuid())
+  name             String
+  description      String?
+  category         String?
+  technicalContent String?
+  costContent      String?
+  isPublic         Boolean  @default(false)
+  usageCount       Int      @default(0)
+  createdById      String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([createdById])
+  @@index([category])
+  @@index([isPublic])
+  @@map("proposal_templates")
+}
+
+model BidDocument {
+  id             String    @id @default(cuid())
+  bidProposalId  String
+  documentType   String    // technical, cost, hub_subcontracting, past_performance, etc.
+  title          String
+  content        String?  
+  status         String    @default("pending") // pending, generating, completed, error
+  generatedAt    DateTime?
+  errorMessage   String?
+  metadata       String?   // JSON for additional document-specific data
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([bidProposalId])
+  @@index([documentType])
+  @@map("bid_documents")
+}
+
+model BidAttachment {
+  id               String   @id @default(cuid())
+  bidProposalId    String
+  bidProposal      BidProposal @relation(fields: [bidProposalId], references: [id], onDelete: Cascade)
+  name             String
+  fileType         String
+  fileSize         Int
+  cloudStoragePath String
+  description      String?
+  category         String?
+  uploadedById     String
+  uploadedAt       DateTime @default(now())
+
+  @@index([bidProposalId])
+  @@index([uploadedById])
+  @@map("bid_attachments")
+}
+
+model BidComment {
+  id              String   @id @default(cuid())
+  bidProposalId   String
+  content         String
+  parentCommentId String?
+  createdById     String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([bidProposalId])
+  @@index([createdById])
+  @@index([parentCommentId])
+  @@map("bid_comments")
+}
+
+model BidVersion {
+  id                String   @id @default(cuid())
+  bidProposalId     String
+  versionNumber     Int
+  changeType        String
+  changeDescription String?
+  envelope1Content  String?
+  envelope2Content  String?
+  envelope1Status   String?
+  envelope2Status   String?
+  createdById       String
+  createdAt         DateTime @default(now())
+
+  @@unique([bidProposalId, versionNumber])
+  @@index([bidProposalId])
+  @@index([createdById])
+  @@index([versionNumber])
+  @@map("bid_versions")
+}
+
+model SystemSettings {
+  id           String   @id @default(cuid())
+  settingKey   String   @unique
+  settingValue String
+  description  String?
+  updatedById  String?
+  updatedAt    DateTime @updatedAt
+  createdAt    DateTime @default(now())
+
+  @@index([settingKey])
+  @@map("system_settings")
+}

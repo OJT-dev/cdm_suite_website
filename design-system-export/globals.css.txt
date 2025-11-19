@@ -1,0 +1,560 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mobile Optimization - Prevent Oversized Elements */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  @media (max-width: 640px) {
+    * {
+      max-width: 100vw;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+    
+    body {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    
+    h1 {
+      font-size: 1.75rem !important;
+      line-height: 1.2 !important;
+    }
+    
+    h2 {
+      font-size: 1.5rem !important;
+      line-height: 1.3 !important;
+    }
+    
+    h3 {
+      font-size: 1.25rem !important;
+      line-height: 1.3 !important;
+    }
+    
+    .section-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+/* Blog Post Formatting */
+.prose {
+  @apply text-foreground;
+}
+
+.prose h1:first-child {
+  @apply mt-0;
+}
+
+.prose ul > li::marker {
+  @apply text-primary;
+}
+
+.prose ol > li::marker {
+  @apply text-primary font-semibold;
+}
+
+.prose a {
+  @apply transition-colors duration-200;
+}
+
+.prose img {
+  @apply mx-auto;
+}
+
+.prose blockquote p:first-of-type::before {
+  content: none;
+}
+
+.prose blockquote p:last-of-type::after {
+  content: none;
+}
+
+/* Better code block styling */
+.prose pre {
+  @apply shadow-sm;
+}
+
+.prose pre code {
+  @apply bg-transparent text-sm;
+}
+
+/* Numbered list improvements */
+.prose ol > li {
+  @apply pl-2;
+}
+
+.prose ul > li {
+  @apply pl-2;
+}
+
+/* Nested lists */
+.prose ul ul,
+.prose ol ul,
+.prose ul ol,
+.prose ol ol {
+  @apply my-2;
+}
+
+/* Table improvements */
+.prose table {
+  @apply w-full shadow-sm rounded-lg overflow-hidden;
+}
+
+.prose thead {
+  @apply bg-muted/70;
+}
+
+.prose tbody tr:hover {
+  @apply bg-muted/30 transition-colors;
+}
+
+/* Link improvements */
+.prose a[href^="http"]::after {
+  content: " ↗";
+  @apply text-xs align-super opacity-60;
+}
+
+.prose a[href^="#"]::after {
+  content: none;
+}
+
+/* Footnotes */
+.prose sup a {
+  @apply text-primary no-underline;
+}
+
+.prose sup a::after {
+  content: none;
+}
+
+/* Better spacing for consecutive elements */
+.prose h2 + h3,
+.prose h3 + h4 {
+  @apply mt-4;
+}
+
+.prose > * + * {
+  @apply mt-4;
+}
+
+/* Enhanced Blog Formatting Classes */
+.prose .section-break {
+  @apply h-8;
+}
+
+.prose .feature-list {
+  @apply space-y-3 my-6;
+}
+
+.prose .feature-list li {
+  @apply relative pl-8;
+}
+
+.prose .feature-list li::before {
+  content: "✓";
+  @apply absolute left-0 text-primary font-bold text-lg;
+}
+
+.prose .numbered-list {
+  @apply space-y-3 my-6;
+}
+
+.prose .numbered-list li {
+  @apply pl-4;
+}
+
+.prose .highlight {
+  @apply text-primary;
+}
+
+.prose .inline-link {
+  @apply text-primary hover:text-primary/80 underline decoration-2 decoration-primary/30 hover:decoration-primary/60 transition-all;
+}
+
+.prose .callout {
+  @apply my-6 p-4 rounded-lg border-l-4;
+}
+
+.prose .callout-info {
+  @apply bg-blue-50 dark:bg-blue-950/20 border-blue-500;
+}
+
+.prose .callout-info strong {
+  @apply text-blue-700 dark:text-blue-400;
+}
+
+.prose .citation {
+  @apply text-primary no-underline;
+}
+
+.prose .citation a {
+  @apply no-underline hover:underline;
+}
+
+.prose .lead-paragraph {
+  @apply text-lg text-muted-foreground italic border-l-4 border-primary/30 pl-4 my-6;
+}
+
+.prose .blog-section {
+  @apply mb-12;
+}
+
+.prose .code-block {
+  @apply font-mono text-sm;
+}
+
+/* Enhanced list styling */
+.prose ul li::marker {
+  content: none;
+}
+
+/* Better image captions */
+.prose figure {
+  @apply my-8;
+}
+
+.prose figcaption {
+  @apply text-center text-sm text-muted-foreground mt-2 italic;
+}
+
+/* Enhanced emphasis */
+.prose em {
+  @apply not-italic text-primary/90 font-medium;
+}
+
+/* Better hr styling */
+.prose hr {
+  @apply my-12 border-t-2 border-primary/20;
+}
+
+/* Quote styling improvements */
+.prose blockquote {
+  @apply not-italic font-normal;
+}
+
+.prose blockquote p {
+  @apply text-lg leading-relaxed;
+}
+
+/* Responsive images */
+.prose img {
+  @apply w-full h-auto;
+}
+
+/* Definition lists */
+.prose dl {
+  @apply my-6;
+}
+
+.prose dt {
+  @apply font-bold text-foreground mt-4;
+}
+
+.prose dd {
+  @apply ml-6 text-muted-foreground;
+}
+
+@layer base {
+  :root {
+    /* Modern Tech & Trust Color Scheme */
+    --background: 0 0% 100%;
+    --foreground: 220 27% 8%; /* Charcoal #111827 */
+    --card: 0 0% 100%;
+    --card-foreground: 220 27% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 27% 8%;
+    --primary: 219 78% 33%; /* Royal Blue #1E3A8A */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 187 96% 43%; /* Electric Cyan #06B6D4 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 96%; /* Cool Gray #F3F4F6 */
+    --muted-foreground: 215 16% 47%;
+    --accent: 84 81% 56%; /* Bright Lime #A3E635 */
+    --accent-foreground: 220 27% 8%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 219 78% 33%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 27% 8%; /* Charcoal #111827 */
+    --foreground: 210 20% 96%;
+    --card: 220 27% 8%;
+    --card-foreground: 210 20% 96%;
+    --popover: 220 27% 8%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 219 78% 45%; /* Lighter Royal Blue for dark mode */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 187 96% 43%; /* Electric Cyan */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 27% 15%;
+    --muted-foreground: 215 16% 65%;
+    --accent: 84 81% 56%; /* Bright Lime */
+    --accent-foreground: 220 27% 8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 96%;
+    --border: 220 27% 20%;
+    --input: 220 27% 20%;
+    --ring: 219 78% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .section-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* CRO-focused animations */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Breathing button animation - organic feel */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.15), 0 4px 6px -4px rgb(0 0 0 / 0.15);
+  }
+}
+
+.btn-breathe {
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+.btn-breathe:hover {
+  animation: none;
+}
+
+/* Gradient shift animation for more organic feel */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* Floating animation for icons */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Subtle glow effect */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(147, 51, 234, 0.6);
+  }
+}
+
+.btn-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Custom Scrollbar Styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(59, 130, 246, 0.3);
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(59, 130, 246, 0.5);
+}
+
+/* Touch targets for mobile accessibility - minimum 44x44px */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve touch responsiveness on mobile */
+@media (max-width: 640px) {
+  button:not(.icon-only), 
+  a:not(.icon-only) {
+    min-height: 44px;
+  }
+  
+  input, 
+  select, 
+  textarea {
+    min-height: 44px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  
+  /* Ensure sliders are easy to interact with on touch devices */
+  input[type="range"] {
+    min-height: 44px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* React Quill WYSIWYG Editor Customization */
+.ql-toolbar.ql-snow {
+  border: 1px solid hsl(var(--border));
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: hsl(var(--muted) / 0.3);
+}
+
+.ql-container.ql-snow {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-family: inherit;
+}
+
+.ql-editor {
+  min-height: 300px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: hsl(var(--foreground));
+}
+
+.ql-editor.ql-blank::before {
+  color: hsl(var(--muted-foreground));
+  font-style: normal;
+}
+
+.ql-editor p {
+  margin-bottom: 1em;
+}
+
+.ql-editor strong {
+  font-weight: 600;
+}
+
+.ql-snow .ql-stroke {
+  stroke: hsl(var(--foreground));
+}
+
+.ql-snow .ql-fill {
+  fill: hsl(var(--foreground));
+}
+
+.ql-snow .ql-picker-label {
+  color: hsl(var(--foreground));
+}
+
+/* Dark mode adjustments */
+.dark .ql-toolbar.ql-snow {
+  background: hsl(var(--muted) / 0.2);
+}
+
+.dark .ql-editor {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}

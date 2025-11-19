@@ -16,25 +16,7 @@
       "config": {
         "zeroConfig": true,
         "framework": "nextjs"
-      },
-      "error": {
-        "name": "Error",
-        "stack": "Error: ENOENT: no such file or directory, lstat '/mnt/c/Users/fooh2/Downloads/23_-_Diversity_in_Homepage_Header/cdm_suite_website/cdm_suite_website/.next/prerender-manifest.json'",
-        "message": "ENOENT: no such file or directory, lstat '/mnt/c/Users/fooh2/Downloads/23_-_Diversity_in_Homepage_Header/cdm_suite_website/cdm_suite_website/.next/prerender-manifest.json'",
-        "errno": -2,
-        "code": "ENOENT",
-        "syscall": "lstat",
-        "path": "/mnt/c/Users/fooh2/Downloads/23_-_Diversity_in_Homepage_Header/cdm_suite_website/cdm_suite_website/.next/prerender-manifest.json"
       }
     }
-  ],
-  "error": {
-    "name": "Error",
-    "stack": "Error: ENOENT: no such file or directory, lstat '/mnt/c/Users/fooh2/Downloads/23_-_Diversity_in_Homepage_Header/cdm_suite_website/cdm_suite_website/.next/prerender-manifest.json'",
-    "message": "ENOENT: no such file or directory, lstat '/mnt/c/Users/fooh2/Downloads/23_-_Diversity_in_Homepage_Header/cdm_suite_website/cdm_suite_website/.next/prerender-manifest.json'",
-    "errno": -2,
-    "code": "ENOENT",
-    "syscall": "lstat",
-    "path": "/mnt/c/Users/fooh2/Downloads/23_-_Diversity_in_Homepage_Header/cdm_suite_website/cdm_suite_website/.next/prerender-manifest.json"
-  }
+  ]
 }

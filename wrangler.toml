@@ -1,6 +1,8 @@
 name = "cdm-suite"
+main = ".open-next/worker.js"
+assets = { directory = ".open-next/assets" }
 compatibility_date = "2025-11-16"
-pages_build_output_dir = ".vercel/output/static"
+compatibility_flags = ["nodejs_compat"]
 
 [[d1_databases]]
 binding = "DB"

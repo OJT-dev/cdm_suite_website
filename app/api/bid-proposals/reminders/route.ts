@@ -1,6 +1,3 @@
-export const runtime = 'edge';
-
-
 export const runtime = 'nodejs'; // Changed from 'edge' to support Prisma Client
 
 import { NextRequest, NextResponse } from 'next/server';

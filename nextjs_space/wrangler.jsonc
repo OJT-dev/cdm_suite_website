@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cdm-suite",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-11-16",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "SKIP_BUILD_STATIC_GENERATION": "true",
+    "NEXT_BUILD_SKIP_DB_VALIDATION": "true",
+    "NEXT_PUBLIC_APP_URL": "https://cdm-suite.pages.dev",
+    "NEXTAUTH_URL": "https://cdm-suite.pages.dev"
+  }
+}

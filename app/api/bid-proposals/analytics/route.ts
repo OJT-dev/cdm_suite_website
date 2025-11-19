@@ -1,6 +1,3 @@
-export const runtime = 'edge';
-
-
 export const runtime = 'nodejs';
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -17,7 +14,7 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const timeRange = searchParams.get('timeRange') || '30'; // days
-    
+
     const daysAgo = parseInt(timeRange);
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - daysAgo);

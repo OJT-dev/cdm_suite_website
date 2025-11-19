@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { getWorkflowTemplate } from '@/lib/workflow-templates';
 import Stripe from 'stripe';
-export const runtime = 'edge';
 
 
 export const runtime = 'nodejs';
@@ -31,7 +30,8 @@ function getStripeClient(): Stripe | null {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.text();
-    const signature = headers().get('stripe-signature');
+    const headersList = await headers();
+    const signature = headersList.get('stripe-signature');
 
     if (!signature) {
       return NextResponse.json({ error: 'No signature' }, { status: 400 });

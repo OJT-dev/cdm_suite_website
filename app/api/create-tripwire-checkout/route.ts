@@ -2,8 +2,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripeInstance } from '@/lib/stripe';
 import { redirect } from 'next/navigation';
-export const runtime = 'edge';
-
 
 export const runtime = 'nodejs';
 
@@ -207,9 +205,9 @@ export async function POST(req: NextRequest) {
 
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
-    return NextResponse.json({ 
-      sessionId: session.id, 
-      url: session.url 
+    return NextResponse.json({
+      sessionId: session.id,
+      url: session.url
     });
   } catch (error: any) {
     console.error('Stripe tripwire session creation error:', error);

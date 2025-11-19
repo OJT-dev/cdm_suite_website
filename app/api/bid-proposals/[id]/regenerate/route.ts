@@ -12,8 +12,13 @@ import {
   generateFollowUpEmail
 } from '@/lib/bid-ai-generator';
 
-export const runtime = 'edge';
-{ params }: { params: { id: string } }
+
+import { AIGenerationRequest } from '@/lib/bid-proposal-types';
+import { extractTextFromFile, categorizeDocuments } from '@/lib/document-extractor';
+
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);

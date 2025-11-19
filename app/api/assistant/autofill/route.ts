@@ -2,7 +2,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/session";
 import { deductCredits } from "@/lib/credits";
-export const runtime = 'edge';
 
 
 const CREDITS_PER_AUTOFILL = 2;

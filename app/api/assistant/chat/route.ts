@@ -4,7 +4,6 @@ import { getCurrentUser } from "@/lib/session";
 import { prisma } from "@/lib/db";
 import { deductCredits } from "@/lib/credits";
 import { safeJSONParse } from "@/lib/json-helper";
-export const runtime = 'edge';
 
 
 const CREDITS_PER_MESSAGE = 1;

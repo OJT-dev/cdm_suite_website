@@ -4,7 +4,6 @@ import { prisma } from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { sendWelcomeEmail, sendSignupNotification } from "@/lib/email";
 import { getCreditsForTier } from "@/lib/credits";
-export const runtime = 'edge';
 
 
 export async function POST(request: NextRequest) {

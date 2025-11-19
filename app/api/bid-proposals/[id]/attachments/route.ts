@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { uploadFile } from '@/lib/s3';
-export const runtime = 'edge';
 
 
 export async function GET(

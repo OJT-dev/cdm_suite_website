@@ -1,6 +1,3 @@
-export const runtime = 'edge';
-
-
 export const runtime = 'nodejs';
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -32,7 +29,7 @@ export async function GET(request: NextRequest) {
     const source = searchParams.get('source'); // Filter by sign-up type/source
 
     const where: any = {};
-    
+
     if (status) where.status = status;
     if (priority) where.priority = priority;
     if (assignedToId) where.assignedToId = assignedToId;

@@ -1,7 +1,3 @@
-export const runtime = 'edge';
-
-
-
 export const runtime = 'nodejs';
 
 import { NextRequest, NextResponse } from "next/server";
@@ -32,7 +28,7 @@ export async function GET(request: NextRequest) {
     // Admins and employees have unlimited access
     const isAdminOrEmployee = user.role === "admin" || user.role === "employee";
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       credits: isAdminOrEmployee ? 999999 : user.credits,
       tier: user.tier,
       role: user.role,

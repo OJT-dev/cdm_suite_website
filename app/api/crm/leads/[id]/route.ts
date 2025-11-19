@@ -1,6 +1,3 @@
-export const runtime = 'edge';
-
-
 export const runtime = 'nodejs';
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -108,7 +105,7 @@ export async function PATCH(
     }
 
     // Check permissions
-    const canEditLeads = user.role === 'admin' || 
+    const canEditLeads = user.role === 'admin' ||
       (user.employeeProfile && hasPermission(user.employeeProfile, 'canEditLeads'));
 
     if (!canEditLeads) {
@@ -252,7 +249,7 @@ export async function DELETE(
     // Log the deletion (create a system-wide audit log if needed in the future)
     console.log(`Lead deleted by ${user.email}: ${lead.name || lead.email} (${lead.company || 'No company'})`);
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       message: 'Lead deleted successfully',
       deletedLead: {
         name: lead.name,

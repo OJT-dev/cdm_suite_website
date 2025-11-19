@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { generateAllIntelligence } from '@/lib/bid-intelligence-generator';
-export const runtime = 'edge';
 
 
 export async function POST(

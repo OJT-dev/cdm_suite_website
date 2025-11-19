@@ -1,6 +1,5 @@
 
  // NOTE: This route uses the Stripe Node SDK and currently requires the Node.js runtime.
- // Do not set `export const runtime = 'edge'` until it is refactored to use Stripe REST APIs or other Edge-safe patterns.
 
  import { NextRequest, NextResponse } from "next/server";
  import { getServerSession } from "next-auth";

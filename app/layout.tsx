@@ -13,7 +13,6 @@ import GoogleAnalytics from '@/components/analytics/google-analytics';
 import { Suspense } from 'react';
 
 export const dynamic = 'force-dynamic';
-export const runtime = 'edge';
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -5,7 +5,6 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { generateProposalNumber } from '@/lib/proposal-types';
 import Stripe from 'stripe';
-export const runtime = 'edge';
 
 
 export const runtime = 'nodejs';

@@ -149,6 +149,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // In production builds (including Cloudflare Pages), we may skip dynamic
+  // database-backed sitemap entries entirely to avoid Prisma usage during
+  // static generation. This prevents errors when the Prisma client is
+  // intentionally disabled via SKIP_BUILD_STATIC_GENERATION.
+  const skipDynamicSitemap =
+    process.env.NODE_ENV === 'production' &&
+    process.env.SKIP_BUILD_STATIC_GENERATION === 'true';
+
+  if (skipDynamicSitemap) {
+    return staticPages;
+  }
+
   // Get all published blog posts
   const blogPosts = await prisma.blogPost.findMany({
     where: {

@@ -2,8 +2,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripeInstance } from '@/lib/stripe';
 import { prisma } from '@/lib/db';
-export const runtime = 'edge';
-
 
 export const runtime = 'nodejs';
 
@@ -15,7 +13,7 @@ export async function POST(req: NextRequest) {
     const service = await prisma.service.findUnique({
       where: { id: serviceId },
     });
-    
+
     if (!service || !service.active) {
       return NextResponse.json(
         { error: 'Invalid service selected' },
@@ -34,16 +32,16 @@ export async function POST(req: NextRequest) {
     }
 
     // Determine if this is a recurring or one-time service
-    const isRecurring = service.slug.includes('maintenance') || 
-                        service.slug.includes('seo') || 
-                        service.slug.includes('social-media') || 
-                        service.slug.includes('ad-management') || 
-                        service.slug.includes('bundle');
+    const isRecurring = service.slug.includes('maintenance') ||
+      service.slug.includes('seo') ||
+      service.slug.includes('social-media') ||
+      service.slug.includes('ad-management') ||
+      service.slug.includes('bundle');
 
     // Use tier-specific pricing if provided, otherwise use service price
     const finalPrice = amount || service.price;
-    const productName = tierName 
-      ? `${service.name} - ${tierName}` 
+    const productName = tierName
+      ? `${service.name} - ${tierName}`
       : service.name;
 
     let sessionConfig: any = {

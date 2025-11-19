@@ -1,0 +1,16 @@
+I have exported the frontend codebase of a reference project into 3 consolidated text files. I need you to update my CURRENT project to match this reference implementation.
+
+1. **Dependencies**: Check my current `package.json` and install any missing packages from this list:
+   `npm install lucide-react framer-motion clsx tailwind-merge date-fns react-hook-form zod @hookform/resolvers recharts react-hot-toast` (plus any others you identify in the imports).
+
+2. **Code Integration**:
+   - **Components** (`01_components.txt`): Compare with my `components/` directory. Create any missing components and overwrite existing ones to match the reference code exactly.
+   - **Pages & Routes** (`02_app_pages.txt`): Update my `app/` directory. Pay special attention to the layout structure, `globals.css` styles, and page logic. 
+   - **Utilities & Config** (`03_lib_config.txt`): Update `lib/`, `hooks/`, and configuration files (especially `tailwind.config.ts` and `lib/utils.ts`). This is crucial for the design system to work.
+
+3. **Strategy**:
+   - **Preserve Backend**: Do NOT delete or overwrite my existing backend API routes (`app/api/`) unless the reference explicitly replaces them (the reference export is primarily frontend-focused).
+   - **File Handling**: If a file exists in the reference, it should exist in my project. If I have extra files not in the reference, keep them unless they conflict.
+   - **Design System**: Ensure the design tokens (colors, fonts) in `globals.css` and `tailwind.config.ts` are applied correctly so the visual identity matches.
+
+4. **Goal**: My project should function and look exactly like the reference code provided in these text files.
