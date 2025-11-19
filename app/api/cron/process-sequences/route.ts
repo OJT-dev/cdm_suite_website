@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 
 /**
  * Cron job endpoint to process sequence queue

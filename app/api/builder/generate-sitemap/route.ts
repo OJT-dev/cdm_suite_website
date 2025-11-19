@@ -4,6 +4,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { generateSitemap, generateRobotsTxt } from "@/lib/builder/sitemap-generator";
+export const runtime = 'edge';
+
 
 export const dynamic = 'force-dynamic';
 

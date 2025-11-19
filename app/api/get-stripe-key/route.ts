@@ -1,6 +1,8 @@
 
 import { NextResponse } from 'next/server';
 import { getStripePublishableKeyEdge } from '@/lib/stripe-config';
+export const runtime = 'edge';
+
 
 export const runtime = 'nodejs';
 

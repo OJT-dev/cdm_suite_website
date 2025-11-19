@@ -3,6 +3,8 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { PrismaClient } from '@prisma/client';
 import { generateProposalTitle } from '@/lib/bid-ai-generator';
+export const runtime = 'edge';
+
 
 const prisma = new PrismaClient();
 

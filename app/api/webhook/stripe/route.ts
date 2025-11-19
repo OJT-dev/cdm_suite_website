@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getStripeInstance } from '@/lib/stripe';
 import { prisma } from '@/lib/db';
 import Stripe from 'stripe';
+export const runtime = 'edge';
+
 
 export async function POST(req: NextRequest) {
   const body = await req.text();

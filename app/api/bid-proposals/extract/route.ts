@@ -7,6 +7,8 @@ import { uploadFile } from '@/lib/s3';
 import { extractBidInformationFromDocuments, generateTechnicalProposal, generateCostProposal, extractPricingFromEmail, generateFollowUpEmail } from '@/lib/bid-ai-generator';
 import { AIGenerationRequest, AIGenerationResponse } from '@/lib/bid-proposal-types';
 import { extractTextFromFile, extractTextFromFilesSequentially, categorizeDocuments } from '@/lib/document-extractor';
+export const runtime = 'edge';
+
 
 const MAX_RETRIES = 3;
 const INITIAL_RETRY_DELAY = 2000; // 2 seconds

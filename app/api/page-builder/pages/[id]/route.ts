@@ -2,6 +2,8 @@
 import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/session';
 import { prisma } from '@/lib/db';
+export const runtime = 'edge';
+
 
 // GET single page
 export async function GET(

@@ -6,6 +6,8 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { parseBulkLeadData, mapServicesToProposalItems } from '@/lib/bulk-import-parser';
 import { generateProposalNumber, DEFAULT_TERMS } from '@/lib/proposal-types';
+export const runtime = 'edge';
+
 
 export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);

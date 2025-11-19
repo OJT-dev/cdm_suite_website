@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 
 /**
  * Combined Document Download API

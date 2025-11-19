@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+export const runtime = 'edge';
+
 
 // POST /api/crm/leads/bulk-delete - Delete multiple leads
 export async function POST(request: NextRequest) {

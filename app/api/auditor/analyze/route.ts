@@ -4,6 +4,8 @@ import { prisma } from '@/lib/db';
 import { sendEmail, sendWelcomeEmail } from '@/lib/email';
 import { generateAuditResultEmail, generateLeadNotificationEmail } from '@/lib/email-templates';
 import bcrypt from 'bcryptjs';
+export const runtime = 'edge';
+
 
 // Simulate website analysis (in production, you'd use real APIs like Google PageSpeed Insights, etc.)
 async function analyzeWebsite(url: string, goals: string[]) {

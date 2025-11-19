@@ -4,6 +4,8 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { generateProposalTitle } from '@/lib/bid-ai-generator';
+export const runtime = 'edge';
+
 
 // POST /api/bid-proposals/[id]/regenerate-title - Regenerate proposal title
 export async function POST(

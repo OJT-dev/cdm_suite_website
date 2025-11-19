@@ -7,6 +7,8 @@ import { uploadFile, downloadFile } from '@/lib/s3';
 import { extractTextFromFile, ExtractedDocument } from '@/lib/document-extractor';
 import { extractBidInformationFromDocuments, extractPricingFromEmail, calculateRealisticPricing } from '@/lib/bid-ai-generator';
 import { generateCompetitiveIntelligence, calculateWinProbability, generateRiskAssessment } from '@/lib/bid-intelligence-generator';
+export const runtime = 'edge';
+
 
 const ABACUS_API_URL = 'https://apps.abacus.ai/v1/chat/completions';
 const ABACUS_API_KEY = process.env.ABACUSAI_API_KEY;

@@ -2,6 +2,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripeInstance } from '@/lib/stripe';
 import { redirect } from 'next/navigation';
+export const runtime = 'edge';
+
 
 export const runtime = 'nodejs';
 

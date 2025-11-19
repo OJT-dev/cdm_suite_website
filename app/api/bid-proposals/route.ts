@@ -6,6 +6,8 @@ import { prisma } from '@/lib/db';
 import { uploadFile } from '@/lib/s3';
 import { generateTechnicalProposal, generateCostProposal, generateProposalTitle, generateCoverPage } from '@/lib/bid-ai-generator';
 import { BidDocument } from '@/lib/bid-proposal-types';
+export const runtime = 'edge';
+
 
 // GET /api/bid-proposals - List all bid proposals
 export async function GET(request: NextRequest) {

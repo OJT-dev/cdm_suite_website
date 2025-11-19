@@ -2,6 +2,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripeInstance } from '@/lib/stripe';
 import { getCurrentUser } from '@/lib/session';
+export const runtime = 'edge';
+
 
 export const runtime = 'nodejs';
 

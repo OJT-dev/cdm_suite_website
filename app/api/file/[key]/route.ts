@@ -1,6 +1,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getFileUrl } from '@/lib/s3';
+export const runtime = 'edge';
+
 
 export async function GET(
   request: NextRequest,

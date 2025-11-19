@@ -1,6 +1,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+export const runtime = 'edge';
+
 
 // GET - Fetch case study by slug
 export async function GET(

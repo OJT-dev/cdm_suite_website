@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+export const runtime = 'edge';
+
 
 // PATCH /api/bid-proposals/[id]/update-cover - Update cover page content
 export async function PATCH(

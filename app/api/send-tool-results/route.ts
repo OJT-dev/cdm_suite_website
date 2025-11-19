@@ -1,6 +1,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+export const runtime = 'edge';
+
 
 // This API handles sending tool results via email and capturing leads
 export async function POST(request: NextRequest) {

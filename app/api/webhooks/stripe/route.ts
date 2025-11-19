@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { getWorkflowTemplate } from '@/lib/workflow-templates';
 import Stripe from 'stripe';
+export const runtime = 'edge';
+
 
 export const runtime = 'nodejs';
 

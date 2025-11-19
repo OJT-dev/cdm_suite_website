@@ -2,6 +2,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+export const runtime = 'edge';
+
 
 // POST /api/ai/suggest-step - Suggest next step using AI
 export async function POST(request: NextRequest) {

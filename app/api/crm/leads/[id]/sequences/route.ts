@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+export const runtime = 'edge';
+
 
 // GET /api/crm/leads/[id]/sequences - Get sequence assignments for a lead
 export async function GET(

@@ -4,6 +4,8 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { BusinessListing, BusinessVerificationResult } from '@/lib/bid-proposal-types';
+export const runtime = 'edge';
+
 
 export async function POST(
   req: NextRequest,

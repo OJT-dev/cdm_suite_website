@@ -5,6 +5,8 @@ import { authOptions } from '@/lib/auth';
 import { prisma as db } from '@/lib/db';
 import { uploadFile, downloadFile } from '@/lib/s3';
 import { 
+export const runtime = 'edge';
+
   extractBidInformationFromDocuments, 
   generateTechnicalProposal, 
   generateCostProposal,

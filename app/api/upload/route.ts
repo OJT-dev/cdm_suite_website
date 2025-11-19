@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { uploadFile } from '@/lib/s3';
+export const runtime = 'edge';
+
 
 export async function POST(request: NextRequest) {
   try {

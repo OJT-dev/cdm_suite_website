@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 
 /**
  * Bid Proposal Documents API

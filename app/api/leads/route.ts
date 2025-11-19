@@ -6,6 +6,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { sendToolLeadNotifications, generateToolFollowUpActions } from '@/lib/tool-email-templates';
 import { safeJSONStringify } from '@/lib/json-helper';
+export const runtime = 'edge';
+
 
 // Helper to parse and format tool assessment data
 function parseAssessmentData(notes: string, source: string) {

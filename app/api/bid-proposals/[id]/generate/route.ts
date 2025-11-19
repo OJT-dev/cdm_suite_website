@@ -5,6 +5,8 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { generateTechnicalProposal, generateCostProposal } from '@/lib/bid-ai-generator';
 import { AIGenerationRequest } from '@/lib/bid-proposal-types';
+export const runtime = 'edge';
+
 
 // POST /api/bid-proposals/[id]/generate - Generate proposal content using AI
 export async function POST(

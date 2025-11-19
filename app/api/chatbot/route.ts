@@ -1,6 +1,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getRelevantBlogContext } from '@/lib/blog-knowledge';
+export const runtime = 'edge';
+
 
 export async function POST(request: NextRequest) {
   try {

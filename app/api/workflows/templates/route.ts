@@ -5,6 +5,8 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { getWorkflowTemplate } from '@/lib/workflow-templates';
+export const runtime = 'edge';
+
 
 export async function POST(req: NextRequest) {
   try {

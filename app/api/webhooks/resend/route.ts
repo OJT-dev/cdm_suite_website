@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 
 /**
  * Resend webhook endpoint for tracking email events
