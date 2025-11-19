@@ -4,21 +4,16 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma as db } from '@/lib/db';
 import { uploadFile, downloadFile } from '@/lib/s3';
-import { 
-export const runtime = 'edge';
-
-  extractBidInformationFromDocuments, 
-  generateTechnicalProposal, 
+import {
+  extractBidInformationFromDocuments,
+  generateTechnicalProposal,
   generateCostProposal,
   extractPricingFromEmail,
   generateFollowUpEmail
 } from '@/lib/bid-ai-generator';
-import { AIGenerationRequest } from '@/lib/bid-proposal-types';
-import { extractTextFromFile, categorizeDocuments } from '@/lib/document-extractor';
 
-export async function POST(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+export const runtime = 'edge';
+{ params }: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -51,7 +46,7 @@ export async function POST(
     }
 
     // Step 1: Extract text from new files
-    const newExtractedDocs = newFiles.length > 0 
+    const newExtractedDocs = newFiles.length > 0
       ? await Promise.all(newFiles.map(file => extractTextFromFile(file)))
       : [];
 
@@ -59,21 +54,21 @@ export async function POST(
     let existingExtractedDocs: any[] = [];
     if (newFiles.length === 0 && existingDocuments.length > 0) {
       console.log(`No new files uploaded. Extracting ${existingDocuments.length} existing file(s)...`);
-      
+
       for (const doc of existingDocuments) {
         try {
           // Download file from S3
           const fileBuffer = await downloadFile(doc.url);
-          
+
           // Create a File object from the buffer for extraction
           const fileName = doc.name || 'document';
           const fileType = doc.type || 'application/octet-stream';
           const file = new File([fileBuffer], fileName, { type: fileType });
-          
+
           // Extract text from document
           const extractedDoc = await extractTextFromFile(file);
           existingExtractedDocs.push(extractedDoc);
-          
+
           console.log(`✓ Extracted ${extractedDoc.content.length} characters from ${fileName}`);
         } catch (error: any) {
           console.error(`Failed to download/extract ${doc.name}:`, error);
@@ -98,10 +93,10 @@ export async function POST(
       const buffer = Buffer.from(await file.arrayBuffer());
       const fileName = `bid-documents/${Date.now()}-${file.name}`;
       const s3Key = await uploadFile(buffer, fileName, file.type || 'application/octet-stream');
-      
+
       const extractedDoc = newExtractedDocs.find(doc => doc.name === file.name);
       const isEmail = extractedDoc?.type === 'email' || file.name.toLowerCase().includes('email');
-      
+
       if (isEmail) {
         // Update or set preliminary email (keep the most recent one)
         preliminaryEmailData = {
@@ -136,7 +131,7 @@ export async function POST(
     let extractedPrice: number | null = existingBid.proposedPrice;
     let priceSource: string | null = existingBid.priceSource;
     let pricingNotes: string | null = existingBid.pricingNotes;
-    
+
     try {
       if (newRfpDocs.length > 0) {
         const newExtractedInfo = await extractBidInformationFromDocuments(allDocumentContents);
@@ -155,7 +150,7 @@ export async function POST(
           estimatedBudget: newExtractedInfo.estimatedBudget,
           budgetDetails: newExtractedInfo.budgetDetails,
         };
-        
+
         // Re-extract pricing if new info available
         if (newExtractedInfo.estimatedBudget) {
           const budgetMatch = newExtractedInfo.estimatedBudget.match(/\$?\s*[\d,]+(?:\.\d{2})?/);
@@ -167,7 +162,7 @@ export async function POST(
           }
         }
       }
-      
+
       // Try to extract price from new preliminary email
       if (newEmailDocs.length > 0 && preliminaryEmailData?.content) {
         const emailPricing = await extractPricingFromEmail(preliminaryEmailData.content);
@@ -251,7 +246,7 @@ export async function POST(
           // Regenerate technical proposal
           console.log(`Regenerating technical proposal for bid ${bidId}...`);
           const technicalResult = await generateTechnicalProposal(generationContext);
-          
+
           await db.bidProposal.update({
             where: { id: bidId },
             data: {
@@ -267,10 +262,10 @@ export async function POST(
           console.log(`Regenerating cost proposal for bid ${bidId}...`);
           const costContext = { ...generationContext, envelopeType: 2 as const };
           const costResult = await generateCostProposal(costContext);
-          
+
           // Generate updated follow-up email
           const followUpEmail = await generateFollowUpEmail(updatedBid);
-          
+
           await db.bidProposal.update({
             where: { id: bidId },
             data: {
@@ -305,7 +300,7 @@ export async function POST(
 
     return NextResponse.json({
       success: true,
-      message: aiExtractionError 
+      message: aiExtractionError
         ? `Bid proposal updated, but regeneration failed. ${aiExtractionError}`
         : 'Bid proposal updated. Proposals are being regenerated...',
       warning: aiExtractionError || undefined,
